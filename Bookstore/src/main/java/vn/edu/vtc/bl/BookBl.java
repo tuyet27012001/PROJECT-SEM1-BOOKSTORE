@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class BookBl {
   public static Scanner sc = new Scanner(System.in);
+  
   public static String yesOrNo() {
     while (true) {
       String y = sc.nextLine();

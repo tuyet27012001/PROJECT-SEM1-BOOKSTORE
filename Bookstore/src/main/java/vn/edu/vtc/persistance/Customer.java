@@ -7,12 +7,11 @@ public class Customer {
   private String name;
   private String gender;
   private Date birthDate;
-  private int phone;
+  private String phone;
   private String email;
   private String password;
 
-  public Customer(int idCustomer, String name, String gender, Date birthDate, int phone, String email,
-      String password) {
+  public Customer() {
     this.idCustomer = idCustomer;
     this.name = name;
     this.gender = gender;
@@ -38,7 +37,7 @@ public class Customer {
     return birthDate;
   }
 
-  public int getPhone() {
+  public String getPhone() {
     return phone;
   }
 
@@ -66,7 +65,7 @@ public class Customer {
     this.birthDate = birthDate;
   }
 
-  public void setPhone(int phone) {
+  public void setPhone(String phone) {
     this.phone = phone;
   }
 
