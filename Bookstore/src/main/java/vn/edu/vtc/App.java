@@ -17,10 +17,7 @@ public class App
         int choose = menu(menuMain, "Chào mừng bạn đến với Bookstore");
         switch (choose) {
                 case 1:
-                    String a = "Tueyt270101";
-                    String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([@#$.*%^&+=]{0,})(?=\\S+$).{8,}";
-                    System.out.print(a.matches(regex));
-                    sc.nextLine();
+                    
                     break;
                 case 2:
                     // clrscr();
