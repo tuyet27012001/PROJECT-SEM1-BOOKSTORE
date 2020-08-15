@@ -11,14 +11,7 @@ public class Book {
   private String isbn;
 
   public Book(){
-    this.bookId = bookId;
-    this.publishingCompanyName = publishingCompanyName;
-    this.title = title;
-    this.author = author;
-    this.price = price;
-    this.detail = detail;
-    this.quantity = quantity;
-    this.isbn = isbn;
+    
   }
 
   public int getBookId(){

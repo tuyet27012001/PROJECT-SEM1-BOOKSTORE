@@ -1,6 +1,6 @@
 package vn.edu.vtc.persistance;
 
-import java.sql.Date;
+
 
 public class Customer {
   private int idCustomer;
@@ -12,13 +12,7 @@ public class Customer {
   private String password;
 
   public Customer() {
-    this.idCustomer = idCustomer;
-    this.name = name;
-    this.gender = gender;
-    this.birthDate = birthDate;
-    this.phone = phone;
-    this.email = email;
-    this.password = password;
+    
   }
 
   public int getIdCustomer() {

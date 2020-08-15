@@ -11,13 +11,13 @@ import java.util.List;
 import vn.edu.vtc.persistance.Book;
 
 public class BookDal {
-    public static List<Book> getAll(){
-        List<Book> listBook =  new ArrayList<>();
-        try{
-          Connection con = DbUtil.getConnection();
-          String se = "{call display_book}";
-          CallableStatement d = con.prepareCall(se);
-          ResultSet rs = d.executeQuery();
+    public static List<Book> getAll() {
+        List<Book> listBook = new ArrayList<>();
+        try {
+            Connection con = DbUtil.getConnection();
+            String se = "{call display_book}";
+            CallableStatement d = con.prepareCall(se);
+            ResultSet rs = d.executeQuery();
             while (rs.next()) {
                 listBook.add(getBook(rs));
             }
@@ -39,17 +39,17 @@ public class BookDal {
         return book;
     }
 
-    public static void displayCategory(){
-      try {
-        Connection con = DbUtil.getConnection();
-        String se = "{call display_category}";
-        CallableStatement d = con.prepareCall(se);
-        ResultSet rs = d.executeQuery();
-        while (rs.next()) {
-            System.out.printf("|%-4d|%-35s |\n", rs.getInt(1), rs.getString(2));
+    public static void displayCategory() {
+        try {
+            Connection con = DbUtil.getConnection();
+            String se = "{call display_category}";
+            CallableStatement d = con.prepareCall(se);
+            ResultSet rs = d.executeQuery();
+            while (rs.next()) {
+                System.out.printf("|%-4d|%-35s |\n", rs.getInt(1), rs.getString(2));
+            }
+        } catch (SQLException e) {
+            e.getSQLState();
         }
-      } catch (SQLException e) {
-          e.getSQLState();
-      }
     }
 }

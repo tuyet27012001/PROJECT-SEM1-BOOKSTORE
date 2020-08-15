@@ -17,15 +17,11 @@ public class CustomerBl {
 	public boolean login(String ep, String pass) {
 		CustomerDal customerDal = new CustomerDal();
 		boolean log = false;
-		List<Customer> listCustomer = customerDal.getAll();
-		for (int i = 0; i < listCustomer.size(); i++) {
-			if ((ep.equals(listCustomer.get(i).getEmail()) || ep.equals(listCustomer.get(i).getPhone()))
-					&& pass.equals(listCustomer.get(i).getPassword())) {
-				System.out.println("Dang nhap thanh cong");
-				log = true;
-				sc.nextLine();
-				return log;
-			}
+		if (customerDal.login(ep, pass) == true) {
+			System.out.println("Dang nhap thanh cong");
+			log = true;
+			sc.nextLine();
+			return log;
 		}
 		System.out.print("Email/phone hoac password khong dung\nBan co muon nhap lai (C/K) :");
 		final String ck = BookBl.yesOrNo();
@@ -87,9 +83,9 @@ public class CustomerBl {
 					System.out.printf("Mat khau khong khop vui long nhap lai !\n");
 				}
 			}
-			
+
 			customerDal.insertCustomer(cus);
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -97,8 +93,8 @@ public class CustomerBl {
 	}
 
 	// public boolean validName(final String name) {
-	// 	final String regex = "[a-zA-Z ]";
-	// 	return name.matches(regex);
+	// final String regex = "[a-zA-Z ]";
+	// return name.matches(regex);
 	// }
 
 	public void menuCustomer() {
@@ -139,7 +135,6 @@ public class CustomerBl {
 		return result;
 	}
 
-	
 	public String password() {
 		final Console console = System.console();
 		if (console == null) {

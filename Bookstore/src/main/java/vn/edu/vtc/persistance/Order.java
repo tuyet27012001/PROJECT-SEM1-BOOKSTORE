@@ -12,12 +12,7 @@ public class Order {
   private Date dateTime;
 
   public Order(){
-    this.orderId = orderId;
-    this.paymentMethod = paymentMethod;
-    this.shippingUnit = shippingUnit;
-    this.address = address;
-    this.orderStatus = orderStatus;
-    this.dateTime = dateTime;
+    
   }
   
   public int getOrderId(){
