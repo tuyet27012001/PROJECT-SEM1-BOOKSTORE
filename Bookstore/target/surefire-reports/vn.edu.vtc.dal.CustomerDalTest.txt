@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: vn.edu.vtc.dal.CustomerDalTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.01 s <<< FAILURE! - in vn.edu.vtc.dal.CustomerDalTest
+initializationError(vn.edu.vtc.dal.CustomerDalTest)  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.Exception: Method getAllDalTest() should not be static
+

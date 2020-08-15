@@ -1,0 +1,84 @@
+# Created at 2020-08-15T14:56:48.854
+[SUREFIRE] std/in stream corrupted
+java.io.IOException: Command NOOP unexpectedly read Void data with length 4.
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:130)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:830)
+
+
+# Created at 2020-08-15T14:59:17.264
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login1(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.266
+Unexpected IOException: 5,1,vn.edu.vtc.bl.CustomerBlTest,login2(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.303
+Unexpected IOException with stream: Dang nhap thanh cong
+
+
+# Created at 2020-08-15T14:59:17.305
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login2(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.306
+Unexpected IOException: 5,1,vn.edu.vtc.bl.CustomerBlTest,login3(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.330
+Unexpected IOException with stream: Email/phone hoac password khong dung
+Ban co muon nhap lai (C/K) :
+
+# Created at 2020-08-15T14:59:17.332
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login3(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.334
+Unexpected IOException: 5,1,vn.edu.vtc.bl.CustomerBlTest,login4(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.364
+Unexpected IOException with stream: Dang nhap thanh cong
+
+
+# Created at 2020-08-15T14:59:17.365
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login4(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.366
+Unexpected IOException: 2,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.bl.CustomerBlTest,null,null,null
+
+
+# Created at 2020-08-15T14:59:17.367
+Unexpected IOException: 1,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.bl.PresentationTest,null,null,null
+
+
+# Created at 2020-08-15T14:59:17.369
+Unexpected IOException: 5,1,vn.edu.vtc.bl.PresentationTest,email1(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.371
+Unexpected IOException: 6,1,vn.edu.vtc.bl.PresentationTest,email1(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.372
+Unexpected IOException: 2,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.bl.PresentationTest,null,null,null
+
+
+# Created at 2020-08-15T14:59:17.373
+Unexpected IOException: 1,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.dal.CustomerDalTest,null,null,null
+
+
+# Created at 2020-08-15T14:59:17.376
+Unexpected IOException: 5,1,vn.edu.vtc.dal.CustomerDalTest,initializationError(vn.edu.vtc.dal.CustomerDalTest),null,null,null
+
+
+# Created at 2020-08-15T14:59:17.380
+Unexpected IOException: 7,1,vn.edu.vtc.dal.CustomerDalTest,initializationError(vn.edu.vtc.dal.CustomerDalTest),null,Method getAllDalTest() should not be static,null,Method getAllDalTest() should not be static,CustomerDalTest.initializationError \00BB  Method getAllDalTest() should not be st...,java.lang.Exception: Method getAllDalTest() should not be static\000A
+
+
+# Created at 2020-08-15T14:59:17.380
+Unexpected IOException: 2,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.dal.CustomerDalTest,null,null,null
+
+

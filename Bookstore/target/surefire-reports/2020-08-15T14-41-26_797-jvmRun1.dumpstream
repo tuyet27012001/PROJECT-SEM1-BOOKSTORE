@@ -1,0 +1,53 @@
+# Created at 2020-08-15T14:42:49.000
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: DEFAULT
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:397)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:122)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:830)
+
+
+# Created at 2020-08-15T14:42:49.004
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login1(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:42:49.060
+Unexpected IOException: 5,1,vn.edu.vtc.bl.CustomerBlTest,login2(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:42:49.122
+Unexpected IOException with stream: Dang nhap thanh cong
+
+
+# Created at 2020-08-15T14:42:49.124
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login2(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:42:49.126
+Unexpected IOException: 5,1,vn.edu.vtc.bl.CustomerBlTest,login3(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:42:49.167
+Unexpected IOException with stream: Email/phone hoac password khong dung
+Ban co muon nhap lai (C/K) :
+
+# Created at 2020-08-15T14:42:49.169
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login3(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:42:49.170
+Unexpected IOException: 5,1,vn.edu.vtc.bl.CustomerBlTest,login4(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:42:49.202
+Unexpected IOException with stream: Dang nhap thanh cong
+
+
+# Created at 2020-08-15T14:42:49.204
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login4(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T14:42:49.205
+Unexpected IOException: 2,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.bl.CustomerBlTest,null,null,null
+
+

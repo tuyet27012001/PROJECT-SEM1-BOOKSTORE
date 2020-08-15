@@ -1,0 +1,132 @@
+# Created at 2020-08-15T15:08:04.626
+[SUREFIRE] std/in stream corrupted
+java.io.IOException: Command NOOP unexpectedly read Void data with length 4.
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:130)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:830)
+
+
+# Created at 2020-08-15T15:08:27.294
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login1(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.297
+Unexpected IOException: 5,1,vn.edu.vtc.bl.CustomerBlTest,login2(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.330
+Unexpected IOException with stream: Dang nhap thanh cong
+
+
+# Created at 2020-08-15T15:08:27.331
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login2(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.333
+Unexpected IOException: 5,1,vn.edu.vtc.bl.CustomerBlTest,login3(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.363
+Unexpected IOException with stream: Email/phone hoac password khong dung
+Ban co muon nhap lai (C/K) :
+
+# Created at 2020-08-15T15:08:27.366
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login3(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.367
+Unexpected IOException: 5,1,vn.edu.vtc.bl.CustomerBlTest,login4(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.419
+Unexpected IOException with stream: Dang nhap thanh cong
+
+
+# Created at 2020-08-15T15:08:27.420
+Unexpected IOException: 6,1,vn.edu.vtc.bl.CustomerBlTest,login4(vn.edu.vtc.bl.CustomerBlTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.421
+Unexpected IOException: 2,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.bl.CustomerBlTest,null,null,null
+
+
+# Created at 2020-08-15T15:08:27.422
+Unexpected IOException: 1,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.bl.PresentationTest,null,null,null
+
+
+# Created at 2020-08-15T15:08:27.426
+Unexpected IOException: 5,1,vn.edu.vtc.bl.PresentationTest,email1(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.428
+Unexpected IOException: 6,1,vn.edu.vtc.bl.PresentationTest,email1(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.430
+Unexpected IOException: 5,1,vn.edu.vtc.bl.PresentationTest,email2(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.430
+Unexpected IOException: 6,1,vn.edu.vtc.bl.PresentationTest,email2(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.431
+Unexpected IOException: 5,1,vn.edu.vtc.bl.PresentationTest,email3(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.432
+Unexpected IOException: 6,1,vn.edu.vtc.bl.PresentationTest,email3(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.433
+Unexpected IOException: 5,1,vn.edu.vtc.bl.PresentationTest,email4(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.435
+Unexpected IOException: 6,1,vn.edu.vtc.bl.PresentationTest,email4(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.436
+Unexpected IOException: 5,1,vn.edu.vtc.bl.PresentationTest,phone1(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.437
+Unexpected IOException: 6,1,vn.edu.vtc.bl.PresentationTest,phone1(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.438
+Unexpected IOException: 5,1,vn.edu.vtc.bl.PresentationTest,phone2(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.439
+Unexpected IOException: 6,1,vn.edu.vtc.bl.PresentationTest,phone2(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.440
+Unexpected IOException: 5,1,vn.edu.vtc.bl.PresentationTest,phone3(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.441
+Unexpected IOException: 6,1,vn.edu.vtc.bl.PresentationTest,phone3(vn.edu.vtc.bl.PresentationTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.442
+Unexpected IOException: 2,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.bl.PresentationTest,null,null,null
+
+
+# Created at 2020-08-15T15:08:27.444
+Unexpected IOException: 1,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.dal.CustomerDalTest,null,null,null
+
+
+# Created at 2020-08-15T15:08:27.445
+Unexpected IOException: 5,1,vn.edu.vtc.dal.CustomerDalTest,getAllDalTest(vn.edu.vtc.dal.CustomerDalTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.466
+Unexpected IOException: 6,1,vn.edu.vtc.dal.CustomerDalTest,getAllDalTest(vn.edu.vtc.dal.CustomerDalTest),null,null,null
+
+
+# Created at 2020-08-15T15:08:27.468
+Unexpected IOException: 2,1,org.apache.maven.surefire.junit4.JUnit4Provider,vn.edu.vtc.dal.CustomerDalTest,null,null,null
+
+
