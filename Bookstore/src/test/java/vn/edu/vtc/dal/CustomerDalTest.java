@@ -6,13 +6,12 @@ import java.util.List;
 
 import org.junit.Test;
 
-import vn.edu.vtc.bl.CustomerBl;
+import vn.edu.vtc.App;
 import vn.edu.vtc.persistance.Customer;
 
 public class CustomerDalTest {
     
     private final CustomerDal customerDal = new CustomerDal();
-    private final CustomerBl customerBl = new CustomerBl();
 
     @Test
     public  void getAllDalTest(){
@@ -30,7 +29,7 @@ public class CustomerDalTest {
         
         try {
             String pass = "tuyet";
-            pass = customerBl.md5(pass);
+            pass = App.md5(pass);
             final boolean result = customerDal.login("1234123412", pass);
             final boolean expected = true;
             assertEquals(expected, result);
@@ -44,7 +43,7 @@ public class CustomerDalTest {
         
         try {
             String pass = "dkfdksf";
-            pass = customerBl.md5(pass);
+            pass = App.md5(pass);
             final boolean result = customerDal.login("anhtuyetnjnjljl@gmail.com", pass);
             final boolean expected = false;
             assertEquals(expected, result);
@@ -58,7 +57,7 @@ public class CustomerDalTest {
        
         try {
             String pass = "kiencho";
-            pass = customerBl.md5(pass);
+            pass = App.md5(pass);
             final boolean result = customerDal.login("kienham@gmail.com", pass);
             final boolean expected = true;
             assertEquals(expected, result);
@@ -71,7 +70,7 @@ public class CustomerDalTest {
     public void login1() {
         try {
             String pass = "tuyet";
-            pass = customerBl.md5(pass);
+            pass = App.md5(pass);
             final boolean result = customerDal.login("anh@gmail.com", pass);
             final boolean expected = true;
             assertEquals(expected, result);
