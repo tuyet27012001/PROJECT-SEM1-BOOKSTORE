@@ -1,7 +1,9 @@
 package vn.edu.vtc.bl;
 
 import java.io.Console;
-
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
 import vn.edu.vtc.App;
@@ -11,6 +13,7 @@ import vn.edu.vtc.persistance.Customer;
 public class CustomerBl {
 	private final Scanner sc = new Scanner(System.in);
 	final CustomerDal customerDal = new CustomerDal();
+	Presentation presentation = new Presentation();
 
 	public boolean login(final String ep, final String pass) {
 		boolean log = false;
@@ -21,7 +24,7 @@ public class CustomerBl {
 			return log;
 		}
 		System.out.print("Email/phone hoac password khong dung\nBan co muon nhap lai (C/K) :");
-		final String ck = BookBl.yesOrNo();
+		final String ck = presentation.yesOrNo();
 		if (ck.equalsIgnoreCase("c")) {
 			App.login();
 		}
@@ -33,41 +36,17 @@ public class CustomerBl {
 		if (customerDal.insertCustomer(customer) == true) {
 			System.out.println("Dang ky thanh cong.");
 			reg = true;
+			sc.nextLine();
 		}
 		else{
 			System.out.println("Dang ky that bai");
+			sc.nextLine();
 		}
 		return reg;
 	}
 
-	// public boolean validName(final String name) {
-	// final String regex = "[a-zA-Z ]";
-	// return name.matches(regex);
-	// }
-
-	public void menuCustomer() {
-		while (true) {
-			final String[] menuMain = { "Sach", "Quản lý tài khoản", "Quản lý hóa đơn", "Thoát" };
-			final int choose = App.menu(menuMain, "Chào mừng bạn đến với Bookstore");
-			switch (choose) {
-				case 1:
-					BookBl.menuBook();
-					break;
-				case 2:
-					// clrscr();
-					// CustomerBl.login();
-					break;
-				case 3:
-
-					break;
-				case 4:
-					System.exit(0);
-					break;
-				default:
-					break;
-			}
-		}
-	}
+	
+	
 
 	public String password() {
 		final Console console = System.console();
@@ -75,8 +54,22 @@ public class CustomerBl {
 			System.out.println("Couldn't get Console instance");
 			System.exit(0);
 		}
-		final char[] passwordArray = console.readPassword("Password: ");
+		final char[] passwordArray = console.readPassword("");
 		final String pass = new String(passwordArray);
 		return pass;
 	}
+
+	public static String md5(final String str) {
+		String result = "";
+		MessageDigest digest;
+		try {
+				digest = MessageDigest.getInstance("MD5");
+				digest.update(str.getBytes());
+				final BigInteger bigInteger = new BigInteger(1, digest.digest());
+				result = bigInteger.toString(16);
+		} catch (final NoSuchAlgorithmException e) {
+				e.printStackTrace();
+		}
+		return result;
+}
 }

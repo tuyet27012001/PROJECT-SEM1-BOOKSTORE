@@ -12,49 +12,6 @@ import com.mysql.cj.jdbc.CallableStatement;
 import vn.edu.vtc.persistance.Customer;
 
 public class CustomerDal {
-    // public boolean login(String ep, String pass) {
-    // boolean log = false;
-    // try {
-    // String sql = "{call search_phone_customer(?)}";
-    // Connection con = DbUtil.getConnection();
-    // CallableStatement callableStatement = (CallableStatement)
-    // con.prepareCall(sql);
-    // callableStatement.setString(1, ep);
-    // callableStatement.executeUpdate();
-    // ResultSet rs = callableStatement.executeQuery();
-    // int count = 0;
-    // while (rs.next()) {
-    // count++;
-    // }
-    // String sql1 = "{call search_email_customer(?)}";
-    // CallableStatement callableStatement1 = (CallableStatement)
-    // con.prepareCall(sql1);
-    // callableStatement1.setString(1, ep);
-    // callableStatement1.executeUpdate();
-    // ResultSet rs1 = callableStatement1.executeQuery();
-    // int count1 = 0;
-    // while (rs1.next()) {
-    // count1++;
-    // }
-    // String sql2 = "{call search_password_customer(?)}";
-    // CallableStatement callableStatement2 = (CallableStatement)
-    // con.prepareCall(sql2);
-    // callableStatement2.setString(1, pass);
-    // callableStatement2.executeUpdate();
-    // ResultSet rs2 = callableStatement2.executeQuery();
-    // int count2 = 0;
-    // while (rs2.next()) {
-    // count2++;
-    // }
-
-    // if (count2 == 1 && (count == 1 || count1 == 1)) {
-    // log = true;
-    // }
-    // } catch (SQLException e) {
-    // e.getSQLState();
-    // }
-    // return log;
-    // }
 
     public boolean login(String ep, String pass) {
         boolean log = false;
@@ -130,6 +87,7 @@ public class CustomerDal {
             while (rs.next()) {
                 listCustomer.add(getCustomer(rs));
             }
+            con.close();
         } catch (SQLException ex) {
         }
         return listCustomer;
