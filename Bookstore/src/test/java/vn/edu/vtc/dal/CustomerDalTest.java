@@ -55,7 +55,6 @@ public class CustomerDalTest {
 
     @Test
     public void login4() {
-       
         try {
             String pass = "kiencho";
             pass = customerBl.md5(pass);
@@ -74,6 +73,24 @@ public class CustomerDalTest {
             pass = customerBl.md5(pass);
             final boolean result = customerDal.login("anh@gmail.com", pass);
             final boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void registerTest1() {
+        try {
+            Customer cus = new Customer();
+            cus.setName("name");
+            cus.setPhone("0934334245");
+            cus.setEmail("anhtuyet@gmail.com");
+            cus.setGender("nu");
+            cus.setPassword(customerBl.md5("andhsR@12"));
+            cus.setBirthDate("2001-01-27");
+            boolean result = customerDal.insertCustomer(cus);
+            boolean expected = true;
             assertEquals(expected, result);
         } catch (final Exception e) {
             // TODO: handle exception

@@ -38,23 +38,6 @@ public class Presentation {
 		return name.matches(regex);
 	}
 
-	public Integer checkName(String ch) {
-		int check = -1;
-		Pattern p = Pattern.compile("[^A-Za-z0-9 ]");
-		Matcher m = p.matcher(ch);
-		boolean b = m.find();
-		if (b) {
-			System.out.println("Bạn nhập sai mời bạn nhập lại !\n(Tên sách chỉ chứa chữ và số)");
-			return check;
-		} else
-			check += 2;
-		if (ch.trim().isEmpty()) {
-			System.out.println("Bạn nhập sai mời bạn nhập lại !\n(Tên sách chỉ chứa chữ và số và không được để trống)");
-			return 0;// chuỗi trống
-		}
-		return check;
-	}
-
 	public String yesOrNo() {
     while (true) {
       String y = sc.nextLine();

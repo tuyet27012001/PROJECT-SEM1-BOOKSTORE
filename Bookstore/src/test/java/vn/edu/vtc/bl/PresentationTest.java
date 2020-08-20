@@ -161,4 +161,172 @@ public class PresentationTest {
       // TODO: handle exception
     }
   }
+
+  @Test
+  public void validPasswordTest1() {
+    try {
+      final boolean result = presentation.validPassword("text");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  @Test
+  public void validPasswordTest2() {
+    try {
+      final boolean result = presentation.validPassword("Text1234");
+      final boolean expected = true;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  @Test
+  public void validPasswordTest3() {
+    try {
+      final boolean result = presentation.validPassword("Text@123");
+      final boolean expected = true;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  @Test
+  public void validPasswordTest4() {
+    try {
+      final boolean result = presentation.validPassword("text1234");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  @Test
+  public void validPasswordTest5() {
+    try {
+      final boolean result = presentation.validPassword("text@123");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  @Test
+  public void validPasswordTest6() {
+    try {
+      final boolean result = presentation.validPassword("text@");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  @Test
+  public void validPasswordTest7() {
+    try {
+      final boolean result = presentation.validPassword("TuyetTuyet123#");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  @Test
+  public void validPasswordTest8() {
+    try {
+      final boolean result = presentation.validPassword("@123");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  @Test
+  public void validPasswordTest9() {
+    try {
+      final boolean result = presentation.validPassword("@#.");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  @Test
+  public void validPasswordTest10() {
+    try {
+      final boolean result = presentation.validPassword("Text@");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  @Test
+  public void validDateTest1() {
+    try {
+      final boolean result = presentation.validDate("01-02-2001");
+      final boolean expected = true;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  @Test
+  public void validDateTest2() {
+    try {
+      final boolean result = presentation.validDate("01-02-2020");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  @Test
+  public void validDateTest3() {
+    try {
+      final boolean result = presentation.validDate("1-2-2001");
+      final boolean expected = true;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+  
+  @Test
+  public void validDateTest4() {
+    try {
+      final boolean result = presentation.validDate("22-02-2001");
+      final boolean expected = true;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  @Test
+  public void validDateTest5() {
+    try {
+      final boolean result = presentation.validDate("123-02-2001");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  @Test
+  public void validDateTest6() {
+    try {
+      final boolean result = presentation.validDate("012-12-2001");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
 }

@@ -4,6 +4,7 @@ import java.io.Console;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Scanner;
 
 import vn.edu.vtc.App;
@@ -12,7 +13,7 @@ import vn.edu.vtc.persistance.Customer;
 
 public class CustomerBl {
 	private final Scanner sc = new Scanner(System.in);
-	final CustomerDal customerDal = new CustomerDal();
+	CustomerDal customerDal = new CustomerDal();
 	Presentation presentation = new Presentation();
 
 	public boolean login(final String ep, final String pass) {
@@ -37,16 +38,16 @@ public class CustomerBl {
 			System.out.println("Dang ky thanh cong.");
 			reg = true;
 			sc.nextLine();
-		}
-		else{
+		} else {
 			System.out.println("Dang ky that bai");
 			sc.nextLine();
 		}
 		return reg;
 	}
 
-	
-	
+	public List<Customer> listCustomer() {
+		return customerDal.getAll();
+	}
 
 	public String password() {
 		final Console console = System.console();
@@ -63,13 +64,41 @@ public class CustomerBl {
 		String result = "";
 		MessageDigest digest;
 		try {
-				digest = MessageDigest.getInstance("MD5");
-				digest.update(str.getBytes());
-				final BigInteger bigInteger = new BigInteger(1, digest.digest());
-				result = bigInteger.toString(16);
+			digest = MessageDigest.getInstance("MD5");
+			digest.update(str.getBytes());
+			final BigInteger bigInteger = new BigInteger(1, digest.digest());
+			result = bigInteger.toString(16);
 		} catch (final NoSuchAlgorithmException e) {
-				e.printStackTrace();
+			e.printStackTrace();
 		}
 		return result;
-}
+	}
+
+	public Customer detailCustomer(int id) {
+		return customerDal.detailCustomer(id);
+	}
+
+	public boolean updateCustomerName(int id, String name) {
+		return customerDal.updateCustomerName(id, name);
+	}
+
+	public boolean updateCustomerPhone(int id, String phone) {
+		return customerDal.updateCustomerPhone(id, phone);
+	}
+
+	public boolean updateCustomerEmail(int id, String email) {
+		return customerDal.updateCustomerEmail(1, email);
+	}
+
+	public boolean updateCustomerGender(int id, String gender) {
+		return customerDal.updateCustomerGender(id, gender);
+	}
+
+	public boolean updateCustomerBirth(int id, String birth) {
+		return customerDal.updateCustomerBirth(id, birth);
+	}
+
+	public boolean updateCustomerPass(int id, String pass) {
+		return customerDal.updateCustomerPass(id, pass);
+	}
 }
