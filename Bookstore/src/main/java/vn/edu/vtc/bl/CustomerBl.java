@@ -101,4 +101,32 @@ public class CustomerBl {
 	public boolean updateCustomerPass(int id, String pass) {
 		return customerDal.updateCustomerPass(id, pass);
 	}
+
+	public boolean updateNameAddress(int id, String pass) {
+		return customerDal.updateNameAddress(id, pass);
+	}
+
+	public boolean updatePhoneAddress(int id, String phone) {
+		return customerDal.updatePhoneAddress(id, phone);
+	}
+
+	public boolean updateAddress(int id, String city, String district, String address) {
+		return customerDal.updateAddress(id, city, district, address);
+	}
+
+	public boolean insertAddress(String name, String phone, String city, String district, String address, int id) {
+		return customerDal.insertAddress(name, phone, city, district, address, id);
+	}
+
+	public boolean displayAddress(int id) {
+		return customerDal.displayAddress(id);
+	}
+
+	public String nameAddress(int id) {
+		return customerDal.nameAddress(id);
+	}
+
+	public boolean addressExists( int idCustomer, int id){
+		return customerDal.addressExists(idCustomer, id);
+}
 }

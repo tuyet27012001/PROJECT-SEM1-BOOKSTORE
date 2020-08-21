@@ -32,7 +32,6 @@ public class BookDal {
             CallableStatement d = con.prepareCall(se);
             ResultSet rs = d.executeQuery();
             System.out.println("Danh muc");
-
             System.out.println("===========================================");
             System.out.printf("|%-4s|%-35s |\n", "Ma", "Ten danh muc");
             System.out.println("-------------------------------------------");

@@ -84,9 +84,9 @@ public class CustomerDalTest {
         try {
             Customer cus = new Customer();
             cus.setName("name");
-            cus.setPhone("0934334245");
-            cus.setEmail("anhtuyet@gmail.com");
-            cus.setGender("nu");
+            cus.setPhone("0934334235");
+            cus.setEmail("anhtuyet2@gmail.com");
+            cus.setGender("Nu");
             cus.setPassword(customerBl.md5("andhsR@12"));
             cus.setBirthDate("2001-01-27");
             boolean result = customerDal.insertCustomer(cus);
