@@ -1,6 +1,5 @@
 package vn.edu.vtc.dal;
 
-
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -30,7 +29,7 @@ public class CustomerDal {
                 app.idCustomer = cus.getIdCustomer();
                 count++;
             }
-            if (count > 0) {   
+            if (count > 0) {
                 log = true;
                 con.close();
             }
@@ -80,11 +79,12 @@ public class CustomerDal {
         } catch (final Exception e) {
             // TODO: handle exception
         }
-        
+
         return reg;
     }
 
-    public boolean insertAddress(final String name, final String phone, final String city, final String district, final String address, final int id) {
+    public boolean insertAddress(final String name, final String phone, final String city, final String district,
+            final String address, final int id) {
         try {
             final Connection con = DbUtil.getConnection();
             final String sql = "{call insert_address(?,?,?,?,?,?)}";
@@ -102,7 +102,6 @@ public class CustomerDal {
             return false;
         }
     }
-
 
     public List<Customer> getAll() {
         final List<Customer> listCustomer = new ArrayList<>();
@@ -130,14 +129,13 @@ public class CustomerDal {
             customer.setBirthDate(rs.getString("birth_date"));
             customer.setEmail(rs.getString("email"));
             customer.setPassword(rs.getString("password_customer"));
-            
         } catch (final Exception e) {
             // TODO: handle exception
         }
         return customer;
     }
 
-    public Customer detailCustomer(final int id){
+    public Customer detailCustomer(final int id) {
         Customer customer = new Customer();
         try {
             final String sql = "{call detail_customer(?)}";
@@ -155,46 +153,110 @@ public class CustomerDal {
         return customer;
     }
 
-    public boolean updateCustomerName(final int id, final String name){
-        return  updateCustomer(id, name, "{call update_name_customer(?, ?)}");
+    public boolean updateCustomerName(final int id, final String name) {
+        return updateCustomer(id, name, "{call update_name_customer(?, ?)}");
     }
 
-    public boolean updateCustomerPhone(final int id, final String phone){
-        return  updateCustomer(id, phone, "{call update_phone_customer(?, ?)}");
+    public boolean updateCustomerPhone(final int id, final String phone) {
+        return updateCustomer(id, phone, "{call update_phone_customer(?, ?)}");
     }
 
-    public boolean updateCustomerEmail(final int id, final String email){
-        return  updateCustomer(id, email, "{call update_email_customer(?, ?)}");
+    public boolean updateCustomerEmail(final int id, final String email) {
+        return updateCustomer(id, email, "{call update_email_customer(?, ?)}");
     }
 
-    public boolean updateCustomerGender(final int id, final String gender){
-        return  updateCustomer(id, gender, "{call update_gender_customer(?, ?)}");
+    public boolean updateCustomerGender(final int id, final String gender) {
+        return updateCustomer(id, gender, "{call update_gender_customer(?, ?)}");
     }
 
-
-    public boolean updateCustomerBirth(final int id, final String birth){
-        return  updateCustomer(id, birth, "{call update_birth_customer(?, ?)}");
+    public boolean updateCustomerBirth(final int id, final String birth) {
+        return updateCustomer(id, birth, "{call update_birth_customer(?, ?)}");
     }
 
-    public boolean updateCustomerPass(final int id, final String pass){
-       return  updateCustomer(id, pass, "{call update_pass_customer(?, ?)}");
+    public boolean updateCustomerPass(final int id, final String pass) {
+        return updateCustomer(id, pass, "{call update_pass_customer(?, ?)}");
     }
 
-    public boolean updateNameAddress(final int id, final String name){
-        return  updateCustomer(id, name, "{call update_name_address(?, ?)}");
-     }
+    public boolean updateNameAddress(final int id, final String name) {
+        return updateCustomer(id, name, "{call update_name_address(?, ?)}");
+    }
 
-     public boolean updatePhoneAddress(final int id, final String phone){
-        return  updateCustomer(id, phone, "{call update_phone_address(?, ?)}");
-     }
+    public boolean updatePhoneAddress(final int id, final String phone) {
+        return updateCustomer(id, phone, "{call update_phone_address(?, ?)}");
+    }
 
-     public boolean updateAddress(final int id, final String city, final String district, final String address){
+    public boolean updateDefaultAddress(final int id, final String str) {
+        return updateCustomer(id, str, "{call update_default_address(?, ?)}");
+    }
+
+    public boolean updateStatusAddress(final int id) {
+        try {
+            final Connection con = DbUtil.getConnection();
+            final String sql = "{call update_status_address(?)}";
+            final CallableStatement callableStatement = con.prepareCall(sql);
+            callableStatement.setInt(1, id);
+            callableStatement.executeUpdate();
+            con.close();
+            return true;
+        } catch (final SQLException e) {
+            e.getSQLState();
+            return false;
+        }
+    }
+
+    public boolean searchDefaultAddress(final int id) {
+        try {
+            final Connection con = DbUtil.getConnection();
+            final String sql = "{call search_default_address(?)}";
+            final CallableStatement callableStatement = con.prepareCall(sql);
+            callableStatement.setInt(1, id);
+            callableStatement.executeUpdate();
+            final ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()) {
+                System.out.println("Dia chi mac dinh.");
+                System.out.println("Ma dia chi     : " + rs.getInt(1));
+                System.out.println("Ten nguoi nhan : " + rs.getString(2));
+                System.out.println("So dien thoai  : " + rs.getString(3));
+                System.out.println(
+                        "Dia chi        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4));
+                System.out.println("=================================================");
+                System.out.println("=================================================");
+                con.close();
+                return true;
+            }
+        } catch (final SQLException e) {
+            e.getSQLState();
+            return false;
+        }
+        return false;
+    }
+
+    public boolean searchAddress(final int id) {
+        try {
+            final Connection con = DbUtil.getConnection();
+            final String sql = "{call search_address(?)}";
+            final CallableStatement callableStatement = con.prepareCall(sql);
+            callableStatement.setInt(1, id);
+            callableStatement.executeUpdate();
+            final ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()) {
+                updateDefaultAddress(rs.getInt(1), null);
+            }
+            con.close();
+            return true;
+        } catch (final SQLException e) {
+            e.getSQLState();
+            return false;
+        }
+    }
+
+    public boolean updateAddress(final int id, final String city, final String district, final String address) {
         updateCustomer(id, city, "{call update_city_address(?, ?)}");
         updateCustomer(id, district, "{call update_district_address(?, ?)}");
-        return  updateCustomer(id, address, "{call update_address(?, ?)}");
-     }
+        return updateCustomer(id, address, "{call update_address(?, ?)}");
+    }
 
-    public boolean updateCustomer(final int id, final String str, final String procedure){
+    public boolean updateCustomer(final int id, final String str, final String procedure) {
         try {
             final Connection con = DbUtil.getConnection();
             final String sql = procedure;
@@ -210,8 +272,9 @@ public class CustomerDal {
         }
     }
 
-    public boolean displayAddress(final int id){
+    public boolean displayAddress(final int id) {
         int count = 0;
+        int idDefault = 0;
         try {
             final String sql = "{call display_address(?)}";
             final Connection con = DbUtil.getConnection();
@@ -219,45 +282,51 @@ public class CustomerDal {
             callableStatement.setInt(1, id);
             callableStatement.executeUpdate();
             final ResultSet rs = callableStatement.executeQuery();
-            
             System.out.println("Dia chi nhan hang");
             System.out.println("===========================================\n");
-            while (rs.next()) {
-                System.out.println("Ma dia chi     : "+rs.getInt(1));
-                System.out.println("Ten nguoi nhan : "+rs.getString(2));
-                System.out.println("So dien thoai  : "+rs.getString(3));
-                System.out.println("Dia chi        : "+rs.getString(6) +" , "+rs.getString(5)+" , "+rs.getString(4));
-                System.out.println("-------------------------------------------------");
-                count++;
+            boolean boo = searchDefaultAddress(id);
+            if (boo == false) {
+                while (rs.next()) {
+                    count++;
+                    if (count == 1) {
+                        idDefault = rs.getInt(1);
+                    }
+                }
+                if (count == 0) {
+                    System.out.println("Chua co dia chi nhan hang !");
+                    return false;
+                }
+                if (idDefault != 0) {
+                    updateDefaultAddress(idDefault, "Mac dinh");
+                    searchDefaultAddress(id);
+                }
             }
-            if (count == 0) {
-                System.out.println("Chua co dia chi nhan hang !");
-            }
-            return true;
         } catch (final Exception e) {
             return false;
         }
-    }
-
-    public String nameAddress(int id) {
         try {
-            final String sql = "{call search_name_address(?)}";
+            final String sql = "{call display_address(?)}";
             final Connection con = DbUtil.getConnection();
             final CallableStatement callableStatement = con.prepareCall(sql);
             callableStatement.setInt(1, id);
             callableStatement.executeUpdate();
             final ResultSet rs = callableStatement.executeQuery();
             while (rs.next()) {
-              return rs.getString(1); 
-            }  
-         
+                System.out.println("Ma dia chi     : " + rs.getInt(1));
+                System.out.println("Ten nguoi nhan : " + rs.getString(2));
+                System.out.println("So dien thoai  : " + rs.getString(3));
+                System.out.println(
+                        "Dia chi        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4));
+                System.out.println("-------------------------------------------------");
+            }
+            return true;
         } catch (final Exception e) {
-            return null;
+            return false;
         }
-        return null;
+
     }
 
-    public boolean addressExists(int idCustomer, int id){
+    public boolean addressExists(int idCustomer, int id) {
         int count = 0;
         try {
             final String sql = "{call address_exists(?,?)}";
@@ -278,5 +347,4 @@ public class CustomerDal {
         }
         return true;
     }
-    
 }

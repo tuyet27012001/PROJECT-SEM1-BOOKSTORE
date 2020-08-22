@@ -96,4 +96,202 @@ public class CustomerDalTest {
             // TODO: handle exception
         }
     }
+
+    @Test
+    public void insertAddressTest1() {
+        try {
+            final boolean result = customerDal.insertAddress("tuyet", "1232323234","Ha noi", "Hoai duc", "Thon 3, Cat Que", 1);
+            final boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public  void getAllCustomerTest1(){
+        try {
+            final List<Customer> listBook = customerDal.getAll();
+            assertNotNull(listBook);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void detailCustomerTest1() {
+        try {
+            Customer customer = customerDal.detailCustomer(1);
+            assertNotNull(customer);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateCustomerNameTest1() {
+        try {
+            boolean result = customerDal.updateCustomerName(1, "Tuyet");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateCustomerPhoneTest1() {
+        try {
+            boolean result = customerDal.updateCustomerPhone(1, "0932232343");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateCustomerEmailTest1() {
+        try {
+            boolean result = customerDal.updateCustomerEmail(1, "asdsd@gmail.com");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateCustomerGenderTest1() {
+        try {
+            boolean result = customerDal.updateCustomerGender(1, "Nam");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateCustomerBirthTest1() {
+        try {
+            boolean result = customerDal.updateCustomerBirth(1, "2000-12-23");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateCustomerPasswordTest1() {
+        try {
+            boolean result = customerDal.updateCustomerPass(1, "Tuyet2002");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateNameAddressTest1() {
+        try {
+            boolean result = customerDal.updateNameAddress(1, "Kien");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updatePhoneAddressTest1() {
+        try {
+            boolean result = customerDal.updatePhoneAddress(1, "1231231231");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateDefaultAddressTest1() {
+        try {
+            boolean result = customerDal.updateDefaultAddress(1, "Mac dinh");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateStaterAddressTest1() {
+        try {
+            boolean result = customerDal.updateStatusAddress(1);
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    
+
+    @Test
+    public void searchAddressTest1() {
+        try {
+            boolean result = customerDal.searchAddress(1);
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void updateAddressTest1() {
+        try {
+            boolean result = customerDal.updateAddress(1,"Thanh Hoa", "Bim Sua", "Kien Cho");
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
+    public void displayAddressTest1() {
+        try {
+            boolean result = customerDal.displayAddress(1);
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    // @Test
+    // public void addressExistsTest1() {
+    //     try {
+    //         boolean result = customerDal.addressExists(1, 1);
+    //         boolean expected = true;
+    //         assertEquals(expected, result);
+    //     } catch (final Exception e) {
+    //         // TODO: handle exception
+    //     }
+    // }
+    
+    @Test
+    public void searchDefaultAddressTest1() {
+        try {
+            boolean result = customerDal.searchDefaultAddress(1);
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
 }

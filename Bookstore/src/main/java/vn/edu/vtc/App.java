@@ -784,138 +784,152 @@ public class App {
 
     public static void repairAddress() {
         clrscr();
-        customerBl.displayAddress(idCustomer);
-        int choose;
-        while (true) {
-            System.out.printf("Chon ma dia chi muon sua : ");
-            choose = presentation.validateInteger();
-            if (customerBl.addressExists(idCustomer, choose) == true) {
-                break;
-            } else {
-                System.out.println("Ban nhap sai !Moi ban nhap lại .");
+        if (customerBl.displayAddress(idCustomer) == true) {
+            int choose;
+            while (true) {
+                System.out.printf("Chon ma dia chi muon sua : ");
+                choose = presentation.validateInteger();
+                if (customerBl.addressExists(idCustomer, choose) == true) {
+                    break;
+                } else {
+                    System.out.println("Ban nhap sai !Moi ban nhap lại .");
+                }
             }
-        }
-        clrscr();
-        while (true) {
-            System.out.println("1. Ten nguoi nhan");
-            System.out.println("2. So dien thoai");
-            System.out.println("3. Dia chi nhan hang");
-            System.out.println("4. Thoat");
-            System.out.printf("Chon : ");
-            int choose1 = presentation.validateInteger();
-            if (choose1 == 1) {
-                clrscr();
-                String n;
-                while (true) {
-                    System.out.printf("Ten nguoi nhan : ");
-                    n = sc.nextLine();
-                    n = n.trim();
-                    if (presentation.validName(n) == true && n.isEmpty() == false) {
-                        break;
-                    } else {
-                        System.out.println("Ban nhap sai !\nXin vui long nhap lai.");
+            clrscr();
+            while (true) {
+                System.out.println("1. Ten nguoi nhan");
+                System.out.println("2. So dien thoai");
+                System.out.println("3. Dia chi nhan hang");
+                System.out.println("4. Thoat");
+                System.out.printf("Chon : ");
+                int choose1 = presentation.validateInteger();
+                if (choose1 == 1) {
+                    clrscr();
+                    String n;
+                    while (true) {
+                        System.out.printf("Ten nguoi nhan : ");
+                        n = sc.nextLine();
+                        n = n.trim();
+                        if (presentation.validName(n) == true && n.isEmpty() == false) {
+                            break;
+                        } else {
+                            System.out.println("Ban nhap sai !\nXin vui long nhap lai.");
+                        }
                     }
-                }
-                if (customerBl.updateNameAddress(choose, n) == true) {
-                    System.out.println("Cap nhat thanh cong ! ");
-                }
-            } else if (choose1 == 2) {
-                clrscr();
-                String p;
-                while (true) {
-                    boolean boo = false;
-                    System.out.printf("So dien thoai : ");
-                    p = sc.nextLine();
-                    p = p.trim();
-                    if (presentation.validPhone(p) == true && p.isEmpty() == false) {
-                        break;
-                    } else {
-                        System.out.println("Ban nhap sai !Xin vui long nhap lai.");
+                    if (customerBl.updateNameAddress(choose, n) == true) {
+                        System.out.println("Cap nhat thanh cong ! ");
                     }
-                }
-                if (customerBl.updatePhoneAddress(choose, p) == true) {
-                    System.out.println("Cap nhat thanh cong ! ");
-                }
-            } else if (choose1 == 3) {
-                clrscr();
-                String c;
-                String d;
-                String add;
-                while (true) {
-                    System.out.printf("Tinh/Thanh pho : ");
-                    c = sc.nextLine();
-                    c = c.trim();
-                    if (presentation.validName(c) == true && c.isEmpty() == false) {
-                        break;
-                    } else {
-                        System.out.println("Ban nhap sai !\nXin vui long nhap lai.");
+                } else if (choose1 == 2) {
+                    clrscr();
+                    String p;
+                    while (true) {
+                        boolean boo = false;
+                        System.out.printf("So dien thoai : ");
+                        p = sc.nextLine();
+                        p = p.trim();
+                        if (presentation.validPhone(p) == true && p.isEmpty() == false) {
+                            break;
+                        } else {
+                            System.out.println("Ban nhap sai !Xin vui long nhap lai.");
+                        }
                     }
-                }
-                while (true) {
-                    System.out.printf("Quan/Huyen : ");
-                    d = sc.nextLine();
-                    d = d.trim();
-                    if (d.isEmpty() == false) {
-                        break;
-                    } else {
-                        System.out.println("Khong duoc de trong !\nXin vui long nhap lai.");
+                    if (customerBl.updatePhoneAddress(choose, p) == true) {
+                        System.out.println("Cap nhat thanh cong ! ");
                     }
-                }
-                while (true) {
-                    System.out.printf("So nha, ngo/ngach, xa/phuong : ");
-                    add = sc.nextLine();
-                    if (add.isEmpty() == false)
-                        break;
-                    else {
-                        System.out.println("Khong duoc de trong !\nXin vui long nhap lai.");
+                } else if (choose1 == 3) {
+                    clrscr();
+                    String c;
+                    String d;
+                    String add;
+                    while (true) {
+                        System.out.printf("Tinh/Thanh pho : ");
+                        c = sc.nextLine();
+                        c = c.trim();
+                        if (presentation.validName(c) == true && c.isEmpty() == false) {
+                            break;
+                        } else {
+                            System.out.println("Ban nhap sai !\nXin vui long nhap lai.");
+                        }
                     }
+                    while (true) {
+                        System.out.printf("Quan/Huyen : ");
+                        d = sc.nextLine();
+                        d = d.trim();
+                        if (d.isEmpty() == false) {
+                            break;
+                        } else {
+                            System.out.println("Khong duoc de trong !\nXin vui long nhap lai.");
+                        }
+                    }
+                    while (true) {
+                        System.out.printf("So nha, ngo/ngach, xa/phuong : ");
+                        add = sc.nextLine();
+                        if (add.isEmpty() == false)
+                            break;
+                        else {
+                            System.out.println("Khong duoc de trong !\nXin vui long nhap lai.");
+                        }
+                    }
+                    customerBl.updateAddress(choose, c, d, add);
+                } else if (choose1 == 4) {
+                    return;
+                } else {
+                    System.out.println("Ban chon sai !Moi ban chon lai.");
                 }
-                customerBl.updateAddress(choose, c, d, add);
-            } else if (choose1 == 4) {
-                return;
-            } else {
-                System.out.println("Ban chon sai !Moi ban chon lai.");
             }
+        } else {
+            sc.nextLine();
         }
     }
 
     public static void deleteAddress() {
         clrscr();
-        customerBl.displayAddress(idCustomer);
-        int choose;
-        while (true) {
-            System.out.printf("Chon ma dia chi muon xoa : ");
-            choose = presentation.validateInteger();
-            if (customerBl.addressExists(idCustomer, choose) == true) {
-                break;
-            } else {
-                System.out.println("Ban nhap sai !Moi ban nhap lại .");
+        if (customerBl.displayAddress(idCustomer) == true) {
+            int choose;
+            while (true) {
+                System.out.printf("Chon ma dia chi muon xoa : ");
+                choose = presentation.validateInteger();
+                if (customerBl.addressExists(idCustomer, choose) == true) {
+                    break;
+                } else {
+                    System.out.println("Ban nhap sai !Moi ban nhap lại .");
+                }
             }
-        }
-        String name = customerBl.nameAddress(choose) + "DELETE";
-        System.out.printf("Ban co chac chan muon xoa dia chi nay (C/K)? : ");
-        String ck = presentation.yesOrNo();
-        if (ck.equalsIgnoreCase("c")) {
-            if (customerBl.updateNameAddress(choose, name) == true) {
-                System.out.println("Xoa dia chi thanh cong");
-                sc.nextLine();
+            System.out.printf("Ban co chac chan muon xoa dia chi nay (C/K)? : ");
+            String ck = presentation.yesOrNo();
+            if (ck.equalsIgnoreCase("c")) {
+                if (customerBl.updateStatusAddress(choose) == true) {
+                    System.out.println("Xoa dia chi thanh cong");
+                    sc.nextLine();
+                }
             }
+        } else {
+            sc.nextLine();
         }
     }
 
     public static void defaultAddress() {
         clrscr();
-        customerBl.displayAddress(idCustomer);
-        int choose;
-        while (true) {
-            System.out.printf("Chon ma dia chi ban muon dat mac dinh : ");
-            choose = presentation.validateInteger();
-            if (customerBl.addressExists(idCustomer, choose) == true) {
-                break;
-            } else {
-                System.out.println("Ban nhap sai !Moi ban nhap lại .");
+        if (customerBl.displayAddress(idCustomer) == true) {
+            int choose;
+            while (true) {
+                System.out.printf("Chon ma dia chi ban muon dat mac dinh : ");
+                choose = presentation.validateInteger();
+                if (customerBl.addressExists(idCustomer, choose) == true) {
+                    break;
+                } else {
+                    System.out.println("Ban nhap sai !Moi ban nhap lại .");
+                }
             }
+            String str = "Mac dinh";
+            if (customerBl.searchAddress(idCustomer) == true) {
+                if (customerBl.updateDefaultAddress(choose, str) == true) {
+                    System.out.println("Dat dia chi mac dinh thanh cong .");
+                    sc.nextLine();
+                }
+            }
+        } else {
+            sc.nextLine();
         }
-        System.out.println("Dat dia chi mac dinh thanh cong .");
     }
 }

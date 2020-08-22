@@ -39,10 +39,12 @@ public class BookDal {
                 System.out.printf("|%-4d|%-35s |\n", rs.getInt(1), rs.getString(2));
             }
             System.out.println("===========================================");
+            return true;
         } catch (SQLException e) {
             e.getSQLState();
+            return false;
         }
-        return true;
+       
     }
 
     public List<Book> searchBookName(String name) {
@@ -57,7 +59,9 @@ public class BookDal {
             while (rs.next()) {
                 listBook.add(getBook(rs));
             }
+            if(listBook.size() == 0) return null;
         } catch (SQLException ex) {
+            return null;
         }
         return listBook;
     }
@@ -74,7 +78,9 @@ public class BookDal {
             while (rs.next()) {
                 listBook.add(getBook(rs));
             }
+            if(listBook.size() == 0) return null;
         } catch (SQLException ex) {
+            return null;
         }
         return listBook;
     }
@@ -92,7 +98,9 @@ public class BookDal {
             while (rs.next()) {
                 listBook.add(getBook(rs));
             }
+            if(listBook.size() == 0) return null;
         } catch (SQLException ex) {
+            return null;
         }
         return listBook;
     }

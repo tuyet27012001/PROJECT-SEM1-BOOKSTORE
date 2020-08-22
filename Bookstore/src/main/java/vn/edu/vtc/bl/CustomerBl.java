@@ -44,6 +44,7 @@ public class CustomerBl {
 		}
 		return reg;
 	}
+	
 
 	public List<Customer> listCustomer() {
 		return customerDal.getAll();
@@ -122,11 +123,23 @@ public class CustomerBl {
 		return customerDal.displayAddress(id);
 	}
 
-	public String nameAddress(int id) {
-		return customerDal.nameAddress(id);
+	public boolean addressExists(int idCustomer, int id) {
+		return customerDal.addressExists(idCustomer, id);
 	}
 
-	public boolean addressExists( int idCustomer, int id){
-		return customerDal.addressExists(idCustomer, id);
+	public boolean updateStatusAddress(final int id) {
+		return customerDal.updateStatusAddress(id);
+	}
+
+	public boolean updateDefaultAddress(int id, String str) {
+		return customerDal.updateDefaultAddress(id, str);
+	}
+
+	public boolean searchDefaultAddress(int id) {
+		return customerDal.searchDefaultAddress(id);
+	}
+
+	public boolean searchAddress(final int id) {
+		return customerDal.searchAddress(id);
 }
 }
