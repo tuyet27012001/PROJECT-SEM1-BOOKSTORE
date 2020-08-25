@@ -5,47 +5,22 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.Scanner;
 
-import vn.edu.vtc.App;
 import vn.edu.vtc.dal.CustomerDal;
 import vn.edu.vtc.persistance.Customer;
 
 public class CustomerBl {
-	private final Scanner sc = new Scanner(System.in);
 	CustomerDal customerDal = new CustomerDal();
 	Presentation presentation = new Presentation();
 
 	public boolean login(final String ep, final String pass) {
-		boolean log = false;
-		if (customerDal.login(ep, pass) == true) {
-			System.out.println("Dang nhap thanh cong");
-			log = true;
-			sc.nextLine();
-			return log;
-		}
-		System.out.print("Email/phone hoac password khong dung\nBan co muon nhap lai (C/K) :");
-		final String ck = presentation.yesOrNo();
-		if (ck.equalsIgnoreCase("c")) {
-			App.login();
-		}
-		return log;
+		return customerDal.login(ep, pass);
 	}
 
 	public boolean register(Customer customer) {
-		boolean reg = false;
-		if (customerDal.insertCustomer(customer) == true) {
-			System.out.println("Dang ky thanh cong.");
-			reg = true;
-			sc.nextLine();
-		} else {
-			System.out.println("Dang ky that bai");
-			sc.nextLine();
-		}
-		return reg;
+		return customerDal.insertCustomer(customer);
 	}
 	
-
 	public List<Customer> listCustomer() {
 		return customerDal.getAll();
 	}
@@ -61,7 +36,7 @@ public class CustomerBl {
 		return pass;
 	}
 
-	public static String md5(final String str) {
+	public String md5(final String str) {
 		String result = "";
 		MessageDigest digest;
 		try {
@@ -119,7 +94,7 @@ public class CustomerBl {
 		return customerDal.insertAddress(name, phone, city, district, address, id);
 	}
 
-	public boolean displayAddress(int id) {
+	public String displayAddress(int id) {
 		return customerDal.displayAddress(id);
 	}
 
@@ -135,7 +110,7 @@ public class CustomerBl {
 		return customerDal.updateDefaultAddress(id, str);
 	}
 
-	public boolean searchDefaultAddress(int id) {
+	public String searchDefaultAddress(int id) {
 		return customerDal.searchDefaultAddress(id);
 	}
 

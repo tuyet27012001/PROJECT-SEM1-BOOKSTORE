@@ -1,6 +1,5 @@
 package vn.edu.vtc.bl;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;

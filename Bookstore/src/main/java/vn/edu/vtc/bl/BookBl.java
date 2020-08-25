@@ -15,7 +15,7 @@ public class BookBl {
         return listBook;
     }
 
-    public boolean displayCategory() {
+    public String displayCategory() {
         return bookDal.displayCategory();
     }
 
@@ -32,6 +32,10 @@ public class BookBl {
     public List<Book> searchBookCategoryAndName(int id, String name) {
         List<Book> listBook = bookDal.searchBookCategoryAndName(id, name);
         return listBook;
+    }
+
+    public Book detailBook(int id) {
+        return bookDal.detailBook(id);
     }
 
 }

@@ -1,7 +1,7 @@
 package vn.edu.vtc.bl;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
-import java.util.regex.*;
 public class Presentation {
 	Scanner sc = new Scanner(System.in);
 	public boolean validEmail(final String email) {
@@ -103,4 +103,8 @@ public class Presentation {
     return input;
   }
 
+  public String format(double d){
+    DecimalFormat formatter = new DecimalFormat("###,###,###"); 
+    return formatter.format(d);
+  }
 }

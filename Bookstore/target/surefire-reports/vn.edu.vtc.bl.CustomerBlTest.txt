@@ -1,7 +1,0 @@
--------------------------------------------------------------------------------
-Test set: vn.edu.vtc.bl.CustomerBlTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.006 s <<< FAILURE! - in vn.edu.vtc.bl.CustomerBlTest
-initializationError(vn.edu.vtc.bl.CustomerBlTest)  Time elapsed: 0.001 s  <<< ERROR!
-java.lang.Exception: Method login1() should not be static
-

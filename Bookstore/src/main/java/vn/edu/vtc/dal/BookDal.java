@@ -25,24 +25,21 @@ public class BookDal {
         return listBook;
     }
 
-    public boolean displayCategory() {
+    public String displayCategory() {
         try {
             Connection con = DbUtil.getConnection();
             String se = "{call display_category}";
             CallableStatement d = con.prepareCall(se);
             ResultSet rs = d.executeQuery();
-            System.out.println("Danh muc");
-            System.out.println("===========================================");
-            System.out.printf("|%-4s|%-35s |\n", "Ma", "Ten danh muc");
-            System.out.println("-------------------------------------------");
+            String a = "Danh muc\n===========================================\n"+"| Ma | "+"Ten danh muc";
             while (rs.next()) {
-                System.out.printf("|%-4d|%-35s |\n", rs.getInt(1), rs.getString(2));
+                String b = "\n| "+ rs.getInt(1)+"  | "+rs.getString(2);
+                a = a+b;
             }
-            System.out.println("===========================================");
-            return true;
+            return a+"\n===========================================";
         } catch (SQLException e) {
             e.getSQLState();
-            return false;
+            return null;
         }
        
     }
@@ -121,4 +118,22 @@ public class BookDal {
         return book;
     }
 
+    public Book detailBook(int id) {
+        Book book = new Book();
+        try {
+            Connection con = DbUtil.getConnection();
+            String sql = "{call detail_book(?)}";
+            CallableStatement callableStatement = con.prepareCall(sql);
+            callableStatement.setInt(1, id);
+            callableStatement.executeUpdate();
+            ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()){
+                 book = getBook(rs);
+                 return book;
+            }
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }   
+    }
 }

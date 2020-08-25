@@ -10,10 +10,6 @@ public class Book {
   private int quantity;
   private String isbn;
 
-  public Book(){
-    
-  }
-
   public int getBookId(){
     return bookId;
   }

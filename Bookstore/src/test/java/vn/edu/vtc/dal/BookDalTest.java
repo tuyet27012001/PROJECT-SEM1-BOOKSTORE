@@ -1,6 +1,5 @@
 package vn.edu.vtc.dal;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -55,9 +54,8 @@ public class BookDalTest {
     @Test
     public  void displayCategoryTest(){
         try {
-            boolean result = bookDal.displayCategory();
-            boolean expected = true;
-            assertEquals(expected, result);
+            String result = bookDal.displayCategory();
+            assertNotNull(result);
         } catch (final Exception e) {
             // TODO: handle exception
         }

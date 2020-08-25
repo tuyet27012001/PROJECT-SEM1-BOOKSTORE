@@ -7,7 +7,8 @@ public class Order {
   private String nameCustomer;
   private String paymentMethod;
   private String shippingUnit;
-  private String address;
+  private int address;
+  private double shippingFee;
   private String orderStatus;
   private Date dateTime;
 
@@ -19,6 +20,10 @@ public class Order {
     return orderId;
   }
 
+  public double getShippingFee(){
+    return shippingFee;
+  }
+
   public String getPaymentMethod(){
     return paymentMethod;
   }
@@ -27,7 +32,7 @@ public class Order {
     return shippingUnit;
   }
 
-  public String getAddress(){
+  public int getAddress(){
     return address;
   }
   
@@ -43,6 +48,10 @@ public class Order {
     return nameCustomer;
   }
 
+  public void setOrderId( int orderId){
+    this.orderId = orderId;
+  }
+
   public void setNameCustomer( String nameCustomer){
     this.nameCustomer = nameCustomer;
   }
@@ -55,7 +64,7 @@ public class Order {
     this.shippingUnit = shippingUnit;
   }
 
-  public void setAddress(String address){
+  public void setAddress(int address){
     this.address = address;
   }
 
@@ -65,5 +74,9 @@ public class Order {
 
   public void setDateTime(Date dateTime){
     this.dateTime = dateTime;
+  }
+
+  public void setShippingFee(Double shippingFee){
+    this.shippingFee = shippingFee;
   }
 }

@@ -14,7 +14,6 @@ public class CustomerDal {
 
     public boolean login(final String ep, final String pass) {
         final App app = new App();
-        boolean log = false;
         try {
             final String sql = "{call search_phone_pass_customer(?, ?)}";
             final Connection con = DbUtil.getConnection();
@@ -30,11 +29,11 @@ public class CustomerDal {
                 count++;
             }
             if (count > 0) {
-                log = true;
                 con.close();
+                return true;
             }
         } catch (final Exception e) {
-            // TODO: handle exception
+            return false;
         }
 
         try {
@@ -52,13 +51,13 @@ public class CustomerDal {
             if (count1 > 0) {
                 final Customer cus = getCustomer(rs);
                 app.idCustomer = cus.getIdCustomer();
-                log = true;
                 con1.close();
+                return true;
             }
         } catch (final Exception e) {
-            // TODO: handle exception
+            return false;
         }
-        return log;
+        return false;
     }
 
     public boolean insertCustomer(final Customer cus) {
@@ -79,7 +78,6 @@ public class CustomerDal {
         } catch (final Exception e) {
             // TODO: handle exception
         }
-
         return reg;
     }
 
@@ -119,7 +117,6 @@ public class CustomerDal {
     }
 
     public Customer getCustomer(final ResultSet rs) {
-
         final Customer customer = new Customer();
         try {
             customer.setIdCustomer(rs.getInt("customer_id"));
@@ -129,6 +126,7 @@ public class CustomerDal {
             customer.setBirthDate(rs.getString("birth_date"));
             customer.setEmail(rs.getString("email"));
             customer.setPassword(rs.getString("password_customer"));
+            
         } catch (final Exception e) {
             // TODO: handle exception
         }
@@ -141,7 +139,7 @@ public class CustomerDal {
             final String sql = "{call detail_customer(?)}";
             final Connection con = DbUtil.getConnection();
             final CallableStatement callableStatement = con.prepareCall(sql);
-            callableStatement.setInt(1, 1);
+            callableStatement.setInt(1, id);
             callableStatement.executeUpdate();
             final ResultSet rs = callableStatement.executeQuery();
             while (rs.next()) {
@@ -204,7 +202,7 @@ public class CustomerDal {
         }
     }
 
-    public boolean searchDefaultAddress(final int id) {
+    public String searchDefaultAddress(final int id) {
         try {
             final Connection con = DbUtil.getConnection();
             final String sql = "{call search_default_address(?)}";
@@ -213,22 +211,19 @@ public class CustomerDal {
             callableStatement.executeUpdate();
             final ResultSet rs = callableStatement.executeQuery();
             while (rs.next()) {
-                System.out.println("Dia chi mac dinh.");
-                System.out.println("Ma dia chi     : " + rs.getInt(1));
-                System.out.println("Ten nguoi nhan : " + rs.getString(2));
-                System.out.println("So dien thoai  : " + rs.getString(3));
-                System.out.println(
-                        "Dia chi        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4));
-                System.out.println("=================================================");
-                System.out.println("=================================================");
+                String a = "Dia chi mac dinh\n"+"Ma dia chi     : "+rs.getInt(1)+
+                "\nTen nguoi nhan : " + rs.getString(2)+
+                "\nSo dien thoai  : " + rs.getString(3)+
+                "\nDia chi        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4)+
+                "\n=================================================";
                 con.close();
-                return true;
+                return a;
             }
         } catch (final SQLException e) {
             e.getSQLState();
-            return false;
+            return null;
         }
-        return false;
+        return null;
     }
 
     public boolean searchAddress(final int id) {
@@ -272,9 +267,10 @@ public class CustomerDal {
         }
     }
 
-    public boolean displayAddress(final int id) {
+    public String displayAddress(final int id) {
         int count = 0;
         int idDefault = 0;
+        String a;
         try {
             final String sql = "{call display_address(?)}";
             final Connection con = DbUtil.getConnection();
@@ -282,10 +278,8 @@ public class CustomerDal {
             callableStatement.setInt(1, id);
             callableStatement.executeUpdate();
             final ResultSet rs = callableStatement.executeQuery();
-            System.out.println("Dia chi nhan hang");
-            System.out.println("===========================================\n");
-            boolean boo = searchDefaultAddress(id);
-            if (boo == false) {
+            String str = searchDefaultAddress(id);
+            if (str == null) {
                 while (rs.next()) {
                     count++;
                     if (count == 1) {
@@ -293,16 +287,15 @@ public class CustomerDal {
                     }
                 }
                 if (count == 0) {
-                    System.out.println("Chua co dia chi nhan hang !");
-                    return false;
+                    return "Chua co dia chi nhan hang !";
                 }
                 if (idDefault != 0) {
                     updateDefaultAddress(idDefault, "Mac dinh");
-                    searchDefaultAddress(id);
                 }
             }
+            a = "Dia chi nhan hang\n"+"===========================================\n"+searchDefaultAddress(id);
         } catch (final Exception e) {
-            return false;
+            return null;
         }
         try {
             final String sql = "{call display_address(?)}";
@@ -312,16 +305,14 @@ public class CustomerDal {
             callableStatement.executeUpdate();
             final ResultSet rs = callableStatement.executeQuery();
             while (rs.next()) {
-                System.out.println("Ma dia chi     : " + rs.getInt(1));
-                System.out.println("Ten nguoi nhan : " + rs.getString(2));
-                System.out.println("So dien thoai  : " + rs.getString(3));
-                System.out.println(
-                        "Dia chi        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4));
-                System.out.println("-------------------------------------------------");
+                String b = "\nMa dia chi     : " + rs.getInt(1)+"\nTen nguoi nhan : " + rs.getString(2)+
+                "\nSo dien thoai  : " + rs.getString(3)+"\nDia chi        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4)+
+                "\n-------------------------------------------------";
+                a = a+b;
             }
-            return true;
+            return a;
         } catch (final Exception e) {
-            return false;
+            return null;
         }
 
     }
