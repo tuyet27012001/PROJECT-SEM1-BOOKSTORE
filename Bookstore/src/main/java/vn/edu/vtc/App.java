@@ -2,9 +2,12 @@ package vn.edu.vtc;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import vn.edu.vtc.bl.Presentation;
+import vn.edu.vtc.persistance.Book;
 import vn.edu.vtc.pl.BookPl;
 import vn.edu.vtc.pl.CustomerPl;
 import vn.edu.vtc.pl.OrderPl;
@@ -19,6 +22,7 @@ public class App {
     public static int idAddress = 0;
 
     public static void main(final String[] args) {
+        
         final App app = new App();
         app.mainMenu();
     }
@@ -55,9 +59,13 @@ public class App {
 
     public int menu(final String arr[], final String title) {
         int num;
-        System.out.println("=======================================================");
-        System.out.printf("||         %-41s ||\n", title);
-        System.out.println("-------------------------------------------------------");
+        if (title.equals("")) {
+            System.out.println("=======================================================");
+        } else {
+            System.out.println("=======================================================");
+            System.out.printf("||         %-41s ||\n", title);
+            System.out.println("-------------------------------------------------------");
+        }
         for (int i = 0; i < arr.length; i++) {
             System.out.printf("|| %-1d, %-46s ||\n", i + 1, arr[i]);
         }
@@ -104,7 +112,7 @@ public class App {
                     break;
                 case 4:
                     try {
-                        orderPl.cartManagement();
+                        orderPl.viewCart();
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();

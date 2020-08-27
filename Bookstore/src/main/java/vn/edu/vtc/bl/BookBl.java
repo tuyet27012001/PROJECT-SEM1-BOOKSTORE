@@ -7,6 +7,7 @@ import vn.edu.vtc.dal.BookDal;
 import vn.edu.vtc.persistance.Book;
 
 public class BookBl {
+
     public static Scanner sc = new Scanner(System.in);
     private BookDal bookDal = new BookDal();
 
@@ -38,4 +39,7 @@ public class BookBl {
         return bookDal.detailBook(id);
     }
 
+    public boolean updateQuantityBook(int id, int quantity) {
+        return bookDal.updateQuantityBook(id, quantity);
+    }
 }

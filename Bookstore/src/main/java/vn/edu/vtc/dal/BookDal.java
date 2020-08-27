@@ -31,17 +31,17 @@ public class BookDal {
             String se = "{call display_category}";
             CallableStatement d = con.prepareCall(se);
             ResultSet rs = d.executeQuery();
-            String a = "Danh muc\n===========================================\n"+"| Ma | "+"Ten danh muc";
+            String a = "Danh muc\n===========================================\n" + "| Ma | " + "Ten danh muc";
             while (rs.next()) {
-                String b = "\n| "+ rs.getInt(1)+"  | "+rs.getString(2);
-                a = a+b;
+                String b = "\n| " + rs.getInt(1) + "  | " + rs.getString(2);
+                a = a + b;
             }
-            return a+"\n===========================================";
+            return a + "\n===========================================";
         } catch (SQLException e) {
             e.getSQLState();
             return null;
         }
-       
+
     }
 
     public List<Book> searchBookName(String name) {
@@ -56,7 +56,8 @@ public class BookDal {
             while (rs.next()) {
                 listBook.add(getBook(rs));
             }
-            if(listBook.size() == 0) return null;
+            if (listBook.size() == 0)
+                return null;
         } catch (SQLException ex) {
             return null;
         }
@@ -75,7 +76,8 @@ public class BookDal {
             while (rs.next()) {
                 listBook.add(getBook(rs));
             }
-            if(listBook.size() == 0) return null;
+            if (listBook.size() == 0)
+                return null;
         } catch (SQLException ex) {
             return null;
         }
@@ -95,7 +97,8 @@ public class BookDal {
             while (rs.next()) {
                 listBook.add(getBook(rs));
             }
-            if(listBook.size() == 0) return null;
+            if (listBook.size() == 0)
+                return null;
         } catch (SQLException ex) {
             return null;
         }
@@ -127,13 +130,28 @@ public class BookDal {
             callableStatement.setInt(1, id);
             callableStatement.executeUpdate();
             ResultSet rs = callableStatement.executeQuery();
-            while (rs.next()){
-                 book = getBook(rs);
-                 return book;
+            while (rs.next()) {
+                book = getBook(rs);
+                return book;
             }
             return null;
         } catch (SQLException ex) {
             return null;
-        }   
+        }
+    }
+
+    public boolean updateQuantityBook(int id, int quantity) {
+        try {
+            Connection con = DbUtil.getConnection();
+            String sql = "{call update_quantity_book(?,?)}";
+            CallableStatement callableStatement = con.prepareCall(sql);
+            callableStatement.setInt(1, id);
+            callableStatement.setInt(2, quantity);
+            callableStatement.executeUpdate();
+            con.close();
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }
     }
 }

@@ -20,7 +20,7 @@ public class CustomerBl {
 	public boolean register(Customer customer) {
 		return customerDal.insertCustomer(customer);
 	}
-	
+
 	public List<Customer> listCustomer() {
 		return customerDal.getAll();
 	}
@@ -116,5 +116,9 @@ public class CustomerBl {
 
 	public boolean searchAddress(final int id) {
 		return customerDal.searchAddress(id);
-}
+	}
+
+	public int searchDefaultAddressId(final int id) {
+		return customerDal.searchDefaultAddressId(id);
+	}
 }

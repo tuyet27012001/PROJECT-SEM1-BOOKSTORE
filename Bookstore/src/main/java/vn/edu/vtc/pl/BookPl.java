@@ -50,7 +50,8 @@ public class BookPl {
       System.out.println(
           "=============================================================================================================");
       for (Book rs : listBook) {
-        System.out.printf("|%-4d|%-50s|%-30s|%-20s|\n", rs.getBookId(), rs.getTitle(), rs.getAuthor(),presentation.format(rs.getPrice()));
+        System.out.printf("|%-4d|%-50s|%-30s|%-20s|\n", rs.getBookId(), rs.getTitle(), rs.getAuthor(),
+            presentation.format(rs.getPrice()));
       }
       System.out.println(
           "=============================================================================================================");
@@ -184,17 +185,23 @@ public class BookPl {
         System.out.println("Ten sach : " + book.getTitle());
         System.out.println("Tac gia : " + book.getAuthor());
         System.out.println("Nha xuat ban : " + book.getPublishingCompanyName());
-        System.out.println("Gia : " + presentation.format(book.getPrice()) );
+        System.out.println("Gia : " + presentation.format(book.getPrice()));
         System.out.println("So luong : " + book.getQuantity());
         System.out.println("Mo ta : " + book.getDetail());
         System.out.println("=======================================================");
+        if(book.getQuantity() == 0){
+          System.out.println("Da ban het");
+          sc.nextLine();
+          return;
+        }
         System.out.printf("Ban co muon them vao gio hang (C/K)? ");
         final String ck = presentation.yesOrNo();
-        if (app.idCustomer != 0) {
-          if (ck.equalsIgnoreCase("c")) {
+        if (ck.equalsIgnoreCase("c")) {
+          if (app.idCustomer != 0) {
             book.setQuantity(1);
             try {
               orderPl.addCart(book);
+              
               System.out.println("Them vao gio hang thanh cong");
               sc.nextLine();
               return;
@@ -202,14 +209,14 @@ public class BookPl {
               e.printStackTrace();
             }
           } else {
-            return;
+            System.out.printf("Ban can dang nhap de them vao gio hang .\nBan co muon dang nhap (C/K)?");
+            String ck1 = presentation.yesOrNo();
+            if (ck1.equalsIgnoreCase("c")) {
+              customerPl.login();
+            }
           }
         } else {
-          System.out.printf("Ban can dang nhap de them vao gio hang .\nBan co muon dang nhap (C/K)?");
-          String ck1 = presentation.yesOrNo();
-          if (ck1.equalsIgnoreCase("c")) {
-            customerPl.login();
-          }
+          return;
         }
       }
     }

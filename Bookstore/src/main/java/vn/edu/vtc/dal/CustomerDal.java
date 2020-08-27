@@ -61,7 +61,6 @@ public class CustomerDal {
     }
 
     public boolean insertCustomer(final Customer cus) {
-        boolean reg = false;
         try {
             final Connection con = DbUtil.getConnection();
             final String sql = "{call insert_customer(?,?,?,?,?,?)}";
@@ -73,12 +72,11 @@ public class CustomerDal {
             callableStatement.setString(5, cus.getEmail());
             callableStatement.setString(6, cus.getPassword());
             callableStatement.executeUpdate();
-            reg = true;
             con.close();
+            return true;
         } catch (final Exception e) {
-            // TODO: handle exception
+            return false;
         }
-        return reg;
     }
 
     public boolean insertAddress(final String name, final String phone, final String city, final String district,
@@ -126,7 +124,7 @@ public class CustomerDal {
             customer.setBirthDate(rs.getString("birth_date"));
             customer.setEmail(rs.getString("email"));
             customer.setPassword(rs.getString("password_customer"));
-            
+
         } catch (final Exception e) {
             // TODO: handle exception
         }
@@ -224,6 +222,24 @@ public class CustomerDal {
             return null;
         }
         return null;
+    }
+
+    public int searchDefaultAddressId(final int id) {
+        try {
+            final Connection con = DbUtil.getConnection();
+            final String sql = "{call search_default_address(?)}";
+            final CallableStatement callableStatement = con.prepareCall(sql);
+            callableStatement.setInt(1, id);
+            callableStatement.executeUpdate();
+            final ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (final SQLException e) {
+            e.getSQLState();
+            return 0;
+        }
+        return 0;
     }
 
     public boolean searchAddress(final int id) {

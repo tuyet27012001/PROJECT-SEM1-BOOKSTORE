@@ -1,6 +1,7 @@
 package vn.edu.vtc.persistance;
 
-public class Book {
+public class Book implements java.io.Serializable{
+  private static final long serialVersionUID = 1L;
   private int bookId;
   private String publishingCompanyName;
   private String title;

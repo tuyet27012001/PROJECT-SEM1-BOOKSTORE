@@ -42,23 +42,24 @@ public class CustomerDalTest {
     //     }
     // }
 
-    // @Test
-    // public void registerTest2() {
-    //     try {
-    //         Customer cus = new Customer();
-    //         cus.setName("tuyet1");
-    //         cus.setPhone("1234123412");
-    //         cus.setEmail("anh1@gmail.com");
-    //         cus.setGender("Nu");
-    //         cus.setPassword(customerBl.md5("Tuyet123"));
-    //         cus.setBirthDate("2001-03-27");
-    //         boolean result = customerDal.insertCustomer(cus);
-    //         boolean expected = true;
-    //         assertEquals(expected, result);
-    //     } catch (final Exception e) {
-    //         // TODO: handle exception
-    //     }
-    // }
+
+    @Test
+    public void registerTest2() {
+        try {
+            Customer cus = new Customer();
+            cus.setName("tuyet1");
+            cus.setPhone("1234123412");
+            cus.setEmail("anh1@gmail.com");
+            cus.setGender("Nu");
+            cus.setPassword(customerBl.md5("Tuyet123"));
+            cus.setBirthDate("2001-03-27");
+            boolean result = customerDal.insertCustomer(cus);
+            boolean expected = true;
+            assertEquals(expected, result);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
 
     // @Test
     // public void registerTest3() {

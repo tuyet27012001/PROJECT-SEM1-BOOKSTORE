@@ -389,6 +389,10 @@ public class CustomerPl {
     app.clrscr();
     if (customerBl.displayAddress(id).isEmpty() == false) {
       System.out.println(customerBl.displayAddress(id));
+      if(customerBl.displayAddress(id).equalsIgnoreCase("Chua co dia chi nhan hang !")){
+        sc.nextLine();
+        return;
+      }
       int choose = checkIdAddress(id, "Chon ma dia chi muon sua : ");
       while (true) {
         app.clrscr();
@@ -431,6 +435,10 @@ public class CustomerPl {
     app.clrscr();
     if (customerBl.displayAddress(id).isEmpty() == false) {
       System.out.println(customerBl.displayAddress(id));
+      if(customerBl.displayAddress(id).equalsIgnoreCase("Chua co dia chi nhan hang !")){
+        sc.nextLine();
+        return;
+      }
       int choose = checkIdAddress(id, "Chon ma dia chi muon xoa : ");
       System.out.printf("Ban co chac chan muon xoa dia chi nay (C/K)? : ");
       String ck = presentation.yesOrNo();
@@ -447,6 +455,10 @@ public class CustomerPl {
     app.clrscr();
     if (customerBl.displayAddress(id).isEmpty() == false) {
       System.out.println(customerBl.displayAddress(id));
+      if(customerBl.displayAddress(id).equalsIgnoreCase("Chua co dia chi nhan hang !")){
+        sc.nextLine();
+        return;
+      }
       int choose = checkIdAddress(id, "Chon ma dia chi ban muon dat mac dinh : ");
       String str = "Mac dinh";
       if (customerBl.searchAddress(id) == true) {
