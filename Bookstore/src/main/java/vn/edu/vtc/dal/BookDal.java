@@ -25,7 +25,7 @@ public class BookDal {
         return listBook;
     }
 
-    public String displayCategory() {
+    public String viewCategoryList() {
         try {
             Connection con = DbUtil.getConnection();
             String se = "{call display_category}";
@@ -121,7 +121,7 @@ public class BookDal {
         return book;
     }
 
-    public Book detailBook(int id) {
+    public Book viewBookDetail(int id) {
         Book book = new Book();
         try {
             Connection con = DbUtil.getConnection();

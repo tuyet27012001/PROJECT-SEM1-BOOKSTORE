@@ -24,7 +24,6 @@ public class OrderPl {
     private static OrderBl orderBl = new OrderBl();
     private static Scanner sc = new Scanner(System.in);
     private static Presentation presentation = new Presentation();
-    private static CustomerBl customerBl = new CustomerBl();
     private static CustomerPl customerPl = new CustomerPl();
 
     public static void viewCart() throws IOException {
@@ -85,7 +84,7 @@ public class OrderPl {
             return;
         } else {
             BookBl bookBl = new BookBl();
-            Book book = bookBl.detailBook(choose);
+            Book book = bookBl.viewBookDetail(choose);
             int count = 0;
             int index = 0;
             boolean id = false;
@@ -144,7 +143,7 @@ public class OrderPl {
         Order order = new Order();
         int idAdd = 0;
         CustomerBl customerBl = new CustomerBl();
-        customerBl.displayAddress(idCustomer);
+        customerBl.viewAddressList(idCustomer);
         if (customerBl.searchDefaultAddressId(idCustomer) == 0) {
             System.out.println("Ban chua co dia chi nao! Moi ban them dia chi .");
             customerPl.insertAddress(idCustomer);
@@ -157,7 +156,7 @@ public class OrderPl {
 
                 idAdd = customerBl.searchDefaultAddressId(idCustomer);
             } else {
-                System.out.println(customerBl.displayAddress(idCustomer));
+                System.out.println(customerBl.viewAddressList(idCustomer));
                 while (true) {
                     System.out.printf("Moi ban chon dia chi hoac nhap 0 de them dia chi moi : ");
                     int choose = presentation.validateInteger();
@@ -213,7 +212,7 @@ public class OrderPl {
                 orderBl.insertBookOrder(listBook.get(i).getBookId(), idOrder, listBook.get(i).getQuantity(),
                         listBook.get(i).getPrice());
                 int id = listBook.get(i).getBookId();
-                Book book = bookBl.detailBook(id);
+                Book book = bookBl.viewBookDetail(id);
                 int quantityBook = book.getQuantity() - listBook.get(i).getQuantity();
                 bookBl.updateQuantityBook(id, quantityBook);
                 listBook.remove(i);
@@ -282,10 +281,10 @@ public class OrderPl {
         }
     }
 
-    public void detailOrder(int idOrder) {
+    public void viewOrderDetails(int idOrder) {
         BookBl bookBl = new BookBl();
         double sum = 0;
-        Order order = orderBl.detailOrder(idOrder);
+        Order order = orderBl.viewOrderDetails(idOrder);
         if (order == null || orderBl.orderExists(app.idCustomer, idOrder) == false) {
             System.out.println("Ma don hang khong dung !\nNhan phim bat ky de quay lai .");
         } else {
@@ -314,7 +313,7 @@ public class OrderPl {
             System.out.println(
                     "===================================================================================================================");
             for (Book rs : listB) {
-                Book book = bookBl.detailBook(rs.getBookId());
+                Book book = bookBl.viewBookDetail(rs.getBookId());
                 System.out.printf("|%-4s|%-50s|%-20s|%-15d|%-20s|\n", rs.getBookId(), book.getTitle(),
                         presentation.format(rs.getPrice()), rs.getQuantity(),
                         presentation.format(rs.getPrice() * rs.getQuantity()));
@@ -335,7 +334,7 @@ public class OrderPl {
         }
     }
 
-    public void displayOrder() {
+    public void viewOrderList() {
         while (true) {
             app.clrscr();
             List<Order> listOrder = orderBl.getAll(app.idCustomer);
@@ -374,7 +373,7 @@ public class OrderPl {
                 if (idOrder == 0) {
                     return;
                 } else {
-                    detailOrder(idOrder);
+                    viewOrderDetails(idOrder);
                 }
             } else {
                 System.out.println("Chua co don hang nao !");

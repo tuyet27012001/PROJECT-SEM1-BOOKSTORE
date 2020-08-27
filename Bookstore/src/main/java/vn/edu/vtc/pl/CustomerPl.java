@@ -28,7 +28,7 @@ public class CustomerPl {
           break;
         case 3:
           app.clrscr();
-          System.out.println(customerBl.displayAddress(id));
+          System.out.println(customerBl.viewAddressList(id));
           sc.nextLine();
           break;
         case 4:
@@ -60,7 +60,7 @@ public class CustomerPl {
       }
       System.out.printf("Mat khau : ");
       String pass = customerBl.password();
-      pass = customerBl.md5(pass);
+      pass = customerBl.encodeMd5(pass);
       if (customerBl.login(ep, pass) == true) {
         System.out.println("Dang nhap thanh cong");
         sc.nextLine();
@@ -135,7 +135,7 @@ public class CustomerPl {
       final String pass2 = customerBl.password();
       if (pass.equals(pass2)) {
 
-        return customerBl.md5(pass);
+        return customerBl.encodeMd5(pass);
       } else {
         System.out.printf("Mat khau khong khop vui long nhap lai !\n");
       }
@@ -336,7 +336,7 @@ public class CustomerPl {
         }
           break;
         case 7:
-        addressManagement(id);
+        addressUpdate(id);
           break;
         case 8:
           return;
@@ -346,7 +346,7 @@ public class CustomerPl {
     }
   }
 
-  public void addressManagement(int id) {
+  public void addressUpdate(int id) {
     while (true) {
       String[] arr = { "Them dia chi", "Sua dia chi", "Xoa dia chi", "Thay doi dia chi mac dinh", "Thoat" };
       int choose = app.menu(arr, "Cap nhat dia chi");
@@ -387,9 +387,9 @@ public class CustomerPl {
 
   public void repairAddress(int id) {
     app.clrscr();
-    if (customerBl.displayAddress(id).isEmpty() == false) {
-      System.out.println(customerBl.displayAddress(id));
-      if(customerBl.displayAddress(id).equalsIgnoreCase("Chua co dia chi nhan hang !")){
+    if (customerBl.viewAddressList(id).isEmpty() == false) {
+      System.out.println(customerBl.viewAddressList(id));
+      if(customerBl.viewAddressList(id).equalsIgnoreCase("Chua co dia chi nhan hang !")){
         sc.nextLine();
         return;
       }
@@ -433,9 +433,9 @@ public class CustomerPl {
 
   public void deleteAddress(int id) {
     app.clrscr();
-    if (customerBl.displayAddress(id).isEmpty() == false) {
-      System.out.println(customerBl.displayAddress(id));
-      if(customerBl.displayAddress(id).equalsIgnoreCase("Chua co dia chi nhan hang !")){
+    if (customerBl.viewAddressList(id).isEmpty() == false) {
+      System.out.println(customerBl.viewAddressList(id));
+      if(customerBl.viewAddressList(id).equalsIgnoreCase("Chua co dia chi nhan hang !")){
         sc.nextLine();
         return;
       }
@@ -453,9 +453,9 @@ public class CustomerPl {
 
   public void defaultAddress(int id) {
     app.clrscr();
-    if (customerBl.displayAddress(id).isEmpty() == false) {
-      System.out.println(customerBl.displayAddress(id));
-      if(customerBl.displayAddress(id).equalsIgnoreCase("Chua co dia chi nhan hang !")){
+    if (customerBl.viewAddressList(id).isEmpty() == false) {
+      System.out.println(customerBl.viewAddressList(id));
+      if(customerBl.viewAddressList(id).equalsIgnoreCase("Chua co dia chi nhan hang !")){
         sc.nextLine();
         return;
       }

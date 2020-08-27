@@ -54,7 +54,7 @@ public class BookDalTest {
     @Test
     public  void displayCategoryTest(){
         try {
-            String result = bookDal.displayCategory();
+            String result = bookDal.viewCategoryList();
             assertNotNull(result);
         } catch (final Exception e) {
             // TODO: handle exception

@@ -24,8 +24,8 @@ public class BookPl {
       int choose = app.menu(arr, "Chao mung ban den voi Bookstore");
       switch (choose) {
         case 1:
-          List<Book> listBook = bookBl.displayBook();
-          displayBook(listBook);
+          List<Book> listBook = bookBl.viewBookList();
+          viewBookList(listBook);
           break;
         case 2:
           searchBookCategory();
@@ -41,7 +41,7 @@ public class BookPl {
     }
   }
 
-  public void displayBook(List<Book> listBook) {
+  public void viewBookList(List<Book> listBook) {
     while (true) {
       app.clrscr();
       System.out.println(
@@ -60,7 +60,7 @@ public class BookPl {
       if (idBook == 0) {
         return;
       } else {
-        detailBook(idBook);
+        viewBookDetail(idBook);
       }
     }
   }
@@ -77,7 +77,7 @@ public class BookPl {
           break;
         case 2:
           app.clrscr();
-          System.out.println(bookBl.displayCategory());
+          System.out.println(bookBl.viewCategoryList());
           searchBookCategory();
           break;
         case 3:
@@ -110,7 +110,7 @@ public class BookPl {
       System.out.println("Khong tim thay sach");
       sc.nextLine();
     } else {
-      displayBook(listBook);
+      viewBookList(listBook);
     }
   }
 
@@ -118,7 +118,7 @@ public class BookPl {
     int a;
     while (true) {
       app.clrscr();
-      System.out.println(bookBl.displayCategory());
+      System.out.println(bookBl.viewCategoryList());
       while (true) {
         System.out.printf("Nhap ma danh muc de xem danh sach sach trong danh muc hoac nhan 0 de quay lai : ");
         a = presentation.validateInteger();
@@ -135,7 +135,7 @@ public class BookPl {
           System.out.println("Khong tim thay sach");
           sc.nextLine();
         } else {
-          displayBook(listBook);
+          viewBookList(listBook);
         }
       }
 
@@ -143,7 +143,7 @@ public class BookPl {
   }
 
   public void searchBookCategoryAndName() {
-    System.out.println(bookBl.displayCategory());
+    System.out.println(bookBl.viewCategoryList());
     int id;
     while (true) {
       System.out.printf("Nhap ma danh muc : ");
@@ -169,15 +169,15 @@ public class BookPl {
       System.out.println("Khong tim thay sach");
       sc.nextLine();
     } else {
-      displayBook(listBook);
+      viewBookList(listBook);
     }
   }
 
-  public void detailBook(int id) {
+  public void viewBookDetail(int id) {
     while (true) {
       app.clrscr();
       System.out.println("Thong tin sach ma : " + id);
-      Book book = bookBl.detailBook(id);
+      Book book = bookBl.viewBookDetail(id);
       System.out.println("------------------------------------------------------");
       if (book == null) {
         System.out.println("Ma sach khong dung !\nNhan phim bat ky de quay lai .");

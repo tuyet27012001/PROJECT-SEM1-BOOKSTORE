@@ -28,7 +28,7 @@ public class OrderDal {
     return order;
   }
 
-  public Order detailOrder(final int id) {
+  public Order viewOrderDetails(final int id) {
     Order order = new Order();
     try {
       final String sql = "{call detail_order(?)}";

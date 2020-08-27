@@ -36,7 +36,7 @@ public class OrderDalTest {
     @Test
     public void detailOrderTest() {
         try {
-            Order order = orderDal.detailOrder(1);
+            Order order = orderDal.viewOrderDetails(1);
             assertNotNull(order);
         } catch (final Exception e) {
             // TODO: handle exception

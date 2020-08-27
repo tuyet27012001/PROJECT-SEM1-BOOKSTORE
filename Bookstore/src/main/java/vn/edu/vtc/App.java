@@ -108,7 +108,7 @@ public class App {
                     customerPl.accountManagement(idCustomer);
                     break;
                 case 3:
-                    orderPl.displayOrder();
+                    orderPl.viewOrderList();
                     break;
                 case 4:
                     try {

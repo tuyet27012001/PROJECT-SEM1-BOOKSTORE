@@ -32,7 +32,7 @@ public class CustomerDalTest {
     //         cus.setPhone("0934334235");
     //         cus.setEmail("anh@gmail.com");
     //         cus.setGender("Nu");
-    //         cus.setPassword(customerBl.md5("Tuyet235"));
+    //         cus.setPassword(customerBl.encodeMd5("Tuyet235"));
     //         cus.setBirthDate("2001-01-27");
     //         boolean result = customerDal.insertCustomer(cus);
     //         boolean expected = true;
@@ -51,7 +51,7 @@ public class CustomerDalTest {
             cus.setPhone("1234123412");
             cus.setEmail("anh1@gmail.com");
             cus.setGender("Nu");
-            cus.setPassword(customerBl.md5("Tuyet123"));
+            cus.setPassword(customerBl.encodeMd5("Tuyet123"));
             cus.setBirthDate("2001-03-27");
             boolean result = customerDal.insertCustomer(cus);
             boolean expected = true;
@@ -69,7 +69,7 @@ public class CustomerDalTest {
     //         cus.setPhone("0234123412");
     //         cus.setEmail("mlqaqqgz@gmail.com");
     //         cus.setGender("Nu");
-    //         cus.setPassword(customerBl.md5("Dkfdksf123"));
+    //         cus.setPassword(customerBl.encodeMd5("Dkfdksf123"));
     //         cus.setBirthDate("2001-02-27");
     //         boolean result = customerDal.insertCustomer(cus);
     //         boolean expected = true;
@@ -87,7 +87,7 @@ public class CustomerDalTest {
     //         cus.setPhone("0124123413");
     //         cus.setEmail("kienham@gmail.com");
     //         cus.setGender("Nu");
-    //         cus.setPassword(customerBl.md5("Kiencho1"));
+    //         cus.setPassword(customerBl.encodeMd5("Kiencho1"));
     //         cus.setBirthDate("2001-04-27");
     //         boolean result = customerDal.insertCustomer(cus);
     //         boolean expected = true;
@@ -101,7 +101,7 @@ public class CustomerDalTest {
     // public void login1() {
     //     try {
     //         String pass = "Tuyet235";
-    //         pass = customerBl.md5(pass);
+    //         pass = customerBl.encodeMd5(pass);
     //         final boolean result = customerDal.login("anh@gmail.com", pass);
     //         final boolean expected = true;
     //         assertEquals(expected, result);
@@ -115,7 +115,7 @@ public class CustomerDalTest {
         
     //     try {
     //         String pass = "Tuyet123";
-    //         pass = customerBl.md5(pass);
+    //         pass = customerBl.encodeMd5(pass);
     //         final boolean result = customerDal.login("1234123412", pass);
     //         final boolean expected = true;
     //         assertEquals(expected, result);
@@ -129,7 +129,7 @@ public class CustomerDalTest {
         
     //     try {
     //         String pass = "Dkfdksf123";
-    //         pass = customerBl.md5(pass);
+    //         pass = customerBl.encodeMd5(pass);
     //         final boolean result = customerDal.login("anhtuyetnjnjljl@gmail.com", pass);
     //         final boolean expected = false;
     //         assertEquals(expected, result);
@@ -142,7 +142,7 @@ public class CustomerDalTest {
     // public void login4() {
     //     try {
     //         String pass = "Kiencho1";
-    //         pass = customerBl.md5(pass);
+    //         pass = customerBl.encodeMd5(pass);
     //         final boolean result = customerDal.login("kienham@gmail.com", pass);
     //         final boolean expected = true;
     //         assertEquals(expected, result);
@@ -377,7 +377,7 @@ public class CustomerDalTest {
     @Test
     public void updateCustomerPasswordTest1() {
         try {
-            boolean result = customerDal.updateCustomerPass(1, customerBl.md5("Tuyet2002"));
+            boolean result = customerDal.updateCustomerPass(1, customerBl.encodeMd5("Tuyet2002"));
             boolean expected = true;
             assertEquals(expected, result);
         } catch (final Exception e) {
@@ -388,7 +388,7 @@ public class CustomerDalTest {
     @Test
     public void updateCustomerPasswordTest2() {
         try {
-            boolean result = customerDal.updateCustomerPass(1, customerBl.md5("Kien2004"));
+            boolean result = customerDal.updateCustomerPass(1, customerBl.encodeMd5("Kien2004"));
             boolean expected = true;
             assertEquals(expected, result);
         } catch (final Exception e) {
@@ -399,7 +399,7 @@ public class CustomerDalTest {
     @Test
     public void updateCustomerPasswordTest3() {
         try {
-            boolean result = customerDal.updateCustomerPass(1, customerBl.md5("Long2002"));
+            boolean result = customerDal.updateCustomerPass(1, customerBl.encodeMd5("Long2002"));
             boolean expected = true;
             assertEquals(expected, result);
         } catch (final Exception e) {
@@ -534,7 +534,7 @@ public class CustomerDalTest {
     @Test
     public void displayAddressTest1() {
         try {
-            String result = customerDal.displayAddress(1);
+            String result = customerDal.viewAddressList(1);
             assertNotNull(result);
         } catch (final Exception e) {
             // TODO: handle exception

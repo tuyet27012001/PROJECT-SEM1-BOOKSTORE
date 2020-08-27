@@ -9,8 +9,8 @@ import vn.edu.vtc.persistance.Order;
 public class OrderBl {
   OrderDal orderDal = new OrderDal();
 
-  public Order detailOrder(final int id) {
-    return orderDal.detailOrder(id);
+  public Order viewOrderDetails(final int id) {
+    return orderDal.viewOrderDetails(id);
   }
 
   public String searchDefaultAddressId(final int id) {

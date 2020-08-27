@@ -36,7 +36,7 @@ public class CustomerBl {
 		return pass;
 	}
 
-	public String md5(final String str) {
+	public String encodeMd5(final String str) {
 		String result = "";
 		MessageDigest digest;
 		try {
@@ -94,8 +94,8 @@ public class CustomerBl {
 		return customerDal.insertAddress(name, phone, city, district, address, id);
 	}
 
-	public String displayAddress(int id) {
-		return customerDal.displayAddress(id);
+	public String viewAddressList(int id) {
+		return customerDal.viewAddressList(id);
 	}
 
 	public boolean addressExists(int idCustomer, int id) {

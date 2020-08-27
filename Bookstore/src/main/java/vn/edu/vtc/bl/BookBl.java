@@ -11,13 +11,13 @@ public class BookBl {
     public static Scanner sc = new Scanner(System.in);
     private BookDal bookDal = new BookDal();
 
-    public List<Book> displayBook() {
+    public List<Book> viewBookList() {
         List<Book> listBook = bookDal.getAll();
         return listBook;
     }
 
-    public String displayCategory() {
-        return bookDal.displayCategory();
+    public String viewCategoryList() {
+        return bookDal.viewCategoryList();
     }
 
     public List<Book> searchBookName(String name) {
@@ -35,8 +35,8 @@ public class BookBl {
         return listBook;
     }
 
-    public Book detailBook(int id) {
-        return bookDal.detailBook(id);
+    public Book viewBookDetail(int id) {
+        return bookDal.viewBookDetail(id);
     }
 
     public boolean updateQuantityBook(int id, int quantity) {

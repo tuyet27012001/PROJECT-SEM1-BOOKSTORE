@@ -283,7 +283,7 @@ public class CustomerDal {
         }
     }
 
-    public String displayAddress(final int id) {
+    public String viewAddressList(final int id) {
         int count = 0;
         int idDefault = 0;
         String a;
