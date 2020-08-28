@@ -1,10 +1,6 @@
 package vn.edu.vtc.pl;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -20,7 +16,7 @@ import vn.edu.vtc.persistance.Order;
 
 public class OrderPl {
     private static App app = new App();
-    private static List<Book> listBook = new ArrayList<Book>();
+    public static List<Book> listBook = new ArrayList<Book>();
     private static OrderBl orderBl = new OrderBl();
     private static Scanner sc = new Scanner(System.in);
     private static Presentation presentation = new Presentation();
@@ -30,7 +26,7 @@ public class OrderPl {
         while (true) {
             app.clrscr();
             double sum = 0;
-            rFile();
+            orderBl.rFile();
             if (listBook.size() > 0) {
                 System.out.println("Gio hang");
                 System.out.println(
@@ -77,7 +73,7 @@ public class OrderPl {
     }
 
     public static void updateCart() throws IOException {
-        rFile();
+        orderBl.rFile();
         System.out.printf("Nhap ma san pham de cap nhap hoac chon 0 de quay lai : ");
         int choose = presentation.validateInteger();
         if (choose == 0) {
@@ -109,7 +105,7 @@ public class OrderPl {
                         String b = presentation.yesOrNo();
                         if (b.equalsIgnoreCase("c")) {
                             listBook.remove(index);
-                            wFile();
+                            orderBl.wFile();
                             System.out.println("Xoa san pham thanh cong !");
                             sc.nextLine();
                             return;
@@ -126,7 +122,7 @@ public class OrderPl {
                         bo.setQuantity(choose1);
                         listBook.set(index, bo);
                         System.out.println("Cap nhat thanh cong");
-                        wFile();
+                        orderBl.wFile();
                         sc.nextLine();
                         return;
                     } else {
@@ -138,7 +134,7 @@ public class OrderPl {
     }
 
     public static void order(int idCustomer) throws IOException {
-        rFile();
+        orderBl.rFile();
         app.clrscr();
         Order order = new Order();
         int idAdd = 0;
@@ -217,7 +213,7 @@ public class OrderPl {
                 bookBl.updateQuantityBook(id, quantityBook);
                 listBook.remove(i);
             }
-            wFile();
+            orderBl.wFile();
 
             System.out.println("Dat hang thanh cong");
             sc.nextLine();
@@ -225,60 +221,19 @@ public class OrderPl {
     }
 
     public static void addCart(final Book book) throws IOException {
-        rFile();
+        orderBl.rFile();
         int count = 0;
         for (Book book1 : listBook) {
             if (book1.getBookId() == book.getBookId()) {
                 book1.setQuantity(book1.getQuantity() + 1);
                 listBook.set(count, book1);
-                wFile();
+                orderBl.wFile();
                 return;
             }
             count++;
         }
         listBook.add(book);
-        wFile();
-    }
-
-    public static void wFile() throws IOException {
-        final String nameFile = "cart" + app.idCustomer + ".dat";
-        FileOutputStream out = null;
-        ObjectOutputStream outputStream = null;
-        try {
-            out = new FileOutputStream(nameFile);
-            outputStream = new ObjectOutputStream(out);
-            outputStream.writeObject(listBook);
-        } catch (final Exception e) {
-
-        } finally {
-            if (out != null) {
-                out.close();
-            }
-            if (outputStream != null) {
-                outputStream.close();
-            }
-        }
-
-    }
-
-    public static void rFile() throws IOException {
-        final String nameFile = "cart" + app.idCustomer + ".dat";
-        FileInputStream inn = null;
-        ObjectInputStream inputStream = null;
-        try {
-            inn = new FileInputStream(nameFile);
-            inputStream = new ObjectInputStream(inn);
-            listBook = (List<Book>) inputStream.readObject();
-        } catch (final Exception e) {
-
-        } finally {
-            if (inn != null) {
-                inn.close();
-            }
-            if (inputStream != null) {
-                inputStream.close();
-            }
-        }
+        orderBl.wFile();
     }
 
     public void viewOrderDetails(int idOrder) {

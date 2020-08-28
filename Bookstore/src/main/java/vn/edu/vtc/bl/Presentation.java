@@ -64,45 +64,6 @@ public class Presentation {
     return x;
   }
 
-  public int checkInteger() {
-    int x;
-    while (true) {
-        x = validateInteger();
-        if (x > 0) {
-            break;
-        } else {
-            System.out.print("So luong phai lon hon 0.\nMoi nhap lai : ");
-        }
-    }
-    return x;
-  }
-
-  public double checkDouble() {
-      double x;
-      while (true) {
-          x = validateDouble();
-          if (x >= 0) {
-              break;
-          } else {
-              System.out.print("Gia phai lon hon 0 hoac bang 0 .\nMoi nhap lai : ");
-          }
-      }
-      return x;
-  }
-
-  public double validateDouble() {
-    double input = Double.NaN;
-    while (true) {
-        try {
-            input = Double.parseDouble(sc.nextLine());
-            break;
-        } catch (Exception e) {
-            System.out.print("Sai kieu du lieu!\nMoi nhap lai : ");
-        }
-    }
-    return input;
-  }
-
   public String format(double d){
     DecimalFormat formatter = new DecimalFormat("###,###,###"); 
     return formatter.format(d);

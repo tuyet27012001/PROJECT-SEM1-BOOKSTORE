@@ -1,5 +1,10 @@
 package vn.edu.vtc.dal;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,11 +12,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.edu.vtc.App;
 import vn.edu.vtc.bl.Presentation;
 import vn.edu.vtc.persistance.Book;
 import vn.edu.vtc.persistance.Order;
+import vn.edu.vtc.pl.OrderPl;
 
 public class OrderDal {
+  OrderPl orderPl = new OrderPl();
+  App app = new App();
   public Order getOrder(final ResultSet rs) {
     final Order order = new Order();
     try {
@@ -56,9 +65,9 @@ public class OrderDal {
       callableStatement.executeUpdate();
       final ResultSet rs = callableStatement.executeQuery();
       while (rs.next()) {
-        String a = "Dia chi mac dinh\n" + "Ma dia chi     : " + rs.getInt(1) + "\nTen nguoi nhan : " + rs.getString(2)
-            + "\nSo dien thoai  : " + rs.getString(3) + "\nDia chi        : " + rs.getString(6) + " , "
-            + rs.getString(5) + " , " + rs.getString(4) + "\n=================================================";
+        final String a = "Dia chi mac dinh\n" + "Ma dia chi     : " + rs.getInt(1) + "\nTen nguoi nhan : "
+            + rs.getString(2) + "\nSo dien thoai  : " + rs.getString(3) + "\nDia chi        : " + rs.getString(6)
+            + " , " + rs.getString(5) + " , " + rs.getString(4) + "\n=================================================";
         con.close();
         return a;
       }
@@ -69,8 +78,8 @@ public class OrderDal {
     return null;
   }
 
-  public List<Order> getAll(int id) {
-    List<Order> listOrder = new ArrayList<>();
+  public List<Order> getAll(final int id) {
+    final List<Order> listOrder = new ArrayList<>();
     try {
       final Connection con = DbUtil.getConnection();
       final String sql = "{call display_order(?)}";
@@ -85,13 +94,13 @@ public class OrderDal {
     } catch (final SQLException e) {
       e.getSQLState();
       return null;
-    } 
+    }
   }
 
-  public List<Book> orderListBook(int id) {
-    List<Book> listBook = new ArrayList<>();
+  public List<Book> orderListBook(final int id) {
+    final List<Book> listBook = new ArrayList<>();
     try {
-     
+
       final Connection con = DbUtil.getConnection();
       final String sql = "{call orderListBook(?)}";
       final CallableStatement callableStatement = con.prepareCall(sql);
@@ -99,7 +108,7 @@ public class OrderDal {
       callableStatement.executeUpdate();
       final ResultSet rs = callableStatement.executeQuery();
       while (rs.next()) {
-         Book book = new Book();
+        final Book book = new Book();
         book.setBookId(rs.getInt("book_id"));
         book.setQuantity(rs.getInt("quantity"));
         book.setPrice(rs.getDouble("price"));
@@ -109,7 +118,7 @@ public class OrderDal {
       e.getSQLState();
       return null;
     }
-    return listBook;  
+    return listBook;
   }
 
   public String displayPaymentMethods() {
@@ -132,7 +141,7 @@ public class OrderDal {
   }
 
   public String displayShippingUnit() {
-    Presentation presentation = new Presentation();
+    final Presentation presentation = new Presentation();
     try {
       int i = 1;
       final Connection con = DbUtil.getConnection();
@@ -151,7 +160,7 @@ public class OrderDal {
     }
   }
 
-  public boolean orderExists(int idCustomer, int id) {
+  public boolean orderExists(final int idCustomer, final int id) {
     int count = 0;
     try {
       final String sql = "{call order_exists(?,?)}";
@@ -173,7 +182,8 @@ public class OrderDal {
     return true;
   }
 
-  public boolean insertOrder(String dateTime, int paymentMethod, int shippingUnit, int addressId, String orderStatus) {
+  public boolean insertOrder(final String dateTime, final int paymentMethod, final int shippingUnit,
+      final int addressId, final String orderStatus) {
     try {
       final Connection con = DbUtil.getConnection();
       final String sql = "{call insert_order(?,?,?,?,?)}";
@@ -193,22 +203,22 @@ public class OrderDal {
 
   public int orderId() {
     try {
-      Connection con = DbUtil.getConnection();
-      String se = "{call id_order}";
-      CallableStatement d = con.prepareCall(se);
-      ResultSet rs = d.executeQuery();
+      final Connection con = DbUtil.getConnection();
+      final String se = "{call id_order}";
+      final CallableStatement d = con.prepareCall(se);
+      final ResultSet rs = d.executeQuery();
       while (rs.next()) {
         return rs.getInt(1);
       }
-    } catch (SQLException ex) {
+    } catch (final SQLException ex) {
     }
     return 0;
   }
 
-  public int addressId(int id) {
+  public int addressId(final int id) {
     try {
-      Connection con = DbUtil.getConnection();
-      String sql = "{call id_address(?)}";
+      final Connection con = DbUtil.getConnection();
+      final String sql = "{call id_address(?)}";
       final CallableStatement callableStatement = con.prepareCall(sql);
       callableStatement.setInt(1, id);
       callableStatement.executeUpdate();
@@ -216,12 +226,12 @@ public class OrderDal {
       while (rs.next()) {
         return rs.getInt(1);
       }
-    } catch (SQLException ex) {
+    } catch (final SQLException ex) {
     }
     return 0;
   }
-  
-  public boolean insertBookOrder(int bookId, int orderId, int quantity, double price) {
+
+  public boolean insertBookOrder(final int bookId, final int orderId, final int quantity, final double price) {
     try {
       final Connection con = DbUtil.getConnection();
       final String sql = "{call order_detail(?,?,?,?)}";
@@ -237,8 +247,8 @@ public class OrderDal {
       return false;
     }
   }
- 
-  public boolean updateStatusAddress(final int id, String str) {
+
+  public boolean updateStatusAddress(final int id, final String str) {
     try {
         final Connection con = DbUtil.getConnection();
         final String sql = "{call update_status_order(?, ?)}";
@@ -252,5 +262,48 @@ public class OrderDal {
         e.getSQLState();
         return false;
     }
+}
+
+
+public boolean wFile() throws IOException {
+  final String nameFile = "cart" + app.idCustomer + ".dat";
+  FileOutputStream out = null;
+  ObjectOutputStream outputStream = null;
+  try {
+      out = new FileOutputStream(nameFile);
+      outputStream = new ObjectOutputStream(out);
+      outputStream.writeObject(orderPl.listBook);
+  } catch (final Exception e) {
+return false;
+  } finally {
+      if (out != null) {
+          out.close();
+      }
+      if (outputStream != null) {
+          outputStream.close();
+      }
+  }
+return true;
+}
+
+public boolean rFile() throws IOException {
+  final String nameFile = "cart" + app.idCustomer + ".dat";
+  FileInputStream inn = null;
+  ObjectInputStream inputStream = null;
+  try {
+      inn = new FileInputStream(nameFile);
+      inputStream = new ObjectInputStream(inn);
+      orderPl.listBook = (List<Book>) inputStream.readObject();
+  } catch (final Exception e) {
+     return false;
+  } finally {
+      if (inn != null) {
+          inn.close();
+      }
+      if (inputStream != null) {
+          inputStream.close();
+      }
+  }
+  return true;
 }
 }

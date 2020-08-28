@@ -1,5 +1,6 @@
 package vn.edu.vtc.bl;
 
+import java.io.IOException;
 import java.util.List;
 
 import vn.edu.vtc.dal.OrderDal;
@@ -23,12 +24,12 @@ public class OrderBl {
 
   public String displayPaymentMethods() {
     return orderDal.displayPaymentMethods();
-  }  
+  }
 
   public boolean orderExists(int idCustomer, int id) {
-		return orderDal.orderExists(idCustomer, id);
+    return orderDal.orderExists(idCustomer, id);
   }
-  
+
   public String displayShippingUnit() {
     return orderDal.displayShippingUnit();
   }
@@ -52,8 +53,17 @@ public class OrderBl {
   public List<Book> orderListBook(int id) {
     return orderDal.orderListBook(id);
   }
-  
+
   public boolean updateStatusAddress(final int id, String str) {
     return orderDal.updateStatusAddress(id, str);
-}
+  }
+
+  public boolean wFile() throws IOException {
+   return orderDal.wFile();
+
+  }
+
+  public boolean rFile() throws IOException {
+   return orderDal.rFile();
+  }
 }
