@@ -222,7 +222,9 @@ public class CustomerPl {
     if (customerBl.register(cus) == true) {
       System.out.println("Dang ky thanh cong.");
       sc.nextLine();
-      login();
+      if(login() == true){
+        app.menuCustomer();
+      }
     } else {
       System.out.println("Dang ky that bai");
       sc.nextLine();

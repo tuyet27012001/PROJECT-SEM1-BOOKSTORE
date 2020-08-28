@@ -52,5 +52,8 @@ public class OrderBl {
   public List<Book> orderListBook(int id) {
     return orderDal.orderListBook(id);
   }
-
+  
+  public boolean updateStatusAddress(final int id, String str) {
+    return orderDal.updateStatusAddress(id, str);
+}
 }

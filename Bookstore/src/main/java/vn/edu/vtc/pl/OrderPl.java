@@ -330,7 +330,26 @@ public class OrderPl {
             System.out.println(
                     "===================================================================================================================");
             System.out.println("Cam on quy khach da mua sach tai Bookstore");
-            sc.nextLine();
+            if (order.getOrderStatus().equalsIgnoreCase("Da huy")) {
+                sc.nextLine();
+            } else{
+                
+                System.out.printf("Ban co muon huy don hang (C/K)? : ");
+                String str = presentation.yesOrNo();
+                if (str.equalsIgnoreCase("c")) {
+                    for (int i = 0; i < listB.size(); i++) {
+                        int id = listB.get(i).getBookId();
+                        Book book = bookBl.viewBookDetail(id);
+                        int quantityBook = book.getQuantity() + listB.get(i).getQuantity();
+                        bookBl.updateQuantityBook(id, quantityBook);
+                    }
+                    orderBl.updateStatusAddress(idOrder, "Da huy");
+                    System.out.println("Ban da huy don hang thanh cong.");
+                    sc.nextLine();
+                } else {
+                    return;
+                }
+            }
         }
     }
 

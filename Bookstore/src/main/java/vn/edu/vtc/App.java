@@ -1,13 +1,9 @@
 package vn.edu.vtc;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import vn.edu.vtc.bl.Presentation;
-import vn.edu.vtc.persistance.Book;
 import vn.edu.vtc.pl.BookPl;
 import vn.edu.vtc.pl.CustomerPl;
 import vn.edu.vtc.pl.OrderPl;

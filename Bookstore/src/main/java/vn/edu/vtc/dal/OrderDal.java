@@ -237,4 +237,20 @@ public class OrderDal {
       return false;
     }
   }
+ 
+  public boolean updateStatusAddress(final int id, String str) {
+    try {
+        final Connection con = DbUtil.getConnection();
+        final String sql = "{call update_status_order(?, ?)}";
+        final CallableStatement callableStatement = con.prepareCall(sql);
+        callableStatement.setInt(1, id);
+        callableStatement.setString(2, str);
+        callableStatement.executeUpdate();
+        con.close();
+        return true;
+    } catch (final SQLException e) {
+        e.getSQLState();
+        return false;
+    }
+}
 }
