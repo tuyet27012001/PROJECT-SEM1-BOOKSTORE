@@ -18,13 +18,32 @@ public class Presentation {
 		return str3+"-"+str2+"-"+str1;
 	}
 
+	public String dateBirth1(String date) {
+		int a = date.indexOf('-');
+		int b = date.indexOf('-', 5);
+		String str1 = date.substring(0, a);
+		String str2 = date.substring(a+1, b);
+		String str3 = date.substring(b+1, date.length());
+		return str3+"-"+str2+"-"+str1;
+	}
+
+	public String dateTime(String date) {
+		int a = date.indexOf('-');
+		int b = date.indexOf('-', 5);
+		String str1 = date.substring(0, a);
+		String str2 = date.substring(a+1, b);
+		String str3 = date.substring(b+1, b+3);
+		String str4 = date.substring(b+4, date.length());
+		return str4+" "+str3+"-"+str2+"-"+str1;
+	}
+
 	public boolean validPassword(final String pass) {
 		final String regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([@#$.*%^&+=]{0,})(?=\\S+$).{8,12}";
 		return pass.matches(regex);
 	}
 
 	public boolean validPhone(final String phone) {
-		final String regex = "^[0-9]{10,11}$";
+		final String regex = "^([+]{0,})[0-9]{10,12}$";
 		return phone.matches(regex);
 	}
 

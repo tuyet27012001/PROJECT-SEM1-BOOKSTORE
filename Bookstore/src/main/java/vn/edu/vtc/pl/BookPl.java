@@ -51,9 +51,18 @@ public class BookPl {
       System.out.printf("|%-4s|%-50s|%-30s|%-20s| \n", "Id", "Ten sach", "Tac gia", "Gia (vnd)");
       System.out.println(
           "=============================================================================================================");
-      for (int i = k; i < k + 10; i++) {
-        System.out.printf("|%-4d|%-50s|%-30s|%-20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
-            listBook.get(i).getAuthor(), presentation.format(listBook.get(i).getPrice()));
+      
+      if(listBook.size() - k < 10 ){
+        for (int i = k; i < listBook.size(); i++) {
+          System.out.printf("|%-4d|%-50s|%-30s|%-20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
+              listBook.get(i).getAuthor(), presentation.format(listBook.get(i).getPrice()));
+        }
+      }
+      else{
+        for (int i = k; i < k + 10; i++) {
+          System.out.printf("|%-4d|%-50s|%-30s|%-20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
+              listBook.get(i).getAuthor(), presentation.format(listBook.get(i).getPrice()));
+        }
       }
       System.out.println(
           "=============================================================================================================");
@@ -68,24 +77,26 @@ public class BookPl {
         if (choose == 1) {
           if (k == 0) {
             System.out.println("Khong co trang truoc moi ban chon lai.");
-          } else{
+          } else {
             k -= 10;
-            break;}
+            break;
+          }
         } else if (choose == 2) {
-          if (k == 130) {
+          if (k == listBook.size() - listBook.size()%10) {
             System.out.println("khong co trang sau moi ban chon lai.");
-          } else{
+          } else {
             k += 10;
-            break;}
-        } else if (choose == 3) {   
-            System.out.printf("Nhap ma sach de xem chi tiet : ");
-            int idBook = presentation.validateInteger();
-            if (idBook > k && idBook < k + 11) {
-              viewBookDetail(idBook);       
-            } else {
-              System.out.println("Khong tim thay ma sach "+ idBook+" trong trang nay.");
-              sc.nextLine();
-            }
+            break;
+          }
+        } else if (choose == 3) {
+          System.out.printf("Nhap ma sach de xem chi tiet : ");
+          int idBook = presentation.validateInteger();
+          if (idBook > k && idBook < k + 11) {
+            viewBookDetail(idBook);
+          } else {
+            System.out.println("Khong tim thay ma sach " + idBook + " trong trang nay.");
+            sc.nextLine();
+          }
           break;
         } else if (choose == 4) {
           return;
@@ -93,6 +104,42 @@ public class BookPl {
           System.out.println("Ban nhap sai moi ban nhap lai");
         }
       }
+    }
+  }
+
+  public void viewBookListSearch(List<Book> listBook) {
+    while (true) {
+      app.clrscr();
+      System.out.println("Danh sach sach");
+      System.out.println(
+          "=============================================================================================================");
+      System.out.printf("|%-4s|%-50s|%-30s|%-20s| \n", "Id", "Ten sach", "Tac gia", "Gia (vnd)");
+      System.out.println(
+          "=============================================================================================================");
+      for (int i = 0; i < listBook.size(); i++) {
+        System.out.printf("|%-4d|%-50s|%-30s|%-20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
+            listBook.get(i).getAuthor(), presentation.format(listBook.get(i).getPrice()));
+      }
+      System.out.println(
+          "=============================================================================================================");
+      System.out.printf("Nhap ma sach de xem chi tiet hoac nhap 0 de quay lai : ");
+      int idBook = presentation.validateInteger();
+      boolean idBookS = false;
+      if(idBook == 0){
+        return;
+      }
+      for (int i = 0; i < listBook.size(); i++) {
+        if (idBook == listBook.get(i).getBookId()) {
+          viewBookDetail(idBook);
+          idBookS = true;
+          break;
+        }
+      }
+      if (idBookS == false) {
+        System.out.println("Khong tim thay ma sach " + idBook + " trong trang nay.");
+        sc.nextLine();
+      }
+
     }
   }
 
@@ -141,7 +188,7 @@ public class BookPl {
       System.out.println("Khong tim thay sach");
       sc.nextLine();
     } else {
-      viewBookList(listBook);
+      viewBookListSearch(listBook);
     }
   }
 
@@ -200,7 +247,7 @@ public class BookPl {
       System.out.println("Khong tim thay sach");
       sc.nextLine();
     } else {
-      viewBookList(listBook);
+      viewBookListSearch(listBook);
     }
   }
 

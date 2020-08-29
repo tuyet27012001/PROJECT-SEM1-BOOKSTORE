@@ -10,7 +10,7 @@ public class Order {
   private int address;
   private double shippingFee;
   private String orderStatus;
-  private Date dateTime;
+  private String dateTime;
 
   public Order(){
     
@@ -40,7 +40,7 @@ public class Order {
     return orderStatus;
   }
 
-  public Date getDateTime(){
+  public String getDateTime(){
     return dateTime;
   }
 
@@ -72,7 +72,7 @@ public class Order {
     this.orderStatus = orderStatus;
   }
 
-  public void setDateTime(Date dateTime){
+  public void setDateTime(String dateTime){
     this.dateTime = dateTime;
   }
 

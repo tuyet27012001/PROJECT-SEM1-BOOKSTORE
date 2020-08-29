@@ -26,7 +26,7 @@ public class OrderDal {
     try {
       order.setOrderId(rs.getInt("order_id"));
       order.setOrderStatus(rs.getString("order_status"));
-      order.setDateTime(rs.getDate("date_time"));
+      order.setDateTime(rs.getString("date_time"));
       order.setPaymentMethod(rs.getString("payment_method_name"));
       order.setShippingUnit(rs.getString("shipping_unit_name"));
       order.setShippingFee(rs.getDouble("shippingFee"));

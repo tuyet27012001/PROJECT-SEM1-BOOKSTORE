@@ -244,7 +244,7 @@ public class CustomerPl {
     System.out.println("So dien thoai : " + customer.getPhone());
     System.out.println("Email         : " + customer.getEmail());
     System.out.println("Gio tinh      : " + customer.getGender());
-    System.out.println("Ngay sinh     : " + customer.getBirthDate());
+    System.out.println("Ngay sinh     : " + presentation.dateBirth1(customer.getBirthDate()));
     System.out.println("-----------------------------------------------");
     sc.nextLine();
   }

@@ -255,7 +255,7 @@ public class OrderPl {
             System.out.println("Trang thai don hang : " + order.getOrderStatus());
             System.out.println("Don vi van chuyen : " + order.getShippingUnit());
             System.out.println("Phuong thuc thanh toan : " + order.getPaymentMethod());
-            System.out.println("Thoi gian dat hang : " + order.getDateTime());
+            System.out.println("Thoi gian dat hang : " +presentation.dateTime(order.getDateTime()));
             System.out.println("-----------------------------------------------------------");
             address = address.replace("Dia chi mac dinh\n", "");
             address = address.replace("\n=================================================", "");
