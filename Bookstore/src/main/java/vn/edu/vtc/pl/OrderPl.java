@@ -21,6 +21,7 @@ public class OrderPl {
     private static Scanner sc = new Scanner(System.in);
     private static Presentation presentation = new Presentation();
     private static CustomerPl customerPl = new CustomerPl();
+    private static BookBl bookBl = new BookBl();
 
     public static void viewCart() throws IOException {
         while (true) {
@@ -28,6 +29,8 @@ public class OrderPl {
             double sum = 0;
             orderBl.rFile();
             if (listBook.size() > 0) {
+                int[] quantity = new int[100];
+                int x = 0;
                 System.out.println("Gio hang");
                 System.out.println(
                         "===================================================================================================================");
@@ -40,6 +43,8 @@ public class OrderPl {
                             presentation.format(rs.getPrice()), rs.getQuantity(),
                             presentation.format(rs.getPrice() * rs.getQuantity()));
                     sum += rs.getPrice() * rs.getQuantity();
+                    quantity[x] = rs.getQuantity();
+                    x++;
                 }
                 System.out.println(
                         "===================================================================================================================");
@@ -50,17 +55,56 @@ public class OrderPl {
                 System.out.println("1. Cap nhat gio hang");
                 System.out.println("2. Dat hang");
                 System.out.println("3. Thoat");
+
                 while (true) {
                     System.out.printf("Chon : ");
                     int a = presentation.validateInteger();
+                    orderBl.rFile();
+                    int count = 0;
+                    for (int i = 0; i < listBook.size(); i++) {
+                        count++;
+                        if (listBook.get(i).getQuantity() != quantity[i]) {
+                            System.out.println("Gio hang da bi thay doi nhan enter de cap nhat lai gio hang !");
+                            sc.nextLine();
+                            count = 101;
+                            break;
+                        }
+                    }
+                    if (count == 101) {
+                        break;
+                    }
+                    if (count == 0) {
+                        System.out.println("Gio hang da bi thay doi nhan enter de cap nhat lai gio hang !");
+                        sc.nextLine();
+                        break;
+                    }
+
                     if (a == 1) {
                         updateCart();
                         break;
                     } else if (a == 2) {
-                        order(app.idCustomer);
-                        return;
+                        boolean bl = false;
+                        for (int i = 0; i < listBook.size(); i++) {
+                            int ch = listBook.get(i).getBookId();
+                            Book book = bookBl.viewBookDetail(ch);
+                            if (listBook.get(i).getQuantity() > book.getQuantity()) {
+                                System.out.println("So luong sach co ma " + ch
+                                        + " trong kho khong du moi ban cap nhat lai de dat hang");
+                                bl = true;
+                            }
+                        }
+                        if (bl == false) {
+                            order(app.idCustomer);
+                            return;
+                        }
+                        sc.nextLine();
+                        break;
                     } else if (a == 3) {
                         return;
+                    } else {
+                        System.out.println("Khong thuc hien duoc chuc nang nay !");
+                        sc.nextLine();
+                        break;
                     }
                 }
             } else {
@@ -194,6 +238,20 @@ public class OrderPl {
         System.out.printf("Ban co chac chan muon dat hang (C/K)? ");
         String yn = presentation.yesOrNo();
         if (yn.equalsIgnoreCase("c")) {
+            boolean bl = false;
+            for (int i = 0; i < listBook.size(); i++) {
+                int ch = listBook.get(i).getBookId();
+                Book book = bookBl.viewBookDetail(ch);
+                if (listBook.get(i).getQuantity() > book.getQuantity()) {
+                    System.out.println(
+                            "So luong sach ma : " + ch + " khong hop le !\nVui long cap nhat lai gio hang !");
+                    bl = true;
+                }
+            }
+            if(bl == true){
+                sc.nextLine();
+                return;
+            }
             Calendar c = Calendar.getInstance();
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH) + 1;
@@ -232,6 +290,13 @@ public class OrderPl {
             }
             count++;
         }
+        if (listBook.size() == 100) {
+            System.out
+                    .println("Gio hang da day , vui long xoa bot hoac dat hang de co the tiep tuc them vao gio hang !");
+            return;
+        }
+        System.out.println("Them vao gio hang thanh cong");
+        sc.nextLine();
         listBook.add(book);
         orderBl.wFile();
     }
@@ -255,7 +320,7 @@ public class OrderPl {
             System.out.println("Trang thai don hang : " + order.getOrderStatus());
             System.out.println("Don vi van chuyen : " + order.getShippingUnit());
             System.out.println("Phuong thuc thanh toan : " + order.getPaymentMethod());
-            System.out.println("Thoi gian dat hang : " +presentation.dateTime(order.getDateTime()));
+            System.out.println("Thoi gian dat hang : " + presentation.dateTime(order.getDateTime()));
             System.out.println("-----------------------------------------------------------");
             address = address.replace("Dia chi mac dinh\n", "");
             address = address.replace("\n=================================================", "");
@@ -287,8 +352,7 @@ public class OrderPl {
             System.out.println("Cam on quy khach da mua sach tai Bookstore");
             if (order.getOrderStatus().equalsIgnoreCase("Da huy")) {
                 sc.nextLine();
-            } else{
-                
+            } else {
                 System.out.printf("Ban co muon huy don hang (C/K)? : ");
                 String str = presentation.yesOrNo();
                 if (str.equalsIgnoreCase("c")) {

@@ -46,6 +46,7 @@ public class BookPl {
     while (true) {
       app.clrscr();
       System.out.println("Danh sach sach");
+      System.out.println("Trang : "+(k/10+1));
       System.out.println(
           "=============================================================================================================");
       System.out.printf("|%-4s|%-50s|%-30s|%-20s| \n", "Id", "Ten sach", "Tac gia", "Gia (vnd)");
@@ -280,8 +281,7 @@ public class BookPl {
             try {
               orderPl.addCart(book);
 
-              System.out.println("Them vao gio hang thanh cong");
-              sc.nextLine();
+              
               return;
             } catch (IOException e) {
               e.printStackTrace();

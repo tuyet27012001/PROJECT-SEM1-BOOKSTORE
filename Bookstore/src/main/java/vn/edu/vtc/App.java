@@ -27,7 +27,7 @@ public class App {
         final App app = new App();
         while (true) {
             app.clrscr();
-            final String[] menuMain = { "San pham", "Dang nhap", "Dang ky", "Thoat" };
+            final String[] menuMain = { "Tim kien sach", "Dang nhap", "Dang ky", "Thoat" };
             final int choose = app.menu(menuMain, "Chao mung ban den voi Bookstore");
             switch (choose) {
                 case 1:
