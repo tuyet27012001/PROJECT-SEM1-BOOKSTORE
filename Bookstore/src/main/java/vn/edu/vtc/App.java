@@ -18,7 +18,6 @@ public class App {
     public static int idAddress = 0;
 
     public static void main(final String[] args) {
-        
         final App app = new App();
         app.mainMenu();
     }

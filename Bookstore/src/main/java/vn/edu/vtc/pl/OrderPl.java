@@ -178,8 +178,30 @@ public class OrderPl {
     }
 
     public static void order(int idCustomer) throws IOException {
+        List<Book> listBookOrder = new ArrayList<>();
         orderBl.rFile();
         app.clrscr();
+        int sum = 0;
+        System.out.println(
+                "===================================================================================================================");
+        System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Ten sach", "Don gia (vnd)", "So luong",
+                "So tien (vnd)");
+        System.out.println(
+                "===================================================================================================================");
+        for (final Book rs : listBook) {
+            System.out.printf("|%-4s|%-50s|%-20s|%-15d|%-20s|\n", rs.getBookId(), rs.getTitle(),
+                    presentation.format(rs.getPrice()), rs.getQuantity(),
+                    presentation.format(rs.getPrice() * rs.getQuantity()));
+            sum += rs.getPrice() * rs.getQuantity();
+            listBookOrder.add(rs);
+        }
+        System.out.println(
+                "===================================================================================================================");
+        System.out.printf("|%-20s %-55d %-15s %-14s %-5s|\n", "So luong mat hang : ", listBook.size(), "Tong tien :",
+                presentation.format(sum), " vnd");
+        System.out.println(
+                "===================================================================================================================");
+        System.out.println("\n");
         Order order = new Order();
         int idAdd = 0;
         CustomerBl customerBl = new CustomerBl();
@@ -193,7 +215,6 @@ public class OrderPl {
             System.out.printf("Ban co muon su dung dia chi mac dinh (C/K)? ");
             String ck = presentation.yesOrNo();
             if (ck.equalsIgnoreCase("c")) {
-
                 idAdd = customerBl.searchDefaultAddressId(idCustomer);
             } else {
                 System.out.println(customerBl.viewAddressList(idCustomer));
@@ -239,16 +260,36 @@ public class OrderPl {
         String yn = presentation.yesOrNo();
         if (yn.equalsIgnoreCase("c")) {
             boolean bl = false;
+            int count = 0;
+            orderBl.rFile();
+            if(listBook.size() != listBookOrder.size()){
+                System.out.println("Gio hang cua ban da thay doi nen khong the dat hang !");
+                sc.nextLine();
+                return;
+            }
+            for(int i = 0; i < listBook.size(); i++){
+                if(listBook.get(i).getQuantity() != listBookOrder.get(i).getQuantity()){
+                    System.out.println("Gio hang cua ban da thay doi nen khong the dat hang !");
+                    sc.nextLine();
+                    return;
+                }
+            }
             for (int i = 0; i < listBook.size(); i++) {
                 int ch = listBook.get(i).getBookId();
                 Book book = bookBl.viewBookDetail(ch);
                 if (listBook.get(i).getQuantity() > book.getQuantity()) {
-                    System.out.println(
-                            "So luong sach ma : " + ch + " khong hop le !\nVui long cap nhat lai gio hang !");
+                    System.out
+                            .println("So luong sach ma : " + ch + " khong hop le !\nVui long cap nhat lai gio hang !");
                     bl = true;
                 }
+                count++;
             }
-            if(bl == true){
+            if (bl == true) {
+                sc.nextLine();
+                return;
+            }
+            if(count == 0){
+                System.out.println("Khong the dat hang");
                 sc.nextLine();
                 return;
             }
@@ -272,7 +313,6 @@ public class OrderPl {
                 listBook.remove(i);
             }
             orderBl.wFile();
-
             System.out.println("Dat hang thanh cong");
             sc.nextLine();
         }
