@@ -350,6 +350,7 @@ public class CustomerPl {
 
   public void addressUpdate(int id) {
     while (true) {
+      app.clrscr();
       String[] arr = { "Them dia chi", "Sua dia chi", "Xoa dia chi", "Thay doi dia chi mac dinh", "Thoat" };
       int choose = app.menu(arr, "Cap nhat dia chi");
       switch (choose) {
@@ -409,12 +410,14 @@ public class CustomerPl {
           String n = enterName();
           if (customerBl.updateNameAddress(choose, n) == true) {
             System.out.println("Cap nhat thanh cong ! ");
+            sc.nextLine();
           }
         } else if (choose1 == 2) {
           app.clrscr();
           String p = enterPhone();
           if (customerBl.updatePhoneAddress(choose, p) == true) {
             System.out.println("Cap nhat thanh cong ! ");
+            sc.nextLine();
           }
         } else if (choose1 == 3) {
           app.clrscr();
@@ -422,6 +425,8 @@ public class CustomerPl {
           String d = checkStringNull("Quan/Huyen : ");
           String add = checkStringNull("So nha, ngo/ngach, xa/phuong : ");
           customerBl.updateAddress(choose, c, d, add);
+          System.out.println("Cap nhat thanh cong");
+          sc.nextLine();
         } else if (choose1 == 4) {
           return;
         } else {

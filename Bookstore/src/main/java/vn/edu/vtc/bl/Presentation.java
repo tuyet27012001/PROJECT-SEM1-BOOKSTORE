@@ -52,38 +52,6 @@ public class Presentation {
 		return phone.matches(regex);
 	}
 
-	// public boolean validDate(final String date) {
-	// final String regex =
-	// "^(0?[1-9]|[12][0-9]|3[01])[-](0?[1-9]|1[012])[-]([1][8-9][0-9][0-9]|[2][0][01][0-9])$";
-	// int a = date.indexOf('-');
-	// int b = date.indexOf('-', 3);
-	// String str1 = date.substring(0, a);
-	// String str2 = date.substring(a + 1, b);
-	// String str3 = date.substring(b + 1, date.length());
-	// int year = Integer.parseInt(str3);
-	// boolean check = false;
-	// if (year % 4 == 0) {
-	// if (year % 100 == 0) {
-	// if (year % 400 == 0) {
-	// System.out.println("Năm " + year + " là năm nhuận.");
-	// if(str2.equals("2") && (str1.equals("30") || str1.equals("31"))){
-	// check = false;
-	// }
-	// else if(str2.equals("2") && (str1.equals("30") || str1.equals("31")))
-	// else{
-
-	// }
-	// } else {
-	// System.out.println("Năm " + year + " không phải là năm nhuận.");
-	// }
-	// } else {
-	// System.out.println("Năm " + year + " là năm nhuận.");
-	// }
-	// } else {
-	// System.out.println("Năm " + year + " không phải là năm nhuận.");
-	// }
-	// return date.matches(regex);
-	// }
 	private Pattern pattern;
 
 	private Matcher matcher;
@@ -93,71 +61,39 @@ public class Presentation {
 	public boolean validDate(final String date) {
 		pattern = Pattern.compile(DATE_PATTERN);
 		matcher = pattern.matcher(date);
-
 		if (matcher.matches()) {
-
 			matcher.reset();
-
 			if (matcher.find()) {
-
 				String day = matcher.group(1);
-
 				String month = matcher.group(2);
-
 				int year = Integer.parseInt(matcher.group(3));
-
 				if (day.equals("31")
-
 						&& (month.equals("4") || month.equals("6") || month.equals("9")
-
 								|| month.equals("11") || month.equals("04") || month.equals("06")
-
 								|| month.equals("09"))) {
-
 					return false; // only 1,3,5,7,8,10,12 has 31 days
-
 				} else if (month.equals("2") || month.equals("02")) {
-
 					// leap year
-
 					if (year % 4 == 0) {
 
 						if (day.equals("30") || day.equals("31")) {
-
 							return false;
-
 						} else {
-
 							return true;
-
 						}
-
 					} else if (day.equals("29") || day.equals("30") || day.equals("31")) {
-
 						return false;
-
 					} else {
-
 						return true;
-
 					}
-
 				} else {
-
 					return true;
-
 				}
-
 			} else {
-
 				return false;
-
 			}
-
 		} else {
-
 			return false;
-
 		}
 	}
 

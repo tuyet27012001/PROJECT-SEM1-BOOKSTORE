@@ -62,7 +62,7 @@ public class App {
             System.out.println("-------------------------------------------------------");
         }
         for (int i = 0; i < arr.length; i++) {
-            System.out.printf("|| %-1d, %-46s ||\n", i + 1, arr[i]);
+            System.out.printf("|| %-1d. %-46s ||\n", i + 1, arr[i]);
         }
         System.out.println("=======================================================");
         System.out.printf("#Chon : ");
@@ -71,7 +71,7 @@ public class App {
             if (num >= 0 && num <= arr.length) {
                 break;
             } else {
-                System.out.printf("Ban nhap sai !\nXin vui long nhap lại : ");
+                System.out.printf("Ban nhap sai !\nXin vui long nhap lai : ");
             }
         }
         return num;
@@ -93,7 +93,7 @@ public class App {
         while (true) {
             clrscr();
             System.out.println("Tai khoan : " + customerPl.nameCustomer(idCustomer));
-            final String[] menuMain = { "Sach", "Quan ly tai khoan", "Quan ly hoa don", "Gio hang", "Thoat" };
+            final String[] menuMain = { "Tim kiem sach", "Quan ly tai khoan", "Quan ly hoa don", "Gio hang", "Thoat" };
             final int choose = app.menu(menuMain, "Chao mung ban den voi Bookstore");
             switch (choose) {
                 case 1:

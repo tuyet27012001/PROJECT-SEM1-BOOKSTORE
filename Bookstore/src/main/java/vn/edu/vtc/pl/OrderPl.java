@@ -181,27 +181,9 @@ public class OrderPl {
         List<Book> listBookOrder = new ArrayList<>();
         orderBl.rFile();
         app.clrscr();
-        int sum = 0;
-        System.out.println(
-                "===================================================================================================================");
-        System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Ten sach", "Don gia (vnd)", "So luong",
-                "So tien (vnd)");
-        System.out.println(
-                "===================================================================================================================");
         for (final Book rs : listBook) {
-            System.out.printf("|%-4s|%-50s|%-20s|%-15d|%-20s|\n", rs.getBookId(), rs.getTitle(),
-                    presentation.format(rs.getPrice()), rs.getQuantity(),
-                    presentation.format(rs.getPrice() * rs.getQuantity()));
-            sum += rs.getPrice() * rs.getQuantity();
             listBookOrder.add(rs);
         }
-        System.out.println(
-                "===================================================================================================================");
-        System.out.printf("|%-20s %-55d %-15s %-14s %-5s|\n", "So luong mat hang : ", listBook.size(), "Tong tien :",
-                presentation.format(sum), " vnd");
-        System.out.println(
-                "===================================================================================================================");
-        System.out.println("\n");
         Order order = new Order();
         int idAdd = 0;
         CustomerBl customerBl = new CustomerBl();
@@ -255,6 +237,51 @@ public class OrderPl {
             } else
                 System.out.println("Ban nhap sai moi ban nhap lai !");
         }
+        app.clrscr();
+        String a;
+        double x;
+        int sum = 0;
+        System.out.println("Thong tin don hang");
+        if(choose == 1){a = "Giao hang tiet kiem"; x = 15000; }
+        else if (choose == 2) { a = "Giao hang nhanh"; x = 20000;}
+        else{a = "Viettel Post"; x = 18000;}   
+        String b;
+        if(choose1 == 1){b = "Thanh toan bang the quoc te Visa , Master, JCB"; }
+        else if (choose1 == 2) { b = "Thanh toan khi nhan hang";}
+        else{b = "The ATM noi dia / Internet Banking";} 
+        String address = orderBl.searchDefaultAddressId(idAdd);
+        System.out.println("Don vi van chuyen : " + a);
+        System.out.println("Phuong thuc thanh toan : " + b);
+        System.out.println("Dia chi nhan hang : ");
+        System.out.println("-----------------------------------------------------------");
+        address = address.replace("Dia chi mac dinh\n", "");
+        address = address.replace("\n=================================================", "");
+        System.out.printf(address);
+        System.out.println("\n-----------------------------------------------------------");
+        System.out.println(
+                "===================================================================================================================");
+        System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Ten sach", "Don gia (vnd)", "So luong",
+                "So tien (vnd)");
+        System.out.println(
+                "===================================================================================================================");
+        for (Book rs : listBook) {
+            Book book = bookBl.viewBookDetail(rs.getBookId());
+            System.out.printf("|%-4s|%-50s|%-20s|%-15d|%-20s|\n", rs.getBookId(), book.getTitle(),
+                    presentation.format(rs.getPrice()), rs.getQuantity(),
+                    presentation.format(rs.getPrice() * rs.getQuantity()));
+            sum += rs.getPrice() * rs.getQuantity();
+        }
+        System.out.println(
+                "===================================================================================================================");
+        System.out.printf("|%-20s %-50d %-20s %-14s %-5s|\n", "So luong mat hang : ", listBook.size(),
+                "Tong tien hang : ", presentation.format(sum), " vnd");
+        System.out.printf("|%-71s %-21s %-13s %-5s|\n", "", "Phi van chuyen : ",
+                presentation.format(x), " vnd");
+        System.out.printf("|%-71s %-20s %-14s %-5s|\n", "", "Tong tien : ",
+                presentation.format(sum + order.getShippingFee()), " vnd");
+        System.out.println(
+                "===================================================================================================================");
+        
         BookBl bookBl = new BookBl();
         System.out.printf("Ban co chac chan muon dat hang (C/K)? ");
         String yn = presentation.yesOrNo();
@@ -262,13 +289,13 @@ public class OrderPl {
             boolean bl = false;
             int count = 0;
             orderBl.rFile();
-            if(listBook.size() != listBookOrder.size()){
+            if (listBook.size() != listBookOrder.size()) {
                 System.out.println("Gio hang cua ban da thay doi nen khong the dat hang !");
                 sc.nextLine();
                 return;
             }
-            for(int i = 0; i < listBook.size(); i++){
-                if(listBook.get(i).getQuantity() != listBookOrder.get(i).getQuantity()){
+            for (int i = 0; i < listBook.size(); i++) {
+                if (listBook.get(i).getQuantity() != listBookOrder.get(i).getQuantity()) {
                     System.out.println("Gio hang cua ban da thay doi nen khong the dat hang !");
                     sc.nextLine();
                     return;
@@ -288,7 +315,7 @@ public class OrderPl {
                 sc.nextLine();
                 return;
             }
-            if(count == 0){
+            if (count == 0) {
                 System.out.println("Khong the dat hang");
                 sc.nextLine();
                 return;
@@ -330,9 +357,8 @@ public class OrderPl {
             }
             count++;
         }
-        if (listBook.size() == 100) {
-            System.out
-                    .println("Gio hang da day , vui long xoa bot hoac dat hang de co the tiep tuc them vao gio hang !");
+        if (listBook.size() == 30) {
+            System.out.println("Gio hang da day , vui long xoa bot hoac dat hang de co the tiep tuc them vao gio hang !");
             return;
         }
         System.out.println("Them vao gio hang thanh cong");

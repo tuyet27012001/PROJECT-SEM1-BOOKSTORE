@@ -63,7 +63,7 @@ public class CustomerBl {
 	}
 
 	public boolean updateCustomerEmail(int id, String email) {
-		return customerDal.updateCustomerEmail(1, email);
+		return customerDal.updateCustomerEmail(id, email);
 	}
 
 	public boolean updateCustomerGender(int id, String gender) {
