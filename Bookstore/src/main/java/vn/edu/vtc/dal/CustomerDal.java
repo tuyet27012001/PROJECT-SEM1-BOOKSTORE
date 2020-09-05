@@ -46,11 +46,13 @@ public class CustomerDal {
             final ResultSet rs = callableStatement1.executeQuery();
             int count1 = 0;
             while (rs.next()) {
-                count1++;
-            }
-            if (count1 > 0) {
                 final Customer cus = getCustomer(rs);
                 app.idCustomer = cus.getIdCustomer();
+                count1++;
+               
+            }
+            if (count1 > 0) {
+               
                 con1.close();
                 return true;
             }
