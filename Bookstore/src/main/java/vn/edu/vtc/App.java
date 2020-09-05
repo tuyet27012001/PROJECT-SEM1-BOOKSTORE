@@ -26,6 +26,8 @@ public class App {
         final App app = new App();
         while (true) {
             app.clrscr();
+            System.out.println("                 Project - BookStore");
+            System.out.println("                   PF08 - Group 1");
             final String[] menuMain = { "Search book", "Login", "Register", "Exit" };
             final int choose = app.menu(menuMain, "Welcome to Bookstore");
             switch (choose) {
