@@ -105,10 +105,10 @@ public class Presentation {
 	public String yesOrNo() {
 		while (true) {
 			String y = sc.nextLine();
-			if (y.equalsIgnoreCase("k") || y.equalsIgnoreCase("c")) {
+			if (y.equalsIgnoreCase("n") || y.equalsIgnoreCase("y")) {
 				return y;
 			} else {
-				System.out.print("Ban nha sai !\nMoi nhap lai : ");
+				System.out.print("You entered wrong! Please re-enter : ");
 			}
 		}
 	}
@@ -121,7 +121,7 @@ public class Presentation {
 				break;
 
 			} catch (Exception e) {
-				System.out.print("Sai kieu du lieu!\nMoi nhap lai : ");
+				System.out.print("Wrong data type! Please re-enter : ");
 			}
 		} while (true);
 		return x;

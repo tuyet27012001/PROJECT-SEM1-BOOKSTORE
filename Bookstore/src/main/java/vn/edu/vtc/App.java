@@ -26,8 +26,8 @@ public class App {
         final App app = new App();
         while (true) {
             app.clrscr();
-            final String[] menuMain = { "Tim kien sach", "Dang nhap", "Dang ky", "Thoat" };
-            final int choose = app.menu(menuMain, "Chao mung ban den voi Bookstore");
+            final String[] menuMain = { "Search book", "Login", "Register", "Exit" };
+            final int choose = app.menu(menuMain, "Welcome to Bookstore");
             switch (choose) {
                 case 1:
                     bookPl.menuBook();
@@ -65,13 +65,13 @@ public class App {
             System.out.printf("|| %-1d. %-46s ||\n", i + 1, arr[i]);
         }
         System.out.println("=======================================================");
-        System.out.printf("#Chon : ");
+        System.out.printf("#Choose : ");
         while (true) {
             num = presentation.validateInteger();
             if (num >= 0 && num <= arr.length) {
                 break;
             } else {
-                System.out.printf("Ban nhap sai !\nXin vui long nhap lai : ");
+                System.out.printf("You entered wrong! Please enter again : ");
             }
         }
         return num;
@@ -92,9 +92,9 @@ public class App {
         final App app = new App();
         while (true) {
             clrscr();
-            System.out.println("Tai khoan : " + customerPl.nameCustomer(idCustomer));
-            final String[] menuMain = { "Tim kiem sach", "Quan ly tai khoan", "Quan ly hoa don", "Gio hang", "Thoat" };
-            final int choose = app.menu(menuMain, "Chao mung ban den voi Bookstore");
+            System.out.println("Account : " + customerPl.nameCustomer(idCustomer));
+            final String[] menuMain = { "Search book", "Account management", "Manage orders", "Cart", "Exit" };
+            final int choose = app.menu(menuMain, "Welcome to Bookstore");
             switch (choose) {
                 case 1:
                     bookPl.menuBook();

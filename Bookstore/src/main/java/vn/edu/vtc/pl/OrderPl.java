@@ -31,11 +31,11 @@ public class OrderPl {
             if (listBook.size() > 0) {
                 int[] quantity = new int[100];
                 int x = 0;
-                System.out.println("Gio hang");
+                System.out.println("Cart");
                 System.out.println(
                         "===================================================================================================================");
-                System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Ten sach", "Don gia (vnd)", "So luong",
-                        "So tien (vnd)");
+                System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Title", "Unit price (vnd)", "Quantity",
+                        "Into money (vnd)");
                 System.out.println(
                         "===================================================================================================================");
                 for (final Book rs : listBook) {
@@ -48,23 +48,23 @@ public class OrderPl {
                 }
                 System.out.println(
                         "===================================================================================================================");
-                System.out.printf("|%-20s %-55d %-15s %-14s %-5s|\n", "So luong mat hang : ", listBook.size(),
-                        "Tong tien :", presentation.format(sum), " vnd");
+                System.out.printf("|%-20s %-55d %-15s %-14s %-5s|\n", "Number of books : ", listBook.size(),
+                        "Total money :", presentation.format(sum), " vnd");
                 System.out.println(
                         "===================================================================================================================");
-                System.out.println("1. Cap nhat gio hang");
-                System.out.println("2. Dat hang");
-                System.out.println("3. Thoat");
+                System.out.println("1. Update cart");
+                System.out.println("2. Order");
+                System.out.println("3. Come back");
 
                 while (true) {
-                    System.out.printf("Chon : ");
+                    System.out.printf("Choose : ");
                     int a = presentation.validateInteger();
                     orderBl.rFile();
                     int count = 0;
                     for (int i = 0; i < listBook.size(); i++) {
                         count++;
                         if (listBook.get(i).getQuantity() != quantity[i]) {
-                            System.out.println("Gio hang da bi thay doi nhan enter de cap nhat lai gio hang !");
+                            System.out.println("Cart has been changed press enter to update cart again !");
                             sc.nextLine();
                             count = 101;
                             break;
@@ -74,7 +74,7 @@ public class OrderPl {
                         break;
                     }
                     if (count == 0) {
-                        System.out.println("Gio hang da bi thay doi nhan enter de cap nhat lai gio hang !");
+                        System.out.println("Cart has been changed press enter to update cart again !");
                         sc.nextLine();
                         break;
                     }
@@ -88,8 +88,8 @@ public class OrderPl {
                             int ch = listBook.get(i).getBookId();
                             Book book = bookBl.viewBookDetail(ch);
                             if (listBook.get(i).getQuantity() > book.getQuantity()) {
-                                System.out.println("So luong sach co ma " + ch
-                                        + " trong kho khong du moi ban cap nhat lai de dat hang");
+                                System.out.println("The number of books with id of " + ch
+                                        + " in stock is not enough to invite you to update to order.");
                                 bl = true;
                             }
                         }
@@ -102,13 +102,13 @@ public class OrderPl {
                     } else if (a == 3) {
                         return;
                     } else {
-                        System.out.println("Khong thuc hien duoc chuc nang nay !");
+                        System.out.println("This function cannot be performed !");
                         sc.nextLine();
                         break;
                     }
                 }
             } else {
-                System.out.println("Gio hang trong");
+                System.out.println("Your cart is empty");
                 sc.nextLine();
                 return;
 
@@ -118,7 +118,7 @@ public class OrderPl {
 
     public static void updateCart() throws IOException {
         orderBl.rFile();
-        System.out.printf("Nhap ma san pham de cap nhap hoac chon 0 de quay lai : ");
+        System.out.printf("Enter the book id to update or select 0 to go back: ");
         int choose = presentation.validateInteger();
         if (choose == 0) {
             return;
@@ -136,21 +136,21 @@ public class OrderPl {
                 count++;
             }
             if (id == false) {
-                System.out.println("Khong tim thay ma sach trong gio hang !");
+                System.out.println("Cannot find the book id you just entered in the shopping cart !");
                 sc.nextLine();
             } else {
                 int choose1;
-                System.out.println("So luong sach trong kho : " + book.getQuantity());
+                System.out.println("Number of books in stock : " + book.getQuantity());
                 while (true) {
-                    System.out.printf("Moi ban nhap so luong de cap nhat hoac nhap 0 de xoa san pham khoi gio hang : ");
+                    System.out.printf("Please enter the quantity to update or enter 0 to remove the product from the cart : ");
                     choose1 = presentation.validateInteger();
                     if (choose1 == 0) {
-                        System.out.printf("Ban co chac chan muon xoa (C/K) ? ");
+                        System.out.printf("Are you sure you want to delete (Y/N) ? ");
                         String b = presentation.yesOrNo();
-                        if (b.equalsIgnoreCase("c")) {
+                        if (b.equalsIgnoreCase("y")) {
                             listBook.remove(index);
                             orderBl.wFile();
-                            System.out.println("Xoa san pham thanh cong !");
+                            System.out.println("Product deleted successfully !");
                             sc.nextLine();
                             return;
                         } else {
@@ -158,19 +158,19 @@ public class OrderPl {
                         }
                     } else if (choose1 > 0) {
                         if (choose1 > book.getQuantity()) {
-                            System.out.println("Ban da nhap qua so luong sach trong kho");
+                            System.out.println("You have imported more than the number of books in the stock.");
                             sc.nextLine();
                             return;
                         }
                         Book bo = listBook.get(index);
                         bo.setQuantity(choose1);
                         listBook.set(index, bo);
-                        System.out.println("Cap nhat thanh cong");
+                        System.out.println("Update successful");
                         orderBl.wFile();
                         sc.nextLine();
                         return;
                     } else {
-                        System.out.println("Ban nhap sai ! Vui long nhap lai");
+                        System.out.println("You entered wrong! Please re-enter.");
                     }
                 }
             }
@@ -189,22 +189,22 @@ public class OrderPl {
         CustomerBl customerBl = new CustomerBl();
         customerBl.viewAddressList(idCustomer);
         if (customerBl.searchDefaultAddressId(idCustomer) == 0) {
-            System.out.println("Ban chua co dia chi nao! Moi ban them dia chi .");
+            System.out.println("You don't have an address yet! Please add your address .");
             customerPl.insertAddress(idCustomer);
             idAdd = orderBl.addressId(idCustomer);
         } else {
             System.out.println(customerBl.searchDefaultAddress(idCustomer));
-            System.out.printf("Ban co muon su dung dia chi mac dinh (C/K)? ");
+            System.out.printf("Do you want to use the default address (Y/N)? ");
             String ck = presentation.yesOrNo();
-            if (ck.equalsIgnoreCase("c")) {
+            if (ck.equalsIgnoreCase("y")) {
                 idAdd = customerBl.searchDefaultAddressId(idCustomer);
             } else {
                 System.out.println(customerBl.viewAddressList(idCustomer));
                 while (true) {
-                    System.out.printf("Moi ban chon dia chi hoac nhap 0 de them dia chi moi : ");
+                    System.out.printf("Please select an address or enter 0 to add a new address: ");
                     int choose = presentation.validateInteger();
                     if (choose == 0) {
-                        System.out.println("Moi ban them dia chi .");
+                        System.out.println("Please add your address.");
                         customerPl.insertAddress(idCustomer);
                         idAdd = orderBl.addressId(idCustomer);
                         break;
@@ -212,7 +212,7 @@ public class OrderPl {
                         idAdd = choose;
                         break;
                     } else {
-                        System.out.println("Ban nhap sai xin vui long nhap lai !");
+                        System.out.println("You entered incorrectly, please re-enter !");
                     }
                 }
             }
@@ -220,28 +220,28 @@ public class OrderPl {
         System.out.println(orderBl.displayShippingUnit());
         int choose;
         while (true) {
-            System.out.printf("Chon : ");
+            System.out.printf("Choose : ");
             choose = presentation.validateInteger();
             if (choose < 4 && choose > 0) {
                 break;
             } else
-                System.out.println("Ban nhap sai moi ban nhap lai !");
+                System.out.println("You entered incorrectly, please re-enter !");
         }
         int choose1;
         while (true) {
             System.out.println(orderBl.displayPaymentMethods());
-            System.out.printf("Chon : ");
+            System.out.printf("Choose : ");
             choose1 = presentation.validateInteger();
             if (choose1 < 4 && choose1 > 0) {
                 break;
             } else
-                System.out.println("Ban nhap sai moi ban nhap lai !");
+                System.out.println("You entered incorrectly, please re-enter !");
         }
         app.clrscr();
         String a;
         double x;
         int sum = 0;
-        System.out.println("Thong tin don hang");
+        System.out.println("Information order");
         if(choose == 1){a = "Giao hang tiet kiem"; x = 15000; }
         else if (choose == 2) { a = "Giao hang nhanh"; x = 20000;}
         else{a = "Viettel Post"; x = 18000;}   
@@ -250,18 +250,18 @@ public class OrderPl {
         else if (choose1 == 2) { b = "Thanh toan khi nhan hang";}
         else{b = "The ATM noi dia / Internet Banking";} 
         String address = orderBl.searchDefaultAddressId(idAdd);
-        System.out.println("Don vi van chuyen : " + a);
-        System.out.println("Phuong thuc thanh toan : " + b);
-        System.out.println("Dia chi nhan hang : ");
+        System.out.println("Shipping unit : " + a);
+        System.out.println("Payment methods : " + b);
+        System.out.println("Delivery address : ");
         System.out.println("-----------------------------------------------------------");
-        address = address.replace("Dia chi mac dinh\n", "");
+        address = address.replace("Default address\n", "");
         address = address.replace("\n=================================================", "");
         System.out.printf(address);
         System.out.println("\n-----------------------------------------------------------");
         System.out.println(
                 "===================================================================================================================");
-        System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Ten sach", "Don gia (vnd)", "So luong",
-                "So tien (vnd)");
+        System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Title", "Unit price (vnd)", "Quantity",
+                "Into money (vnd)");
         System.out.println(
                 "===================================================================================================================");
         for (Book rs : listBook) {
@@ -273,30 +273,30 @@ public class OrderPl {
         }
         System.out.println(
                 "===================================================================================================================");
-        System.out.printf("|%-20s %-50d %-20s %-14s %-5s|\n", "So luong mat hang : ", listBook.size(),
-                "Tong tien hang : ", presentation.format(sum), " vnd");
-        System.out.printf("|%-71s %-21s %-13s %-5s|\n", "", "Phi van chuyen : ",
+        System.out.printf("|%-20s %-50d %-20s %-14s %-5s|\n", "Number of books : ", listBook.size(),
+                "Into money : ", presentation.format(sum), " vnd");
+        System.out.printf("|%-71s %-21s %-13s %-5s|\n", "", "Transport fee : ",
                 presentation.format(x), " vnd");
-        System.out.printf("|%-71s %-20s %-14s %-5s|\n", "", "Tong tien : ",
+        System.out.printf("|%-71s %-20s %-14s %-5s|\n", "", "Total money : ",
                 presentation.format(sum + order.getShippingFee()), " vnd");
         System.out.println(
                 "===================================================================================================================");
         
         BookBl bookBl = new BookBl();
-        System.out.printf("Ban co chac chan muon dat hang (C/K)? ");
+        System.out.printf("Are you sure you want to order (Y/N)? ");
         String yn = presentation.yesOrNo();
-        if (yn.equalsIgnoreCase("c")) {
+        if (yn.equalsIgnoreCase("y")) {
             boolean bl = false;
             int count = 0;
             orderBl.rFile();
             if (listBook.size() != listBookOrder.size()) {
-                System.out.println("Gio hang cua ban da thay doi nen khong the dat hang !");
+                System.out.println("Your shopping cart has changed and cannot be ordered !");
                 sc.nextLine();
                 return;
             }
             for (int i = 0; i < listBook.size(); i++) {
                 if (listBook.get(i).getQuantity() != listBookOrder.get(i).getQuantity()) {
-                    System.out.println("Gio hang cua ban da thay doi nen khong the dat hang !");
+                    System.out.println("Your shopping cart has changed and cannot be ordered !");
                     sc.nextLine();
                     return;
                 }
@@ -306,7 +306,7 @@ public class OrderPl {
                 Book book = bookBl.viewBookDetail(ch);
                 if (listBook.get(i).getQuantity() > book.getQuantity()) {
                     System.out
-                            .println("So luong sach ma : " + ch + " khong hop le !\nVui long cap nhat lai gio hang !");
+                            .println("Number of books with id " + ch + " is invalid!\nPlease update cart again.");
                     bl = true;
                 }
                 count++;
@@ -316,7 +316,7 @@ public class OrderPl {
                 return;
             }
             if (count == 0) {
-                System.out.println("Khong the dat hang");
+                System.out.println("Cannot order.");
                 sc.nextLine();
                 return;
             }
@@ -340,7 +340,7 @@ public class OrderPl {
                 listBook.remove(i);
             }
             orderBl.wFile();
-            System.out.println("Dat hang thanh cong");
+            System.out.println("Order success.");
             sc.nextLine();
         }
     }
@@ -358,10 +358,10 @@ public class OrderPl {
             count++;
         }
         if (listBook.size() == 30) {
-            System.out.println("Gio hang da day , vui long xoa bot hoac dat hang de co the tiep tuc them vao gio hang !");
+            System.out.println("Your shopping cart is full, please remove it or place an order so you can continue adding to the cart !");
             return;
         }
-        System.out.println("Them vao gio hang thanh cong");
+        System.out.println("Add to cart successfully.");
         sc.nextLine();
         listBook.add(book);
         orderBl.wFile();
@@ -372,7 +372,7 @@ public class OrderPl {
         double sum = 0;
         Order order = orderBl.viewOrderDetails(idOrder);
         if (order == null || orderBl.orderExists(app.idCustomer, idOrder) == false) {
-            System.out.println("Ma don hang khong dung !\nNhan phim bat ky de quay lai .");
+            System.out.println("Order id is incorrect! Press enter to go back .");
         } else {
             app.clrscr();
             List<Book> listB = new ArrayList<>();
@@ -382,20 +382,20 @@ public class OrderPl {
             System.out.println("===========================================================");
             System.out.println("                      Bookstore");
             System.out.println("===========================================================");
-            System.out.println("Ma hoa don : " + order.getOrderId());
-            System.out.println("Trang thai don hang : " + order.getOrderStatus());
-            System.out.println("Don vi van chuyen : " + order.getShippingUnit());
-            System.out.println("Phuong thuc thanh toan : " + order.getPaymentMethod());
-            System.out.println("Thoi gian dat hang : " + presentation.dateTime(order.getDateTime()));
+            System.out.println("Order id : " + order.getOrderId());
+            System.out.println("Order status : " + order.getOrderStatus());
+            System.out.println("Shipping unit : " + order.getShippingUnit());
+            System.out.println("Payment methods : " + order.getPaymentMethod());
+            System.out.println("Time Order : " + presentation.dateTime(order.getDateTime()));
             System.out.println("-----------------------------------------------------------");
-            address = address.replace("Dia chi mac dinh\n", "");
+            address = address.replace("Default address\n", "");
             address = address.replace("\n=================================================", "");
             System.out.printf(address);
             System.out.println("\n-----------------------------------------------------------");
             System.out.println(
                     "===================================================================================================================");
-            System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Ten sach", "Don gia (vnd)", "So luong",
-                    "So tien (vnd)");
+            System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Title", "Unit price (vnd)", "Quantity",
+                    "Into money (vnd)");
             System.out.println(
                     "===================================================================================================================");
             for (Book rs : listB) {
@@ -407,21 +407,21 @@ public class OrderPl {
             }
             System.out.println(
                     "===================================================================================================================");
-            System.out.printf("|%-20s %-50d %-20s %-14s %-5s|\n", "So luong mat hang : ", listB.size(),
+            System.out.printf("|%-20s %-50d %-20s %-14s %-5s|\n", "Number of books : ", listB.size(),
                     "Tong tien hang : ", presentation.format(sum), " vnd");
-            System.out.printf("|%-71s %-21s %-13s %-5s|\n", "", "Phi van chuyen : ",
+            System.out.printf("|%-71s %-21s %-13s %-5s|\n", "", "Transport fee : ",
                     presentation.format(order.getShippingFee()), " vnd");
-            System.out.printf("|%-71s %-20s %-14s %-5s|\n", "", "Tong tien : ",
+            System.out.printf("|%-71s %-20s %-14s %-5s|\n", "", "Total money : ",
                     presentation.format(sum + order.getShippingFee()), " vnd");
             System.out.println(
                     "===================================================================================================================");
-            System.out.println("Cam on quy khach da mua sach tai Bookstore");
+            System.out.println("Thank you for purchasing books at Bookstore.");
             if (order.getOrderStatus().equalsIgnoreCase("Da huy")) {
                 sc.nextLine();
             } else {
-                System.out.printf("Ban co muon huy don hang (C/K)? : ");
+                System.out.printf("Do you want to cancel your order (Y/N)? : ");
                 String str = presentation.yesOrNo();
-                if (str.equalsIgnoreCase("c")) {
+                if (str.equalsIgnoreCase("y")) {
                     for (int i = 0; i < listB.size(); i++) {
                         int id = listB.get(i).getBookId();
                         Book book = bookBl.viewBookDetail(id);
@@ -429,7 +429,7 @@ public class OrderPl {
                         bookBl.updateQuantityBook(id, quantityBook);
                     }
                     orderBl.updateStatusAddress(idOrder, "Da huy");
-                    System.out.println("Ban da huy don hang thanh cong.");
+                    System.out.println("You have successfully cancel orders.");
                     sc.nextLine();
                 } else {
                     return;
@@ -444,11 +444,11 @@ public class OrderPl {
             List<Order> listOrder = orderBl.getAll(app.idCustomer);
 
             if (listOrder.size() > 0) {
-                System.out.println("Danh sach hoa don");
+                System.out.println("List order");
                 System.out.println(
                         "==================================================================================================");
-                System.out.printf("|%-4s|%-18s|%-20s|%-20s|%-30s| \n", "Id", "So luong mat hang", "Tong tien (vnd)",
-                        "Thoi gian dat hang", "Trang thai don hang");
+                System.out.printf("|%-4s|%-18s|%-20s|%-20s|%-30s| \n", "Id", "Number of books", "Total money (vnd)",
+                        "Time order", "Order status");
                 System.out.println(
                         "==================================================================================================");
                 for (Order rs : listOrder) {
@@ -465,13 +465,13 @@ public class OrderPl {
                         "==================================================================================================");
                 int idOrder;
                 while (true) {
-                    System.out.printf("Nhap ma don hang de xem chi tiet hoac nhap 0 de quay tro lai : ");
+                    System.out.printf("Enter order id to view details or enter 0 to go back : ");
                     int choose = presentation.validateInteger();
                     if (orderBl.orderExists(app.idCustomer, choose) == true || choose == 0) {
                         idOrder = choose;
                         break;
                     } else {
-                        System.out.println("Ban nhap sai !Moi ban nhap lai .");
+                        System.out.println("You entered incorrectly! Please re-enter .");
                     }
                 }
                 if (idOrder == 0) {
@@ -480,7 +480,7 @@ public class OrderPl {
                     viewOrderDetails(idOrder);
                 }
             } else {
-                System.out.println("Chua co don hang nao !");
+                System.out.println("No orders yet !");
                 sc.nextLine();
                 return;
             }

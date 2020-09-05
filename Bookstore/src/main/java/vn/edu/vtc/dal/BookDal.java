@@ -31,7 +31,7 @@ public class BookDal {
             String se = "{call display_category}";
             CallableStatement d = con.prepareCall(se);
             ResultSet rs = d.executeQuery();
-            String a = "Danh muc\n===========================================\n" + "| Ma | " + "Ten danh muc";
+            String a = "Categories\n===========================================\n" + "| Id | " + "Category";
             while (rs.next()) {
                 String b = "\n| " + rs.getInt(1) + "  | " + rs.getString(2);
                 a = a + b;

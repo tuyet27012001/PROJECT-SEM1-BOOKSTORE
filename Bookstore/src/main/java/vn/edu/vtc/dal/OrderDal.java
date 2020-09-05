@@ -65,8 +65,8 @@ public class OrderDal {
       callableStatement.executeUpdate();
       final ResultSet rs = callableStatement.executeQuery();
       while (rs.next()) {
-        final String a = "Dia chi mac dinh\n" + "Ma dia chi     : " + rs.getInt(1) + "\nTen nguoi nhan : "
-            + rs.getString(2) + "\nSo dien thoai  : " + rs.getString(3) + "\nDia chi        : " + rs.getString(6)
+        final String a = "Default address\n" + "Id address     : " + rs.getInt(1) + "\nName           : "
+            + rs.getString(2) + "\nPhone number   : " + rs.getString(3) + "\nAddress        : " + rs.getString(6)
             + " , " + rs.getString(5) + " , " + rs.getString(4) + "\n=================================================";
         con.close();
         return a;
@@ -128,7 +128,7 @@ public class OrderDal {
       final String sql = "{call display_payment_methods()}";
       final CallableStatement callableStatement = con.prepareCall(sql);
       final ResultSet rs = callableStatement.executeQuery();
-      String a = "\nPhuong thuc thanh toan";
+      String a = "\nPayment methods";
       while (rs.next()) {
         a += "\n" + i + ". " + rs.getString(2);
         i++;
@@ -148,7 +148,7 @@ public class OrderDal {
       final String sql = "{call display_shipping_unit()}";
       final CallableStatement callableStatement = con.prepareCall(sql);
       final ResultSet rs = callableStatement.executeQuery();
-      String a = "\nPhuong thuc van chuyen";
+      String a = "\nShipping unit";
       while (rs.next()) {
         a += "\n" + i + ". " + rs.getString(2) + " - " + presentation.format(rs.getDouble(3));
         i++;

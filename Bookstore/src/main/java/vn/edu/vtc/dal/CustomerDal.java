@@ -209,10 +209,10 @@ public class CustomerDal {
             callableStatement.executeUpdate();
             final ResultSet rs = callableStatement.executeQuery();
             while (rs.next()) {
-                String a = "Dia chi mac dinh\n"+"Ma dia chi     : "+rs.getInt(1)+
-                "\nTen nguoi nhan : " + rs.getString(2)+
-                "\nSo dien thoai  : " + rs.getString(3)+
-                "\nDia chi        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4)+
+                String a = "Default address\n"+"Id address     : "+rs.getInt(1)+
+                "\nName           : " + rs.getString(2)+
+                "\nPhone number   : " + rs.getString(3)+
+                "\nAddress        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4)+
                 "\n=================================================";
                 con.close();
                 return a;
@@ -303,13 +303,13 @@ public class CustomerDal {
                     }
                 }
                 if (count == 0) {
-                    return "Chua co dia chi nhan hang !";
+                    return "No receiving address !";
                 }
                 if (idDefault != 0) {
                     updateDefaultAddress(idDefault, "Mac dinh");
                 }
             }
-            a = "Dia chi nhan hang\n"+"===========================================\n"+searchDefaultAddress(id);
+            a = "Delivery address\n"+"===========================================\n"+searchDefaultAddress(id);
         } catch (final Exception e) {
             return null;
         }
@@ -321,8 +321,10 @@ public class CustomerDal {
             callableStatement.executeUpdate();
             final ResultSet rs = callableStatement.executeQuery();
             while (rs.next()) {
-                String b = "\nMa dia chi     : " + rs.getInt(1)+"\nTen nguoi nhan : " + rs.getString(2)+
-                "\nSo dien thoai  : " + rs.getString(3)+"\nDia chi        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4)+
+                String b ="\nId address     : "+rs.getInt(1)+
+                "\nName           : " + rs.getString(2)+
+                "\nPhone number   : " + rs.getString(3)+
+                "\nAddress        : " + rs.getString(6) + " , " + rs.getString(5) + " , " + rs.getString(4)+
                 "\n-------------------------------------------------";
                 a = a+b;
             }
