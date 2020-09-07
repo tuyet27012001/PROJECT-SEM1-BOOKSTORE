@@ -20,7 +20,7 @@ public class BookPl {
   public void menuBook() {
     while (true) {
       app.clrscr();
-      String[] arr = { "List book", "Category", "Search", "Come back" };
+      String[] arr = { "View list book", "View category", "Search", "Come back" };
       int choose = app.menu(arr, "Welcome to Bookstore");
       switch (choose) {
         case 1:

@@ -60,7 +60,7 @@ public class App {
             System.out.println("=======================================================");
         } else {
             System.out.println("=======================================================");
-            System.out.printf("||         %-41s ||\n", title);
+            System.out.printf("||              %-36s ||\n", title);
             System.out.println("-------------------------------------------------------");
         }
         for (int i = 0; i < arr.length; i++) {

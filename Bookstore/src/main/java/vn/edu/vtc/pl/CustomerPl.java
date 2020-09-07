@@ -351,6 +351,7 @@ public class CustomerPl {
   public void addressUpdate(int id) {
     while (true) {
       app.clrscr();
+      System.out.println(customerBl.viewAddressList(id));
       String[] arr = { "Add the address", "Correct address", "Delete the address", "Change the default address", "Come back" };
       int choose = app.menu(arr, "Update address");
       switch (choose) {
