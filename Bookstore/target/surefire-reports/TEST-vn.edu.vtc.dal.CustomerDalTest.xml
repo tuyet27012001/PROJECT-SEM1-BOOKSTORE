@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="vn.edu.vtc.dal.CustomerDalTest" time="3.916" tests="40" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="vn.edu.vtc.dal.CustomerDalTest" time="5.288" tests="40" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="13"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-13.0.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\TUYETT~1\AppData\Local\Temp\surefire13589185664226605720\surefirebooter17013454940373976417.jar C:\Users\tuyet tuyet\AppData\Local\Temp\surefire13589185664226605720 2020-09-01T16-16-45_080-jvmRun1 surefire15015737822236619753tmp surefire_015842121244097363650tmp"/>
+    <property name="sun.java.command" value="C:\Users\TUYETT~1\AppData\Local\Temp\surefire7672637795107252259\surefirebooter9529028492258349734.jar C:\Users\tuyet tuyet\AppData\Local\Temp\surefire7672637795107252259 2020-09-07T18-24-29_002-jvmRun1 surefire4838095687911750230tmp surefire_09390715278215168987tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\tuyet tuyet\Desktop\project-group1\PROJECT-SEM1-BOOKSTORE\Bookstore\target\test-classes;C:\Users\tuyet tuyet\Desktop\project-group1\PROJECT-SEM1-BOOKSTORE\Bookstore\target\classes;C:\Users\tuyet tuyet\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\tuyet tuyet\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\tuyet tuyet\.m2\repository\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar;C:\Users\tuyet tuyet\.m2\repository\com\google\protobuf\protobuf-java\3.6.1\protobuf-java-3.6.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\TUYETT~1\AppData\Local\Temp\surefire13589185664226605720\surefirebooter17013454940373976417.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\TUYETT~1\AppData\Local\Temp\surefire7672637795107252259\surefirebooter9529028492258349734.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="13.0.1+9"/>
@@ -55,44 +55,44 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="57.0"/>
   </properties>
-  <testcase name="getAllDalTest" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.006"/>
-  <testcase name="login1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.046"/>
+  <testcase name="getAllDalTest" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.013"/>
+  <testcase name="login1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.047"/>
   <testcase name="login2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.014"/>
-  <testcase name="login3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.028"/>
-  <testcase name="login4" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.024"/>
-  <testcase name="updateCustomerPasswordTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.101"/>
-  <testcase name="updateCustomerPasswordTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.089"/>
-  <testcase name="updateCustomerPasswordTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.067"/>
-  <testcase name="insertAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.089"/>
-  <testcase name="insertAddressTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.099"/>
-  <testcase name="insertAddressTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.066"/>
-  <testcase name="insertAddressTest4" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.09"/>
-  <testcase name="updateAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.032"/>
-  <testcase name="updateAddressTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.029"/>
-  <testcase name="updateStaterAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
-  <testcase name="searchAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.916"/>
-  <testcase name="updateCustomerBirthTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.187"/>
-  <testcase name="updateCustomerBirthTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.17"/>
-  <testcase name="updateCustomerBirthTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.106"/>
-  <testcase name="getAllCustomerTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.008"/>
-  <testcase name="updateCustomerEmailTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.058"/>
-  <testcase name="updateCustomerEmailTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.221"/>
-  <testcase name="updateCustomerEmailTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.245"/>
+  <testcase name="login3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.058"/>
+  <testcase name="login4" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.025"/>
+  <testcase name="updateCustomerPasswordTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.119"/>
+  <testcase name="updateCustomerPasswordTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.116"/>
+  <testcase name="updateCustomerPasswordTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.142"/>
+  <testcase name="insertAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.177"/>
+  <testcase name="insertAddressTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.111"/>
+  <testcase name="insertAddressTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.246"/>
+  <testcase name="insertAddressTest4" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.176"/>
+  <testcase name="updateAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.03"/>
+  <testcase name="updateAddressTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.031"/>
+  <testcase name="updateStaterAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.011"/>
+  <testcase name="searchAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="1.326"/>
+  <testcase name="updateCustomerBirthTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.135"/>
+  <testcase name="updateCustomerBirthTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.16"/>
+  <testcase name="updateCustomerBirthTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.116"/>
+  <testcase name="getAllCustomerTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
+  <testcase name="updateCustomerEmailTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.157"/>
+  <testcase name="updateCustomerEmailTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.21"/>
+  <testcase name="updateCustomerEmailTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.167"/>
   <testcase name="updateDefaultAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
-  <testcase name="updateCustomerNameTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.131"/>
-  <testcase name="updateCustomerNameTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.103"/>
-  <testcase name="updateCustomerNameTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.068"/>
-  <testcase name="updateCustomerGenderTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.077"/>
-  <testcase name="updateCustomerGenderTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.088"/>
-  <testcase name="displayAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.13"/>
-  <testcase name="updatePhoneAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.008"/>
+  <testcase name="updateCustomerNameTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.187"/>
+  <testcase name="updateCustomerNameTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.059"/>
+  <testcase name="updateCustomerNameTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.097"/>
+  <testcase name="updateCustomerGenderTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.272"/>
+  <testcase name="updateCustomerGenderTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.125"/>
+  <testcase name="displayAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.398"/>
+  <testcase name="updatePhoneAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
   <testcase name="updatePhoneAddressTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
-  <testcase name="updatePhoneAddressTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
-  <testcase name="updateCustomerPhoneTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.143"/>
-  <testcase name="updateCustomerPhoneTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.284"/>
-  <testcase name="updateCustomerPhoneTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.104"/>
-  <testcase name="detailCustomerTest" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.01"/>
-  <testcase name="updateNameAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.01"/>
-  <testcase name="updateNameAddressTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.008"/>
-  <testcase name="updateNameAddressTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.007"/>
+  <testcase name="updatePhoneAddressTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.058"/>
+  <testcase name="updateCustomerPhoneTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.101"/>
+  <testcase name="updateCustomerPhoneTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.127"/>
+  <testcase name="updateCustomerPhoneTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.192"/>
+  <testcase name="detailCustomerTest" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
+  <testcase name="updateNameAddressTest1" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
+  <testcase name="updateNameAddressTest2" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
+  <testcase name="updateNameAddressTest3" classname="vn.edu.vtc.dal.CustomerDalTest" time="0.009"/>
 </testsuite>
