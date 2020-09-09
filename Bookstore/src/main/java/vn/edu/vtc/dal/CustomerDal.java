@@ -311,7 +311,7 @@ public class CustomerDal {
                     updateDefaultAddress(idDefault, "Mac dinh");
                 }
             }
-            a = "Delivery address\n"+"===========================================\n"+searchDefaultAddress(id);
+            a = "Delivery address\n"+"=================================================\n"+searchDefaultAddress(id);
         } catch (final Exception e) {
             return null;
         }

@@ -16,26 +16,22 @@ public class CustomerPl {
   public void accountManagement(int id) {
     while (true) {
       app.clrscr();
-      String[] arr = { "Personal information", "Update information", "Delivery address", "Log out", "Come back" };
-      int choose = app.menu(arr, "My account");
+      String my  = "My account : "+ nameCustomer(id);
+      String[] arr = { "Personal information", "Delivery address", "Log out", "Come back" };
+      int choose = app.menu(arr, my);
       switch (choose) {
         case 1:
-          app.clrscr();
-          detailCustomer(id);
-          break;
-        case 2:
           updateCustomer(id);
           break;
-        case 3:
+        case 2:
           app.clrscr();
-          System.out.println(customerBl.viewAddressList(id));
-          sc.nextLine();
+        addressUpdate(id); 
           break;
-        case 4:
+        case 3:
           app.idCustomer = 0;
           app.mainMenu();
           break;
-        case 5:
+        case 4:
           return;
         default:
           break;
@@ -236,8 +232,10 @@ public class CustomerPl {
     return customer.getName();
   }
 
-  public void detailCustomer(int id) {
-    Customer customer = customerBl.detailCustomer(id);
+  public void updateCustomer(int id) {
+    while (true) {
+      app.clrscr();
+      Customer customer = customerBl.detailCustomer(id);
     System.out.println("Personal account information");
     System.out.println("-----------------------------------------------");
     System.out.println("Name           : " + customer.getName());
@@ -246,13 +244,7 @@ public class CustomerPl {
     System.out.println("Gender         : " + customer.getGender());
     System.out.println("Date of birth  : " + presentation.dateBirth1(customer.getBirthDate()));
     System.out.println("-----------------------------------------------");
-    sc.nextLine();
-  }
-
-  public void updateCustomer(int id) {
-    while (true) {
-      app.clrscr();
-      String[] arr = { "Name", "Phone number", "Email", "Gender", "Date of birth", "Password", "Address", "Come back" };
+      String[] arr = { "Name", "Phone number", "Email", "Gender", "Date of birth", "Password", "Come back" };
       int choose = app.menu(arr, "Update information");
       switch (choose) {
         case 1:
@@ -337,10 +329,8 @@ public class CustomerPl {
           sc.nextLine();
         }
           break;
+        
         case 7:
-        addressUpdate(id);
-          break;
-        case 8:
           return;
         default:
           break;

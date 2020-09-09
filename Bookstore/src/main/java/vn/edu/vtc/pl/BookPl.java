@@ -43,25 +43,25 @@ public class BookPl {
 
   public void viewBookList(List<Book> listBook) {
     int k = 0;
+    int page = listBook.size() / 10 + 1;
     while (true) {
       app.clrscr();
       System.out.println("List book");
-      System.out.println("Page : "+(k/10+1));
+      System.out.println("Page : " + (k / 10 + 1) + "/" + page);
       System.out.println(
           "=============================================================================================================");
-      System.out.printf("|%-4s|%-50s|%-30s|%-20s| \n", "Id", "Title", "Author", "Price (vnd)");
+      System.out.printf("|%-4s|%-50s|%-30s|%20s| \n", "Id", "Title", "Author", "Price (VND)");
       System.out.println(
           "=============================================================================================================");
-      
-      if(listBook.size() - k < 10 ){
+
+      if (listBook.size() - k < 10) {
         for (int i = k; i < listBook.size(); i++) {
-          System.out.printf("|%-4d|%-50s|%-30s|%-20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
+          System.out.printf("|%-4d|%-50s|%-30s|%20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
               listBook.get(i).getAuthor(), presentation.format(listBook.get(i).getPrice()));
         }
-      }
-      else{
+      } else {
         for (int i = k; i < k + 10; i++) {
-          System.out.printf("|%-4d|%-50s|%-30s|%-20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
+          System.out.printf("|%-4d|%-50s|%-30s|%20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
               listBook.get(i).getAuthor(), presentation.format(listBook.get(i).getPrice()));
         }
       }
@@ -69,6 +69,7 @@ public class BookPl {
           "=============================================================================================================");
       System.out.println("1. Previous page");
       System.out.println("2. Next page");
+      System.out.println("3. Selext page");
       System.out.println("3. Select book");
       System.out.println("4. Come back");
       int choose;
@@ -83,13 +84,26 @@ public class BookPl {
             break;
           }
         } else if (choose == 2) {
-          if (k == listBook.size() - listBook.size()%10) {
+          if (k == listBook.size() - listBook.size() % 10) {
             System.out.println("There is no following page inviting you to choose again.");
           } else {
             k += 10;
             break;
           }
         } else if (choose == 3) {
+          while (true) {
+            System.out.printf("Enter the page number : ");
+            int numpage = sc.nextInt();
+            if (numpage > 0 && numpage <= page) {
+              k = (numpage-1) *10;
+              break;
+            } else {
+              System.out.println("You entered incorrectly, please re-enter");
+            }
+          }
+          break;
+        }
+        else if (choose == 4) {
           System.out.printf("Enter the book id to see details : ");
           int idBook = presentation.validateInteger();
           if (idBook > k && idBook < k + 11) {
@@ -99,7 +113,7 @@ public class BookPl {
             sc.nextLine();
           }
           break;
-        } else if (choose == 4) {
+        } else if (choose == 5) {
           return;
         } else {
           System.out.println("You entered incorrectly, please re-enter.");
@@ -114,11 +128,11 @@ public class BookPl {
       System.out.println("List book");
       System.out.println(
           "=============================================================================================================");
-      System.out.printf("|%-4s|%-50s|%-30s|%-20s| \n", "Id", "Title", "Author", "Price (vnd)");
+      System.out.printf("|%-4s|%-50s|%-30s|%20s| \n", "Id", "Title", "Author", "Price (VND)");
       System.out.println(
           "=============================================================================================================");
       for (int i = 0; i < listBook.size(); i++) {
-        System.out.printf("|%-4d|%-50s|%-30s|%-20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
+        System.out.printf("|%-4d|%-50s|%-30s|%20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
             listBook.get(i).getAuthor(), presentation.format(listBook.get(i).getPrice()));
       }
       System.out.println(
@@ -126,7 +140,7 @@ public class BookPl {
       System.out.printf("Enter the book id to see details or enter 0 to go back : ");
       int idBook = presentation.validateInteger();
       boolean idBookS = false;
-      if(idBook == 0){
+      if (idBook == 0) {
         return;
       }
       for (int i = 0; i < listBook.size(); i++) {

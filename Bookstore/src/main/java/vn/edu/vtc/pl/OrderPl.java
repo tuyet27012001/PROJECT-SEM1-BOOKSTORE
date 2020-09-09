@@ -34,12 +34,12 @@ public class OrderPl {
                 System.out.println("Cart");
                 System.out.println(
                         "===================================================================================================================");
-                System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Title", "Unit price (vnd)", "Quantity",
-                        "Into money (vnd)");
+                System.out.printf("|%-4s|%-50s|%20s|%15s|%20s|\n", "Id", "Title", "Unit price (VND)", "Quantity",
+                        "Into money (VND)");
                 System.out.println(
                         "===================================================================================================================");
                 for (final Book rs : listBook) {
-                    System.out.printf("|%-4s|%-50s|%-20s|%-15d|%-20s|\n", rs.getBookId(), rs.getTitle(),
+                    System.out.printf("|%-4s|%-50s|%20s|%15d|%20s|\n", rs.getBookId(), rs.getTitle(),
                             presentation.format(rs.getPrice()), rs.getQuantity(),
                             presentation.format(rs.getPrice() * rs.getQuantity()));
                     sum += rs.getPrice() * rs.getQuantity();
@@ -48,8 +48,8 @@ public class OrderPl {
                 }
                 System.out.println(
                         "===================================================================================================================");
-                System.out.printf("|%-20s %-55d %-15s %-14s %-5s|\n", "Number of books : ", listBook.size(),
-                        "Total money :", presentation.format(sum), " vnd");
+                System.out.printf("|%-20s %-52d %-21s %17s|\n", "Number of books : ", listBook.size(),
+                        "Total money (VND) :", presentation.format(sum));
                 System.out.println(
                         "===================================================================================================================");
                 System.out.println("1. Update cart");
@@ -260,25 +260,25 @@ public class OrderPl {
         System.out.println("\n-----------------------------------------------------------");
         System.out.println(
                 "===================================================================================================================");
-        System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Title", "Unit price (vnd)", "Quantity",
-                "Into money (vnd)");
+        System.out.printf("|%-4s|%-50s|%20s|%15s|%20s|\n", "Id", "Title", "Unit price (VND)", "Quantity",
+                "Into money (VND)");
         System.out.println(
                 "===================================================================================================================");
         for (Book rs : listBook) {
             Book book = bookBl.viewBookDetail(rs.getBookId());
-            System.out.printf("|%-4s|%-50s|%-20s|%-15d|%-20s|\n", rs.getBookId(), book.getTitle(),
+            System.out.printf("|%-4s|%-50s|%20s|%15d|%20s|\n", rs.getBookId(), book.getTitle(),
                     presentation.format(rs.getPrice()), rs.getQuantity(),
                     presentation.format(rs.getPrice() * rs.getQuantity()));
             sum += rs.getPrice() * rs.getQuantity();
         }
         System.out.println(
                 "===================================================================================================================");
-        System.out.printf("|%-20s %-50d %-20s %-14s %-5s|\n", "Number of books : ", listBook.size(),
-                "Into money : ", presentation.format(sum), " vnd");
-        System.out.printf("|%-71s %-21s %-13s %-5s|\n", "", "Transport fee : ",
-                presentation.format(x), " vnd");
-        System.out.printf("|%-71s %-20s %-14s %-5s|\n", "", "Total money : ",
-                presentation.format(sum + order.getShippingFee()), " vnd");
+        System.out.printf("|%-20s %-50d %-25s %15s|\n", "Number of books : ", listBook.size(),
+                "Into money    (VND) : ", presentation.format(sum));
+        System.out.printf("|%-71s %-21s %18s|\n", "", "Transport fee (VND) : ",
+                presentation.format(x));
+        System.out.printf("|%-71s %-25s %15s|\n", "", "Total money   (VND) : ",
+                presentation.format(sum + x));
         System.out.println(
                 "===================================================================================================================");
         
@@ -328,7 +328,7 @@ public class OrderPl {
             int minute = c.get(Calendar.MINUTE);
             int second = c.get(Calendar.SECOND);
             String date = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
-            orderBl.insertOrder(date, choose, choose1, idAdd, "Cho xac nhan");
+            orderBl.insertOrder(date, choose, choose1, idAdd, "Wait for confirmation");
             int idOrder = orderBl.orderId();
             for (int i = listBook.size() - 1; i >= 0; i--) {
                 orderBl.insertBookOrder(listBook.get(i).getBookId(), idOrder, listBook.get(i).getQuantity(),
@@ -394,31 +394,32 @@ public class OrderPl {
             System.out.println("\n-----------------------------------------------------------");
             System.out.println(
                     "===================================================================================================================");
-            System.out.printf("|%-4s|%-50s|%-20s|%-15s|%-20s|\n", "Id", "Title", "Unit price (vnd)", "Quantity",
-                    "Into money (vnd)");
+            System.out.printf("|%-4s|%-50s|%20s|%15s|%20s|\n", "Id", "Title", "Unit price (VND)", "Quantity",
+                    "Into money (VND)");
             System.out.println(
                     "===================================================================================================================");
             for (Book rs : listB) {
                 Book book = bookBl.viewBookDetail(rs.getBookId());
-                System.out.printf("|%-4s|%-50s|%-20s|%-15d|%-20s|\n", rs.getBookId(), book.getTitle(),
+                System.out.printf("|%-4s|%-50s|%20s|%15d|%20s|\n", rs.getBookId(), book.getTitle(),
                         presentation.format(rs.getPrice()), rs.getQuantity(),
                         presentation.format(rs.getPrice() * rs.getQuantity()));
                 sum += rs.getPrice() * rs.getQuantity();
             }
             System.out.println(
                     "===================================================================================================================");
-            System.out.printf("|%-20s %-50d %-20s %-14s %-5s|\n", "Number of books : ", listB.size(),
-                    "Tong tien hang : ", presentation.format(sum), " vnd");
-            System.out.printf("|%-71s %-21s %-13s %-5s|\n", "", "Transport fee : ",
-                    presentation.format(order.getShippingFee()), " vnd");
-            System.out.printf("|%-71s %-20s %-14s %-5s|\n", "", "Total money : ",
-                    presentation.format(sum + order.getShippingFee()), " vnd");
+            System.out.printf("|%-20s %-50d %-25s %15s|\n", "Number of books : ", listB.size(),
+                    "Into money     (VND): ", presentation.format(sum));
+            System.out.printf("|%-71s %-21s %18s|\n", "", "Transport fee  (VND): ",
+                    presentation.format(order.getShippingFee()));
+            System.out.printf("|%-71s %-25s %15s|\n", "", "Total money    (VND): ",
+                    presentation.format(sum + order.getShippingFee()));
             System.out.println(
                     "===================================================================================================================");
-            System.out.println("Thank you for purchasing books at Bookstore.");
-            if (order.getOrderStatus().equalsIgnoreCase("Da huy")) {
+            
+            if (order.getOrderStatus().equalsIgnoreCase("Cancelled")) {
                 sc.nextLine();
             } else {
+                System.out.println("Thank you for purchasing books at Bookstore.");
                 System.out.printf("Do you want to cancel your order (Y/N)? : ");
                 String str = presentation.yesOrNo();
                 if (str.equalsIgnoreCase("y")) {
@@ -428,7 +429,7 @@ public class OrderPl {
                         int quantityBook = book.getQuantity() + listB.get(i).getQuantity();
                         bookBl.updateQuantityBook(id, quantityBook);
                     }
-                    orderBl.updateStatusAddress(idOrder, "Da huy");
+                    orderBl.updateStatusAddress(idOrder, "Cancelled");
                     System.out.println("You have successfully cancel orders.");
                     sc.nextLine();
                 } else {
@@ -446,11 +447,11 @@ public class OrderPl {
             if (listOrder.size() > 0) {
                 System.out.println("List order");
                 System.out.println(
-                        "==================================================================================================");
-                System.out.printf("|%-4s|%-18s|%-20s|%-20s|%-30s| \n", "Id", "Number of books", "Total money (vnd)",
+                        "=======================================================================================================");
+                System.out.printf("|%-4s|%-18s|%20s|%25s|%30s| \n", "Id", "Number of books", "Total money (VND)",
                         "Time order", "Order status");
                 System.out.println(
-                        "==================================================================================================");
+                        "=======================================================================================================");
                 for (Order rs : listOrder) {
                     List<Book> listB = new ArrayList<>();
                     listB = orderBl.orderListBook(rs.getOrderId());
@@ -458,11 +459,11 @@ public class OrderPl {
                     for (Book book : listB) {
                         a += book.getQuantity() * book.getPrice();
                     }
-                    System.out.printf("|%-4d|%-18d|%-20s|%-20s|%-30s|\n", rs.getOrderId(), listB.size(),
+                    System.out.printf("|%-4d|%-18d|%20s|%25s|%30s|\n", rs.getOrderId(), listB.size(),
                             presentation.format(a), rs.getDateTime(), rs.getOrderStatus());
                 }
                 System.out.println(
-                        "==================================================================================================");
+                        "=======================================================================================================");
                 int idOrder;
                 while (true) {
                     System.out.printf("Enter order id to view details or enter 0 to go back : ");

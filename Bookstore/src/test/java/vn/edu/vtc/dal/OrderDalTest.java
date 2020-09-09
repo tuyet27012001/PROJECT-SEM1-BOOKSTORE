@@ -74,14 +74,14 @@ public class OrderDalTest {
         }
     }
 
-    @Test
-  public void insertBookOrderTest() {
-    try {
-      boolean result = orderDal.insertBookOrder(1, 10, 1, 97000);
-      boolean expected = true;
-      assertEquals(expected, result);
-    } catch (final Exception e) {
-      // TODO: handle exception
-    }
-  }
+  //   @Test
+  // public void insertBookOrderTest() {
+  //   try {
+  //     boolean result = orderDal.insertBookOrder(1, 10, 1, 97000);
+  //     boolean expected = true;
+  //     assertEquals(expected, result);
+  //   } catch (final Exception e) {
+  //     // TODO: handle exception
+  //   }
+  // }
 }

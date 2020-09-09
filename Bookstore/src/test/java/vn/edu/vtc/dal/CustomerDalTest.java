@@ -97,59 +97,59 @@ public class CustomerDalTest {
     //     }
     // }
 
-    @Test
-    public void login1() {
-        try {
-            String pass = "Tuyet235";
-            pass = customerBl.encodeMd5(pass);
-            final boolean result = customerDal.login("anh@gmail.com", pass);
-            final boolean expected = true;
-            assertEquals(expected, result);
-        } catch (final Exception e) {
-            // TODO: handle exception
-        }
-    }
+    // @Test
+    // public void login1() {
+    //     try {
+    //         String pass = "Tuyet235";
+    //         pass = customerBl.encodeMd5(pass);
+    //         final boolean result = customerDal.login("anh@gmail.com", pass);
+    //         final boolean expected = true;
+    //         assertEquals(expected, result);
+    //     } catch (final Exception e) {
+    //         // TODO: handle exception
+    //     }
+    // }
 
-    @Test
-    public void login2() {
+    // @Test
+    // public void login2() {
         
-        try {
-            String pass = "Tuyet123";
-            pass = customerBl.encodeMd5(pass);
-            final boolean result = customerDal.login("1234123412", pass);
-            final boolean expected = true;
-            assertEquals(expected, result);
-        } catch (final Exception e) {
-            // TODO: handle exception
-        }
-    }
+    //     try {
+    //         String pass = "Tuyet123";
+    //         pass = customerBl.encodeMd5(pass);
+    //         final boolean result = customerDal.login("1234123412", pass);
+    //         final boolean expected = true;
+    //         assertEquals(expected, result);
+    //     } catch (final Exception e) {
+    //         // TODO: handle exception
+    //     }
+    // }
 
-    @Test
-    public void login3() {
+    // @Test
+    // public void login3() {
         
-        try {
-            String pass = "Dkfdksf123";
-            pass = customerBl.encodeMd5(pass);
-            final boolean result = customerDal.login("anhtuyetnjnjljl@gmail.com", pass);
-            final boolean expected = false;
-            assertEquals(expected, result);
-        } catch (final Exception e) {
-            // TODO: handle exception
-        }
-    }
+    //     try {
+    //         String pass = "Dkfdksf123";
+    //         pass = customerBl.encodeMd5(pass);
+    //         final boolean result = customerDal.login("anhtuyetnjnjljl@gmail.com", pass);
+    //         final boolean expected = false;
+    //         assertEquals(expected, result);
+    //     } catch (final Exception e) {
+    //         // TODO: handle exception
+    //     }
+    // }
 
-    @Test
-    public void login4() {
-        try {
-            String pass = "Kiencho1";
-            pass = customerBl.encodeMd5(pass);
-            final boolean result = customerDal.login("kienham@gmail.com", pass);
-            final boolean expected = true;
-            assertEquals(expected, result);
-        } catch (final Exception e) {
-            // TODO: handle exception
-        }
-    }
+    // @Test
+    // public void login4() {
+    //     try {
+    //         String pass = "Kiencho1";
+    //         pass = customerBl.encodeMd5(pass);
+    //         final boolean result = customerDal.login("kienham@gmail.com", pass);
+    //         final boolean expected = true;
+    //         assertEquals(expected, result);
+    //     } catch (final Exception e) {
+    //         // TODO: handle exception
+    //     }
+    // }
 
 
 
