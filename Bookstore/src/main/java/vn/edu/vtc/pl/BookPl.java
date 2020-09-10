@@ -46,6 +46,8 @@ public class BookPl {
     int page = listBook.size() / 10 + 1;
     while (true) {
       app.clrscr();
+      int arr[] = new int[10];
+      int n = 0;
       System.out.println("List book");
       System.out.println("Page : " + (k / 10 + 1) + "/" + page);
       System.out.println(
@@ -58,65 +60,81 @@ public class BookPl {
         for (int i = k; i < listBook.size(); i++) {
           System.out.printf("|%-4d|%-50s|%-30s|%20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
               listBook.get(i).getAuthor(), presentation.format(listBook.get(i).getPrice()));
+          arr[n] = listBook.get(i).getBookId();
+          n++;
         }
       } else {
         for (int i = k; i < k + 10; i++) {
           System.out.printf("|%-4d|%-50s|%-30s|%20s|\n", listBook.get(i).getBookId(), listBook.get(i).getTitle(),
               listBook.get(i).getAuthor(), presentation.format(listBook.get(i).getPrice()));
+              arr[n] = listBook.get(i).getBookId();
+          n++;
         }
       }
       System.out.println(
           "=============================================================================================================");
-      System.out.println("1. Previous page");
-      System.out.println("2. Next page");
-      System.out.println("3. Selext page");
-      System.out.println("3. Select book");
-      System.out.println("4. Come back");
-      int choose;
+      System.out.println("1. Previous page (Enter P) ");
+      System.out.println("2. Next page (Enter N)");
+      System.out.println("3. Selext page (Enter P + page number (eg : P1, P2..))");
+      System.out.println("4. Select book (Enter id book)");
+      System.out.println("5. Come back (Enter 0)");
+      System.out.println("(The letters can be capital or lowercase)");
+      String choose;
       while (true) {
         System.out.printf("#Choose : ");
-        choose = presentation.validateInteger();
-        if (choose == 1) {
+        choose = sc.nextLine();
+        choose = choose.trim();
+        if(choose.length() == 0){
+          System.out.println("Please do not leave it blank");
+        }
+        else if (choose.equalsIgnoreCase("0")) {
+          return;
+        }
+        else if (choose.equalsIgnoreCase("p")) {
           if (k == 0) {
             System.out.println("No previous page invites you to choose again.");
           } else {
             k -= 10;
             break;
           }
-        } else if (choose == 2) {
+        } else if (choose.equalsIgnoreCase("n")) {
           if (k == listBook.size() - listBook.size() % 10) {
             System.out.println("There is no following page inviting you to choose again.");
           } else {
             k += 10;
             break;
           }
-        } else if (choose == 3) {
-          while (true) {
-            System.out.printf("Enter the page number : ");
-            int numpage = sc.nextInt();
-            if (numpage > 0 && numpage <= page) {
-              k = (numpage-1) *10;
+        } else if (choose.indexOf("p") == 0 || choose.indexOf("P") == 0) {
+          choose = choose.substring(1);
+          if (presentation.validInteger(choose) == true) {
+            int num = Integer.parseInt(choose);
+            if (num > 0 && num <= page) {
+              k = (num - 1) * 10;
               break;
             } else {
-              System.out.println("You entered incorrectly, please re-enter");
+              System.out.println("Can not find page " + num + " , please enter again");
             }
           }
-          break;
-        }
-        else if (choose == 4) {
-          System.out.printf("Enter the book id to see details : ");
-          int idBook = presentation.validateInteger();
-          if (idBook > k && idBook < k + 11) {
-            viewBookDetail(idBook);
-          } else {
-            System.out.println("Cannot find books with id " + idBook + " on this page.");
-            sc.nextLine();
+          else{
+            System.out.println("You entered incorrectly, please re-enter .");
           }
-          break;
-        } else if (choose == 5) {
-          return;
-        } else {
-          System.out.println("You entered incorrectly, please re-enter.");
+        } else if (presentation.validInteger(choose) == true) {
+          int num = Integer.parseInt(choose);
+          boolean tf = false;
+          for (int i = 0; i < 10; i++) {
+            if (num == arr[i]) {
+              viewBookDetail(num);
+              tf = true;
+              break;
+            }
+          }
+          if (tf == false) {
+            System.out.println("Cannot find books with id " + num + " on this page.");
+          }
+          else break;
+        }
+        else{
+          System.out.println("You entered incorrectly, please re-enter .");
         }
       }
     }

@@ -51,6 +51,10 @@ public class Presentation {
 		final String regex = "^([+]{0,})[0-9]{10,12}$";
 		return phone.matches(regex);
 	}
+	public boolean validInteger(final String num) {
+		final String regex = "[0-9]{0,10}$";
+		return num.matches(regex);
+	}
 
 	private Pattern pattern;
 
