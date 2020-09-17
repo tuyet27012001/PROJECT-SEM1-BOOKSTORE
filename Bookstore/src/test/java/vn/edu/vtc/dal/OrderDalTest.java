@@ -16,7 +16,7 @@ public class OrderDalTest {
   @Test
   public void insertOrderTest1() {
     try {
-      boolean result = orderDal.insertOrder("2020-8-10 12:52:03", 1, 1, 14, "Cho xac nhan");
+      boolean result = orderDal.insertOrder("2020-8-10 12:52:03", 1, 1, 1, "Cho xac nhan");
       boolean expected = true;
       assertEquals(expected, result);
     } catch (final Exception e) {

@@ -19,6 +19,54 @@ public class PresentationTest {
   }
 
   @Test
+  public void email6() {
+    
+    try {
+      final boolean result = presentation.validEmail("hghh@dg");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  @Test
+  public void email5() {
+    
+    try {
+      final boolean result = presentation.validEmail("h@");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  @Test
+  public void email7() {
+    
+    try {
+      final boolean result = presentation.validEmail("hghh@gmail.com");
+      final boolean expected = true;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  @Test
+  public void email8() {
+    
+    try {
+      final boolean result = presentation.validEmail("fjg@");
+      final boolean expected = false;
+      assertEquals(expected, result);
+    } catch (final Exception e) {
+      // TODO: handle exception
+    }
+  }
+
+  @Test
   public void email2() {
     try {
       final boolean result = presentation.validEmail("mlqaqqgz@gmail.com");

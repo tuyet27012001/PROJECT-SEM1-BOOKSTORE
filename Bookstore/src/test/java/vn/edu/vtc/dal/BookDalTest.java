@@ -22,6 +22,16 @@ public class BookDalTest {
     }
 
     @Test
+    public  void searchBookNameTest4(){
+        try {
+            final List<Book> listBook = bookDal.searchBookName("tie");
+            assertNotNull(listBook);
+        } catch (final Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    @Test
     public  void searchBookNameTest2(){
         try {
             final List<Book> listBook = bookDal.searchBookName("tieng");

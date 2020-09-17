@@ -11,7 +11,7 @@ create table Customers(
 	password_customer char(250) not null
 );
 
-create table Delivery_address(
+create table Delivery_addresses(
 	address_id int auto_increment primary key,
 	name_customer char(100) not null,
 	phonenumber char(12) not null,
@@ -41,14 +41,14 @@ begin
 end // 
 delimiter ;
 
-create table Shipping_unit(
+create table Shipping_units(
 	shipping_unit_id int auto_increment primary key,
 	shipping_unit_name char(100) not null unique,
 	shippingFee double check (shippingFee >= 0),
 	shipping_date char(100) 
 );
 
-insert into Shipping_unit( shipping_unit_name ,shippingFee ,shipping_date ) values 
+insert into Shipping_units( shipping_unit_name ,shippingFee ,shipping_date ) values 
     ('Giao hang tiet kiem ', 15000, '2-3 ngay'),
     ('Giao hang nhanh', 20000, '1-2 ngay'),
     ('Viettel Post' , 18000, '3-4 ngay');
@@ -56,7 +56,7 @@ insert into Shipping_unit( shipping_unit_name ,shippingFee ,shipping_date ) valu
 delimiter //
 create procedure display_shipping_unit()
 begin 
-	select *from Shipping_unit;
+	select *from Shipping_units;
 end // 
 delimiter ;
 
@@ -68,11 +68,11 @@ create table Orders(
 	address_id int not null,
     order_status char(100) not null,
 	constraint order_payment foreign key (payment_method_id) references Payment_methods(payment_method_id),
-	constraint order_shipping foreign key (shipping_unit_id) references Shipping_unit(shipping_unit_id),
-	constraint order_address foreign key (address_id) references Delivery_address(address_id)
+	constraint order_shipping foreign key (shipping_unit_id) references Shipping_units(shipping_unit_id),
+	constraint order_address foreign key (address_id) references Delivery_addresses(address_id)
 );
 
-create table Publishing_Company(
+create table Publishing_Companies(
 	publishing_company_id int auto_increment primary key,
 	publishing_company_name char(100) not null unique
 );
@@ -91,17 +91,19 @@ create table Books(
 	detail char(250),
     quantity int not null check(quantity >= 0),
     isbn char(50),
-	constraint Publishing_Company_Book foreign key (publishing_company_id) references Publishing_Company(publishing_company_id)
+	constraint Publishing_Company_Book foreign key (publishing_company_id) references Publishing_Companies(publishing_company_id)
 );
 
-create table Category_Book(
+
+create table Categories_Books(
 	book_id int not null,
 	category_id int not null,
 	constraint category_book_1 foreign key (book_id) references Books(book_id),
 	constraint category_book_2 foreign key (category_id) references Categories(category_id)
 );
 
-create table Order_Book(
+
+create table Orders_Books(
 	book_id int not null,
     order_id int not null,
 	quantity int check (quantity > 0),
@@ -111,7 +113,8 @@ create table Order_Book(
 	constraint order_book_2 foreign key (book_id) references Books(book_id)
 );
 
-create table Sale_off(
+
+create table Sales_off(
 	sale_id int auto_increment primary key,
     book_id int not null,
     sale double not null,
@@ -140,12 +143,13 @@ delimiter ;
 delimiter //
 create procedure id_address(In id int)
 begin 
-	select *from Delivery_address
+	select *from Delivery_addresses
     where customer_id = id
     ORDER BY address_id  DESC
     limit 1;
 end // 
 delimiter ;
+
 
 delimiter //
 create procedure display_category()
@@ -159,7 +163,7 @@ delimiter ;
 delimiter //
 create procedure orderListBook(In id int)
 begin 
-	select *from Order_Book
+	select *from Orders_Books
     where order_id = id;
 end // 
 delimiter ;
@@ -168,7 +172,7 @@ delimiter //
 create procedure display_book()
 begin 
 	select b.book_id ,p.publishing_company_name ,b.title , b.author ,b.price ,b.detail ,b.quantity ,b.isbn 
-	from Books b inner join Publishing_Company p on b.publishing_company_id = p.publishing_company_id
+	from Books b inner join Publishing_Companies p on b.publishing_company_id = p.publishing_company_id
     order by b.book_id asc;
 end // 
 delimiter ;
@@ -177,10 +181,11 @@ delimiter //
 create procedure detail_book(In id int)
 begin 
 	select b.book_id ,p.publishing_company_name ,b.title , b.author ,b.price ,b.detail ,b.quantity ,b.isbn 
-	from Books b inner join Publishing_Company p on b.publishing_company_id = p.publishing_company_id
+	from Books b inner join Publishing_Companies p on b.publishing_company_id = p.publishing_company_id
     where b.book_id = id;
 end // 
 delimiter ;
+
 
 delimiter //
 create procedure display_customer()
@@ -207,9 +212,10 @@ delimiter ;
 delimiter //
 create procedure order_detail(In bookId int, orderId int ,quantityBook int ,priceBook double )
 begin 
-insert into Order_Book( book_id ,order_id, quantity, price ) values( bookId ,orderId,quantityBook ,priceBook);
+insert into Orders_Books( book_id ,order_id, quantity, price ) values( bookId ,orderId,quantityBook ,priceBook);
 end // 
 delimiter ;
+
 
 delimiter //
 create procedure search_phone_pass_customer(In phone varchar(100), pass varchar(250))
@@ -286,7 +292,7 @@ delimiter ;
 delimiter //
 create procedure update_name_address(In id int, nameCustomer char(250))
 begin 
-update Delivery_address set  name_customer = nameCustomer
+update Delivery_addresses set  name_customer = nameCustomer
 where address_id = id;
 end // 
 delimiter ;
@@ -294,7 +300,7 @@ delimiter ;
 delimiter //
 create procedure update_phone_address(In id int, phoneCustomer char(250))
 begin 
-update Delivery_address set  phonenumber = phoneCustomer
+update Delivery_addresses set  phonenumber = phoneCustomer
 where address_id = id;
 end // 
 delimiter ;
@@ -302,7 +308,7 @@ delimiter ;
 delimiter //
 create procedure update_status_address(In id int)
 begin 
-update Delivery_address set  address_status = 'DELETE'
+update Delivery_addresses set  address_status = 'DELETE'
 where address_id = id;
 end // 
 delimiter ;
@@ -311,7 +317,7 @@ delimiter ;
 delimiter //
 create procedure update_default_address(In id int, str char(15))
 begin 
-update Delivery_address set  address_default = str
+update Delivery_addresses set  address_default = str
 where address_id = id;
 end // 
 delimiter ;
@@ -319,7 +325,7 @@ delimiter ;
 delimiter //
 create procedure update_city_address(In id int, city1 char(250))
 begin 
-update Delivery_address set  city = city1
+update Delivery_addresses set  city = city1
 where address_id = id;
 end // 
 delimiter ;
@@ -327,7 +333,7 @@ delimiter ;
 delimiter //
 create procedure update_district_address(In id int, district1 char(250))
 begin 
-update Delivery_address set  district = district1
+update Delivery_addresses set  district = district1
 where address_id = id;
 end // 
 delimiter ;
@@ -335,7 +341,7 @@ delimiter ;
 delimiter //
 create procedure update_address(In id int, address1 char(250))
 begin 
-update Delivery_address set  address = address1
+update Delivery_addresses set  address = address1
 where address_id = id;
 end // 
 delimiter ;
@@ -343,7 +349,7 @@ delimiter ;
 delimiter //
 create procedure search_default_address(In id int)
 begin 
-select *from Delivery_address
+select *from Delivery_addresses
 where customer_id = id and address_default = 'Mac dinh' and address_status <=> null;
 end // 
 delimiter ;
@@ -351,7 +357,7 @@ delimiter ;
 delimiter //
 create procedure search_address_id(In id int)
 begin 
-select *from Delivery_address
+select *from Delivery_addresses
 where address_id = id ;
 end // 
 delimiter ;
@@ -359,7 +365,7 @@ delimiter ;
 delimiter //
 create procedure search_address(In id int)
 begin 
-select *from Delivery_address
+select *from Delivery_addresses
 where customer_id = id and address_status <=> null;
 end // 
 delimiter ;
@@ -368,7 +374,7 @@ delimiter //
 create procedure search_book_title(In title1 varchar(100))
 begin 
 select b.book_id ,p.publishing_company_name ,b.title , b.author ,b.price ,b.detail ,b.quantity ,b.isbn 
-	from Books b inner join Publishing_Company p on b.publishing_company_id = p.publishing_company_id
+	from Books b inner join Publishing_Companies p on b.publishing_company_id = p.publishing_company_id
 where title like CONCAT('%', title1, '%') or author like CONCAT('%', title1, '%')
 order by b.book_id asc;
 end // 
@@ -377,7 +383,7 @@ delimiter ;
 delimiter //
 create procedure search_name_address(In id int)
 begin 
-select name_customer from Delivery_address
+select name_customer from Delivery_addresses
 where  address_id = id;
 end // 
 delimiter ;
@@ -387,15 +393,16 @@ create procedure detail_order(In id int)
 begin 
 select o.order_id, o.order_status ,o.date_time ,p.payment_method_name, s.shipping_unit_name ,s.shippingFee, o.address_id
 from Orders o inner join Payment_methods p on o.payment_method_id = p.payment_method_id
-inner join Shipping_unit s on o.shipping_unit_id = s.shipping_unit_id
+inner join Shipping_units s on o.shipping_unit_id = s.shipping_unit_id
 where  o.order_id = id;
 end // 
 delimiter ;
 
+
 delimiter //
 create procedure order_exists(In idCustomer int, id int)
 begin 
-select * from Orders o inner join Delivery_address d on o.address_id = d.address_id
+select * from Orders o inner join Delivery_addresses d on o.address_id = d.address_id
 where d.customer_id = idCustomer and  o.order_id = id;
 end // 
 delimiter ;
@@ -405,8 +412,8 @@ create procedure display_order(In id int)
 begin 
 	select o.order_id, o.order_status ,o.date_time ,p.payment_method_name, s.shipping_unit_name ,s.shippingFee, o.address_id
 from Orders o inner join Payment_methods p on o.payment_method_id = p.payment_method_id
-inner join Shipping_unit s on o.shipping_unit_id = s.shipping_unit_id
-inner join Delivery_address d on o.address_id = d.address_id
+inner join Shipping_units s on o.shipping_unit_id = s.shipping_unit_id
+inner join Delivery_addresses d on o.address_id = d.address_id
 where d.customer_id =id
 order by o.order_id desc;
 end // 
@@ -416,8 +423,8 @@ delimiter //
 create procedure search_book_category(In category_i int)
 begin 
 select b.book_id ,p.publishing_company_name ,b.title , b.author ,b.price ,b.detail ,b.quantity ,b.isbn 
-	from Books b inner join Publishing_Company p on b.publishing_company_id = p.publishing_company_id
-    inner join Category_Book c on b.book_id = c.book_id
+	from Books b inner join Publishing_Companies p on b.publishing_company_id = p.publishing_company_id
+    inner join Categories_Books c on b.book_id = c.book_id
     inner join Categories x on c.category_id = x.category_id
 where  x.category_id = category_i
 order by b.book_id asc;
@@ -428,8 +435,8 @@ delimiter //
 create procedure search_book_category_name(In category_i int, title1 char(100))
 begin 
 select b.book_id ,p.publishing_company_name ,b.title , b.author ,b.price ,b.detail ,b.quantity ,b.isbn 
-	from Books b inner join Publishing_Company p on b.publishing_company_id = p.publishing_company_id
-    inner join Category_Book c on b.book_id = c.book_id
+	from Books b inner join Publishing_Companies p on b.publishing_company_id = p.publishing_company_id
+    inner join Categories_Books c on b.book_id = c.book_id
     inner join Categories x on c.category_id = x.category_id
 where  x.category_id = category_i and(b.title like CONCAT('%', title1, '%') or b.author like CONCAT('%', title1, '%'))
 order by b.book_id asc;
@@ -439,14 +446,14 @@ delimiter ;
 delimiter //
 create procedure insert_address(In  customerName varchar(100) , phone char(100) , city1 char(100), district1 char(200), address1 char(250), customer_id int)
 begin 
-insert into Delivery_address(name_customer,phonenumber ,city, district, address, customer_id) values(customerName, phone,  city1, district1, address1, customer_id);
+insert into Delivery_addresses(name_customer,phonenumber ,city, district, address, customer_id) values(customerName, phone,  city1, district1, address1, customer_id);
 end // 
 delimiter ;
 
 delimiter //
 create procedure display_address(In idCustomer int)
 begin 
-select *from Delivery_address
+select *from Delivery_addresses
 where customer_id = idCustomer and address_status <=> null and address_default <=> null;
 end // 
 delimiter ;
@@ -454,7 +461,7 @@ delimiter ;
 delimiter //
 create procedure address_exists(In idCustomer int, id int)
 begin 
-select *from Delivery_address
+select *from Delivery_addresses
 where customer_id = idCustomer and  address_id = id and address_status <=> null;
 end // 
 delimiter ;
@@ -467,7 +474,7 @@ where order_id = id;
 end // 
 delimiter ;
 
-insert into Publishing_Company(publishing_company_name) values
+insert into Publishing_Companies(publishing_company_name) values
 ('NXB Tong Hop TPHCM'),
 ('NXB Thanh Nien'),
 ('NXB Van Hoc'),
@@ -487,8 +494,6 @@ insert into Publishing_Company(publishing_company_name) values
 ('NXB MY Thuat'),
 ('NXB Dai Hoc Su Pham TPHCM');
 
-insert into Customers(customer_name ,	phonenumber ,gender,birth_date ,email , password_customer) values
-('Tuyet Tuyet', '0922344554', 'nu', '2001-21-02', 'anhtuyet@gmail.com','Tuyet2001');
 insert into Categories(category_name) values
 ('Van hoc'), ('Kinh Te'), ('Tam Li - Ki Nang Song'), ('Nuoi Day Con'), ('Sach Ngoai Ngu'), ('Sach Giao Khoa - Tham Khao');
 
@@ -687,10 +692,13 @@ insert into Books(publishing_company_id, title, author, price, detail, quantity,
 (17, 'Tu Sach Cho Be Vao Lop 1', 'Le Tue Minh, Le Thu Ngoc', '6320', 'Con ban sap vao lop 1? Khong chi be hoi hop ma chinh ban – nhung bac lam cha me cung co tam trang do.', '45', '1034'),
 (17, 'Tu Sach Be Vao Lop 1', 'Le Tue Minh, Le Thu Ngoc', '8690', 'Be Tap To Net Co Ban - Danh Cho Be 4 5 Tuoi', '46', '1035');
 
-insert into Category_Book(book_id, category_id) values
+insert into Categories_Books(book_id, category_id) values
 (1,1), (2,1), (3,1), (4,1), (5,1), (6,1), (7,1), (8,1), (9,1), (10,1), (11,1), (12,1), (13,1), (14,1), (15,1), (16,1), (17,1), (18,1), (19,1), (20,1), (21,1), (21,1), (22,1), (23,1), (24,1), (25,1),
 (26,2), (27,2), (28,2), (29,2), (30,2), (31,2), (32,2), (33,2), (34,2), (35,2), (36,2), (37,2), (38,2), (39,2), (40,2), (41,2), (42,2), (43,2), (44,2), (45,2), (46,2), (47,2), (48,2), (49,2), (50,2),
 (51,3), (52,3), (53,3), (54,3), (55,3), (56,3), (57,3), (58,3), (59,3), (60,3), (61,3), (62,3), (63,3), (64,3), (65,3), (66,3), (67,3), (68,3), (69,3), (70,3), (71,3), (72,3), (73,3), (74,3), (75,3),
 (76,4), (77,4), (78,4), (79,4), (80,4), (81,4), (82,4), (83,4), (84,4), (85,4), (86,4), (87,4), (88,4), (89,4), (90,4), (91,4), (92,4), (93,4), (94,4), (95,4), (96,4), (97,4), (98,4), (99,4), (100,4),
 (101,5), (102,5), (103,5), (104,5), (105,5), (106,5), (107,5), (108,5), (109,5), (110,5), (111,5), (112,5), (113,5), (114,5), (115,5), (116,5), (117,5), (118,5), (119,5), (120,5), (121,5), (122,5), (123,5), (124,5), (125,5),
 (126,6), (127,6), (128,6), (129,6), (130,6), (131,6), (132,6), (133,6), (134,6), (135,6), (136,6), (137,6), (138,6), (139,6), (140,6), (141,6), (142, 6);
+
+insert into Customers(customer_name ,	phonenumber ,gender,birth_date ,email , password_customer) values
+('Tuyet Tuyet', '0922344554', 'nu', '2001-21-02', 'anhtuyet@gmail.com','Tuyet2001');
