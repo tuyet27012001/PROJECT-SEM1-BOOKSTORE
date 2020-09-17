@@ -20,6 +20,7 @@ public class App {
     public static void main(final String[] args) {
         final App app = new App();
         app.mainMenu();
+        
     }
 
     public void mainMenu() {

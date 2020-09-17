@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: vn.edu.vtc.dal.CustomerDalTest
 -------------------------------------------------------------------------------
-Tests run: 36, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.864 s - in vn.edu.vtc.dal.CustomerDalTest
+Tests run: 36, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.188 s - in vn.edu.vtc.dal.CustomerDalTest

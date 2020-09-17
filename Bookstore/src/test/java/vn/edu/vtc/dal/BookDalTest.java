@@ -91,15 +91,7 @@ public class BookDalTest {
         }
     }
 
-    @Test
-    public  void searchBookCategoryTest4(){
-        try {
-            final List<Book> listBook = bookDal.searchBookCategory(9);
-            assertNull(listBook);
-        } catch (final Exception e) {
-            // TODO: handle exception
-        }
-    }
+    
 
     @Test
     public  void searchBookCategoryAndNameTest1(){

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public class DbUtil {
    private static Connection connection;
    private static String url = "jdbc:mysql://localhost:3306/Bookstore?useUnicode=true&characterEncoding=UTF-8";
@@ -14,5 +15,4 @@ public class DbUtil {
       connection = DriverManager.getConnection(url, user, password);
       return connection;
   }
-
 }
